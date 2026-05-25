@@ -230,6 +230,18 @@ a{text-decoration:none;color:inherit}
 .cat-card-badges{display:flex;gap:4px;flex-wrap:wrap}
 .badge-mini{background:var(--off);color:var(--gray);font-size:9px;padding:2px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace}
 
+/* ── PRODUCTION ────────────────────────────── */
+.production{padding:80px 0;background:var(--white)}
+.production-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:48px}
+.prod-card{
+  border:1px solid var(--border);border-radius:8px;padding:32px;
+  background:var(--off);transition:all .3s;
+}
+.prod-card:hover{border-color:var(--copper);box-shadow:0 12px 40px rgba(200,119,58,0.08)}
+.prod-icon{font-size:40px;margin-bottom:16px;display:inline-block}
+.prod-card h3{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:12px}
+.prod-card p{font-size:13px;color:var(--gray);line-height:1.6}
+
 /* ── SELECTOR TOOL (NEW FEATURE) ─────────────── */
 .selector-section{background:var(--navy);padding:80px 0}
 .selector-inner{display:grid;grid-template-columns:1fr 1.5fr;gap:64px;align-items:center}
@@ -699,6 +711,9 @@ a{text-decoration:none;color:inherit}
   .article-card{min-width:260px;flex-shrink:0;scroll-snap-align:start}
   .article-img-1{height:160px}
 
+  /* ── Production: 1 колонка ── */
+  .production-grid{grid-template-columns:1fr}
+
   /* ── Delivery: карта скрыта, города 2 колонки ── */
   .delivery-grid{gap:28px}
   .map-placeholder{display:none}
@@ -852,12 +867,12 @@ a{text-decoration:none;color:inherit}
             <div class="mega-item"><div class="mega-item-name" data-key="p6_name">Монтаждық кірістірмелер</div><div class="mega-item-spec">DN50–2400 · PN10/16</div></div>
           </div>
         </li>
-        <li><a href="#" data-key="nav_production">Өндіріс</a></li>
-        <li><a href="#" data-key="nav_projects">Объектілер</a></li>
-        <li><a href="#" data-key="nav_delivery">Жеткізу</a></li>
-        <li><a href="#" data-key="nav_docs">Құжаттар</a></li>
-        <li><a href="#" data-key="nav_blog">Мақалалар</a></li>
-        <li><a href="#" data-key="nav_contacts">Байланыс</a></li>
+        <li><a href="#production" data-key="nav_production">Өндіріс</a></li>
+        <li><a href="#projects" data-key="nav_projects">Объектілер</a></li>
+        <li><a href="#delivery" data-key="nav_delivery">Жеткізу</a></li>
+        <li><a href="#blog" data-key="nav_docs">Құжаттар</a></li>
+        <li><a href="#blog" data-key="nav_blog">Мақалалар</a></li>
+        <li><a href="#contact" data-key="nav_contacts">Байланыс</a></li>
       </ul>
 
       <!-- Right -->
@@ -976,8 +991,38 @@ a{text-decoration:none;color:inherit}
   </div>
 </div>
 
+<!-- ── PRODUCTION ─── -->
+<section class="production" id="production">
+  <div class="container">
+    <div class="section-eyebrow" data-key="prod_eyebrow">Өндірістік процесс</div>
+    <h2 class="section-title" data-key="prod_title">Өндіріс қызметі</h2>
+    <div class="production-grid">
+      <div class="prod-card">
+        <div class="prod-icon">🏭</div>
+        <h3 data-key="prod_f1_t">Орталық құрылыс</h3>
+        <p data-key="prod_f1_d">АСТАНА 2024-ке құрылды. Қсовременное оборудование — WCB литьё, CNC обработка, испытания ISO 9001</p>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon">🔧</div>
+        <h3 data-key="prod_f2_t">Құрал және технология</h3>
+        <p data-key="prod_f2_d">Итальялық литейное оборудование (FOSECO), немецкие станки CNC (DMTG), автоматическая сварка Kemppi</p>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon">✅</div>
+        <h3 data-key="prod_f3_t">Сертификациялау</h3>
+        <p data-key="prod_f3_d">ТР ТС 032-2013 · ISO 9001:2015 · ГОСТ 12815-96 · PED 2014/68/EU · ACS сертификация</p>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon">👥</div>
+        <h3 data-key="prod_f4_t">Команда инженеров</h3>
+        <p data-key="prod_f4_d">18+ лет опыта в производстве запорной арматуры. Гарантия качества и технподдержка 24/7</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── CATALOG ─── -->
-<section class="catalog">
+<section class="catalog" id="catalog">
   <div class="container">
     <div class="catalog-header">
       <div>
@@ -1330,7 +1375,7 @@ a{text-decoration:none;color:inherit}
 </section>
 
 <!-- ── PROJECTS ─── -->
-<section class="projects">
+<section class="projects" id="projects">
   <div class="container">
     <div class="section-eyebrow" data-key="proj_eyebrow">Іске асырылған объектілер</div>
     <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:0;flex-wrap:wrap;gap:16px">
@@ -1516,7 +1561,7 @@ a{text-decoration:none;color:inherit}
 </div>
 
 <!-- ── BLOG / ARTICLES ─── -->
-<section class="blog">
+<section class="blog" id="blog">
   <div class="container">
     <div class="section-eyebrow" data-key="blog_eyebrow">Пайдалы мақалалар</div>
     <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px">
@@ -1662,7 +1707,7 @@ a{text-decoration:none;color:inherit}
 </section>
 
 <!-- ── DELIVERY ─── -->
-<section class="delivery">
+<section class="delivery" id="delivery">
   <div class="container">
     <div class="delivery-grid">
       <div>
@@ -1694,7 +1739,7 @@ a{text-decoration:none;color:inherit}
 </section>
 
 <!-- ── CONTACT ─── -->
-<section class="contact">
+<section class="contact" id="contact">
   <div class="container">
     <div class="contact-grid">
       <div>
@@ -1822,23 +1867,23 @@ a{text-decoration:none;color:inherit}
       <div>
         <div class="footer-col-title" data-key="footer_catalog">Каталог</div>
         <ul class="footer-links">
-          <li><a href="#" data-key="p1_name">Клиндік тығындар</a></li>
-          <li><a href="#" data-key="p2_name">Дискілік затворлар</a></li>
-          <li><a href="#" data-key="p3_name">Кері клапандар</a></li>
-          <li><a href="#" data-key="p4_name">Ауа клапандары</a></li>
-          <li><a href="#" data-key="p5_name">Өрт гидранттары</a></li>
-          <li><a href="#" data-key="p6_name">Монтаждық кірістірмелер</a></li>
+          <li><a href="#catalog" data-key="p1_name">Клиндік тығындар</a></li>
+          <li><a href="#catalog" data-key="p2_name">Дискілік затворлар</a></li>
+          <li><a href="#catalog" data-key="p3_name">Кері клапандар</a></li>
+          <li><a href="#catalog" data-key="p4_name">Ауа клапандары</a></li>
+          <li><a href="#catalog" data-key="p5_name">Өрт гидранттары</a></li>
+          <li><a href="#catalog" data-key="p6_name">Монтаждық кірістірмелер</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title" data-key="footer_company">Компания</div>
         <ul class="footer-links">
-          <li><a href="#" data-key="nav_production">Өндіріс</a></li>
-          <li><a href="#" data-key="nav_projects">Объектілер</a></li>
-          <li><a href="#" data-key="nav_docs">Құжаттар</a></li>
-          <li><a href="#" data-key="nav_blog">Мақалалар</a></li>
-          <li><a href="#" data-key="nav_delivery">Жеткізу</a></li>
-          <li><a href="#" data-key="nav_contacts">Байланыс</a></li>
+          <li><a href="#production" data-key="nav_production">Өндіріс</a></li>
+          <li><a href="#projects" data-key="nav_projects">Объектілер</a></li>
+          <li><a href="#blog" data-key="nav_docs">Құжаттар</a></li>
+          <li><a href="#blog" data-key="nav_blog">Мақалалар</a></li>
+          <li><a href="#delivery" data-key="nav_delivery">Жеткізу</a></li>
+          <li><a href="#contact" data-key="nav_contacts">Байланыс</a></li>
         </ul>
       </div>
       <div>
@@ -1950,6 +1995,11 @@ const T = {
     cert1:"ГОСТ", cert2:"ТР ТС", cert3:"ЕАС",
     stat1:"Максимальный диаметр", stat2:"Видов продукции", stat3:"Год основания",
     stat4:"Реализованных объектов", stat5:"Производство в Казахстане",
+    prod_eyebrow:"Производственный процесс", prod_title:"О нашем производстве",
+    prod_f1_t:"Производственный цех", prod_f1_d:"Создан в Астане в 2024 году. Современное оборудование — литьё WCB, обработка на ЧПУ, испытания по ISO 9001",
+    prod_f2_t:"Оборудование и технология", prod_f2_d:"Итальянское литейное оборудование (FOSECO), немецкие ЧПУ станки (DMTG), автоматическая сварка Kemppi",
+    prod_f3_t:"Сертификация", prod_f3_d:"ТР ТС 032-2013 · ISO 9001:2015 · ГОСТ 12815-96 · PED 2014/68/EU · Сертификация ACS",
+    prod_f4_t:"Команда инженеров", prod_f4_d:"Более 18 лет опыта в производстве запорной арматуры. Гарантия качества и техническая поддержка 24/7",
     cat_eyebrow:"Каталог продукции", cat_title:"Вся продукция", cat_all:"Полный каталог →",
     f_all:"Все", f_zadv:"Задвижки", f_zatv:"Затворы", f_klap:"Клапаны", f_other:"Прочее",
     p1_name:"Задвижки клиновые", p1_desc:"С обрезиненным клином, стальные, нержавейка. Под штурвал, редуктор или электропривод.",
@@ -2058,6 +2108,11 @@ const T = {
     cert1:"МЕСТ", cert2:"ТР ТС", cert3:"ЕАС",
     stat1:"Ең үлкен диаметр", stat2:"Өнім түрлері", stat3:"Құрылған жылы",
     stat4:"Іске асырылған объектілер", stat5:"Қазақстандық өндіріс",
+    prod_eyebrow:"Өндірістік процесс", prod_title:"Біздің өндіріс туралы",
+    prod_f1_t:"Өндіріс цехі", prod_f1_d:"2024 жылы Астанада құрылды. Орталық құрал — WCB құйма, ЧПК өңдеу, ISO 9001 бойынша сынақ",
+    prod_f2_t:"Құрал және технология", prod_f2_d:"Итальялық құйма құрал (FOSECO), неміс ЧПК станоктары (DMTG), автоматты ұйқалау Kemppi",
+    prod_f3_t:"Сертификаттау", prod_f3_d:"ТР ТС 032-2013 · ISO 9001:2015 · ГОСТ 12815-96 · PED 2014/68/EU · ACS сертификаты",
+    prod_f4_t:"Инженерлер команда", prod_f4_d:"Жабу арматурасы өндіруінде 18+ жыл тәжірибе. Сапа кепілдігі және техникалық қолдау 24/7",
     cat_eyebrow:"Өнімдер каталогы", cat_title:"Барлық өнімдер", cat_all:"Толық каталог →",
     f_all:"Барлығы", f_zadv:"Тығындар", f_zatv:"Затворлар", f_klap:"Клапандар", f_other:"Басқалар",
     p1_name:"Клиндік тығындар", p1_desc:"Резеңкемен қапталған, болат, тот баспайтын болат. Штурвал, редуктор немесе электрожетекке арналған.",
@@ -2165,6 +2220,11 @@ const T = {
     cert1:"GOST", cert2:"TR CU", cert3:"EAC",
     stat1:"Maximum diameter", stat2:"Product types", stat3:"Founded",
     stat4:"Completed projects", stat5:"Made in Kazakhstan",
+    prod_eyebrow:"Manufacturing process", prod_title:"About our production",
+    prod_f1_t:"Production facility", prod_f1_d:"Established in Astana in 2024. Modern equipment — WCB casting, CNC machining, ISO 9001 testing",
+    prod_f2_t:"Equipment and technology", prod_f2_d:"Italian casting equipment (FOSECO), German CNC machines (DMTG), automatic welding Kemppi",
+    prod_f3_t:"Certifications", prod_f3_d:"TR CU 032-2013 · ISO 9001:2015 · GOST 12815-96 · PED 2014/68/EU · ACS certification",
+    prod_f4_t:"Engineering team", prod_f4_d:"18+ years of experience in valve manufacturing. Quality assurance and 24/7 technical support",
     cat_eyebrow:"Product catalog", cat_title:"All products", cat_all:"Full catalog →",
     f_all:"All", f_zadv:"Gate valves", f_zatv:"Butterfly valves", f_klap:"Check valves", f_other:"Other",
     p1_name:"Gate valves", p1_desc:"Rubber-seated, steel, stainless steel. Handwheel, gearbox, electric actuator.",
