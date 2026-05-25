@@ -1278,21 +1278,21 @@ a{text-decoration:none;color:inherit}
     <div class="modal-grid">
       <div class="modal-field">
         <label class="modal-label" data-key="ml_name">Атыңыз</label>
-        <input class="modal-inp" type="text" placeholder="ФИО">
+        <input id="mf_name" class="modal-inp" type="text" placeholder="ФИО">
       </div>
       <div class="modal-field">
         <label class="modal-label" data-key="ml_phone">Телефон</label>
-        <input class="modal-inp" type="tel" placeholder="+7 (777) 000-00-00">
+        <input id="mf_phone" class="modal-inp" type="tel" placeholder="+7 (777) 000-00-00">
       </div>
     </div>
     <div class="modal-field">
       <label class="modal-label" data-key="ml_company">Компания</label>
-      <input class="modal-inp" type="text" placeholder="ТОО «Название»">
+      <input id="mf_company" class="modal-inp" type="text" placeholder="ТОО «Название»">
     </div>
     <div class="modal-grid">
       <div class="modal-field">
         <label class="modal-label" data-key="ml_type">Арматура түрі</label>
-        <select class="modal-inp">
+        <select id="mf_type" class="modal-inp">
           <option data-key="sel_placeholder">— выберите —</option>
           <option data-key="p1_name">Клиндік тығындар</option>
           <option data-key="p2_name">Дискілік затворлар</option>
@@ -1304,31 +1304,31 @@ a{text-decoration:none;color:inherit}
       </div>
       <div class="modal-field">
         <label class="modal-label" data-key="ml_dn">DN диаметрі</label>
-        <input class="modal-inp" type="text" placeholder="DN50, DN200, DN400...">
+        <input id="mf_dn" class="modal-inp" type="text" placeholder="DN50, DN200, DN400...">
       </div>
     </div>
     <div class="modal-grid">
       <div class="modal-field">
         <label class="modal-label" data-key="ml_pn">PN қысымы</label>
-        <select class="modal-inp">
+        <select id="mf_pn" class="modal-inp">
           <option>—</option>
           <option>PN10</option><option>PN16</option><option>PN25</option>
         </select>
       </div>
       <div class="modal-field">
         <label class="modal-label" data-key="ml_qty">Саны, дана</label>
-        <input class="modal-inp" type="number" placeholder="10">
+        <input id="mf_qty" class="modal-inp" type="number" placeholder="10">
       </div>
     </div>
     <div class="modal-field">
       <label class="modal-label" data-key="ml_medium">Жұмыс ортасы</label>
-      <input class="modal-inp" type="text" placeholder="Вода, нефть, газ...">
+      <input id="mf_medium" class="modal-inp" type="text" placeholder="Вода, нефть, газ...">
     </div>
     <div class="modal-field">
       <label class="modal-label" data-key="ml_comment">Пікір</label>
-      <textarea class="modal-inp" rows="2" style="resize:none" placeholder="Қосымша талаптар, объект..."></textarea>
+      <textarea id="mf_comment" class="modal-inp" rows="2" style="resize:none" placeholder="Қосымша талаптар, объект..."></textarea>
     </div>
-    <button class="btn-primary" style="width:100%;padding:15px;justify-content:center;font-size:14px" data-key="modal_submit">📨 Сауалнама жіберу →</button>
+    <button class="btn-primary" id="modalSendBtn" style="width:100%;padding:15px;justify-content:center;font-size:14px" data-key="modal_submit">📨 Сауалнама жіберу →</button>
   </div>
 </div>
 
@@ -1809,6 +1809,53 @@ document.querySelectorAll('#langSw span').forEach(btn => {
     const chosen = map[btn.textContent.trim()];
     if (chosen) LS.set('av_lang', chosen);
   });
+});
+
+/* ── ОТПРАВКА ЗАЯВКИ ЧЕРЕЗ WHATSAPP ── */
+document.getElementById('modalSendBtn').addEventListener('click', function() {
+  const name    = document.getElementById('mf_name').value.trim();
+  const phone   = document.getElementById('mf_phone').value.trim();
+  const company = document.getElementById('mf_company').value.trim();
+  const type    = document.getElementById('mf_type').value.trim();
+  const dn      = document.getElementById('mf_dn').value.trim();
+  const pn      = document.getElementById('mf_pn').value.trim();
+  const qty     = document.getElementById('mf_qty').value.trim();
+  const medium  = document.getElementById('mf_medium').value.trim();
+  const comment = document.getElementById('mf_comment').value.trim();
+
+  // Валидация — минимум имя и телефон
+  if (!name || !phone) {
+    const msg = currentLang === 'ru' ? 'Пожалуйста, укажите имя и телефон.'
+              : currentLang === 'en' ? 'Please enter your name and phone.'
+              : 'Атыңызды және телефонды енгізіңіз.';
+    alert(msg);
+    return;
+  }
+
+  // Формируем сообщение
+  const labels = {
+    kz: { title:'Жаңа өтінім — Astana Valve сайты', name:'Аты', phone:'Телефон', company:'Компания', type:'Арматура түрі', dn:'DN', pn:'PN', qty:'Саны', medium:'Жұмыс ортасы', comment:'Пікір' },
+    ru: { title:'Новая заявка — сайт Astana Valve',  name:'Имя', phone:'Телефон', company:'Компания', type:'Тип арматуры', dn:'DN', pn:'PN', qty:'Кол-во', medium:'Рабочая среда', comment:'Комментарий' },
+    en: { title:'New request — Astana Valve website', name:'Name', phone:'Phone', company:'Company', type:'Valve type', dn:'DN', pn:'PN', qty:'Qty', medium:'Medium', comment:'Comment' },
+  };
+  const L = labels[currentLang] || labels.ru;
+
+  let text = `📋 ${L.title}\n`;
+  text += `━━━━━━━━━━━━━━━━━━━\n`;
+  text += `👤 ${L.name}: ${name}\n`;
+  text += `📞 ${L.phone}: ${phone}\n`;
+  if (company) text += `🏢 ${L.company}: ${company}\n`;
+  if (type && !type.includes('—')) text += `⚙️ ${L.type}: ${type}\n`;
+  if (dn)      text += `📐 ${L.dn}: ${dn}\n`;
+  if (pn && pn !== '—') text += `💧 ${L.pn}: ${pn}\n`;
+  if (qty)     text += `📦 ${L.qty}: ${qty}\n`;
+  if (medium)  text += `🌊 ${L.medium}: ${medium}\n`;
+  if (comment) text += `💬 ${L.comment}: ${comment}\n`;
+  text += `━━━━━━━━━━━━━━━━━━━`;
+
+  const waURL = 'https://wa.me/77078555511?text=' + encodeURIComponent(text);
+  window.open(waURL, '_blank');
+  closeModal('questionnaire');
 });
 </script>
 </body>
