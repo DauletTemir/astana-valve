@@ -1,0 +1,31 @@
+# ── Зависимости ──────────────────────────────────
+node_modules/
+
+# ── Playwright: результаты тестов и отчёты ───────
+test-results/
+playwright-report/
+
+# ── Сгенерированные файлы (не исходники) ─────────
+docs/preview-full.png
+docs/v2-arctic-blueprint-full.png
+docs/v2-preview-full.html
+docs/astana-valve.pdf
+
+# ── Системные файлы macOS ─────────────────────────
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# ── Редакторы ─────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Временные файлы ───────────────────────────────
+*.log
+*.tmp
+*.bak
+
+# ── Папка с ошибочным именем (была создана случайно) ─
+{src,tests
