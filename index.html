@@ -720,9 +720,9 @@ a{text-decoration:none;color:inherit}
   /* ── Production: 1 колонка ── */
   .production-grid{grid-template-columns:1fr}
 
-  /* ── Delivery: карта скрыта, города 1 колонка ── */
-  .delivery-grid{grid-template-columns:1fr;gap:28px;padding:60px 0}
-  .map-placeholder{display:none}
+  /* ── Delivery: карта видна, города 1 колонка ── */
+  .delivery-grid{grid-template-columns:1fr 1fr;gap:40px}
+  .map-placeholder{height:300px}
   .delivery-cities{grid-template-columns:1fr;gap:8px;margin-top:24px}
   .city-item{padding:12px 14px;gap:10px;font-size:13px}
   .city-name{font-size:13px;font-weight:600}
@@ -778,6 +778,8 @@ a{text-decoration:none;color:inherit}
 @media(max-width:400px){
   .hero-h1{font-size:24px}
   .delivery-cities{grid-template-columns:1fr}
+  .delivery-grid{grid-template-columns:1fr}
+  .map-placeholder{display:none}
   .drawer-panel{width:100vw}
   .proj-card{min-width:230px}
   .testi-scroll .testi-card{min-width:calc(100vw - 48px)}
@@ -841,6 +843,8 @@ a{text-decoration:none;color:inherit}
   .blog-grid{grid-template-columns:1fr}
   .form-grid{grid-template-columns:1fr}
   .delivery-cities{grid-template-columns:1fr}
+  .delivery-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .map-placeholder{height:280px}
   .stats-inner{grid-template-columns:repeat(2,1fr)}
   .footer-grid{grid-template-columns:1fr}
 }
