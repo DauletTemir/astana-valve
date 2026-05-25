@@ -5,7 +5,7 @@ const files = [
   { html: 'index.html', name: 'astana-valve.pdf', label: 'Astana Valve' },
 ];
 
-const srcDir = '/Users/daulettemirtas/Documents/myProject/astana-valve-project/src';
+const srcDir = '/Users/daulettemirtas/Documents/myProject/astana-valve-project';
 const outDir = '/Users/daulettemirtas/Documents/myProject/astana-valve-project/docs';
 
 (async () => {

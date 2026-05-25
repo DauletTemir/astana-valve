@@ -14,7 +14,7 @@ export default defineConfig({
   ],
 
   use: {
-    baseURL: 'file://' + process.cwd() + '/src',
+    baseURL: 'file://' + process.cwd(),
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
