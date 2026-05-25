@@ -1,31 +1,92 @@
+# ╔══════════════════════════════════════════════╗
+# ║  Astana Valve — .gitignore                   ║
+# ║  Stack: Node.js · TypeScript · Playwright    ║
+# ╚══════════════════════════════════════════════╝
+
 # ── Зависимости ──────────────────────────────────
 node_modules/
+jspm_packages/
+.pnpm-store/
+.yarn/
+.pnp.*
 
-# ── Playwright: результаты тестов и отчёты ───────
+# ── TypeScript ────────────────────────────────────
+*.tsbuildinfo
+dist/
+out/
+
+# ── Playwright: тесты и отчёты ───────────────────
 test-results/
 playwright-report/
+blob-report/
 
-# ── Сгенерированные файлы (не исходники) ─────────
+# ── Сгенерированные файлы (скриншоты, PDF) ───────
 docs/preview-full.png
 docs/v2-arctic-blueprint-full.png
 docs/v2-preview-full.html
 docs/astana-valve.pdf
 
+# ── Логи ─────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pids/
+*.pid
+*.pid.lock
+
+# ── Переменные окружения (секреты!) ──────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+service-account.json
+
+# ── Нативные аддоны Node.js ───────────────────────
+*.node
+build/Release/
+
+# ── Кэши инструментов ────────────────────────────
+.npm/
+.eslintcache
+.stylelintcache
+.cache/
+.parcel-cache/
+.vite/
+
+# ── Покрытие тестами ─────────────────────────────
+coverage/
+*.lcov
+.nyc_output/
+
 # ── Системные файлы macOS ─────────────────────────
 .DS_Store
 **/.DS_Store
 Thumbs.db
+Desktop.ini
 
 # ── Редакторы ─────────────────────────────────────
 .vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
 .idea/
 *.swp
 *.swo
+*~
 
-# ── Временные файлы ───────────────────────────────
-*.log
+# ── Временные и резервные файлы ───────────────────
 *.tmp
 *.bak
+*.orig
 
-# ── Папка с ошибочным именем (была создана случайно) ─
+# ── Диагностические отчёты Node.js ───────────────
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# ── Папка с ошибочным именем (создана случайно) ──
 {src,tests
