@@ -700,7 +700,7 @@ a{text-decoration:none;color:inherit}
   .testi-scroll{display:flex}
   .testi-dots{display:flex}
 
-  /* Blog — горизонтальный скролл */
+  /* Blog — горизонтальный скролл, компактнее */
   .blog-grid{
     grid-template-columns:none;
     display:flex;overflow-x:auto;gap:12px;
@@ -708,25 +708,33 @@ a{text-decoration:none;color:inherit}
     scrollbar-width:none;padding-bottom:4px;
   }
   .blog-grid::-webkit-scrollbar{display:none}
-  .article-card{min-width:260px;flex-shrink:0;scroll-snap-align:start}
-  .article-img-1{height:160px}
+  .article-card{min-width:280px;flex-shrink:0;scroll-snap-align:start}
+  .article-img-1{height:140px}
+  .article-img-2,.article-img-3{height:120px}
+  .article-title{font-size:13px}
+  .article-title-sm{font-size:12px}
+  .article-desc{display:none}
+  .article-meta{flex-direction:column;align-items:flex-start;gap:6px;font-size:10px}
+  .article-card-body{padding:14px 16px 16px}
 
   /* ── Production: 1 колонка ── */
   .production-grid{grid-template-columns:1fr}
 
-  /* ── Delivery: карта скрыта, города 2 колонки ── */
-  .delivery-grid{gap:28px}
+  /* ── Delivery: карта скрыта, города 1 колонка ── */
+  .delivery-grid{grid-template-columns:1fr;gap:28px;padding:60px 0}
   .map-placeholder{display:none}
-  .delivery-cities{grid-template-columns:1fr 1fr;gap:8px}
-  .city-item{padding:10px 12px;gap:8px}
-  .city-name{font-size:12px}
-  .city-time{font-size:10px}
+  .delivery-cities{grid-template-columns:1fr;gap:8px;margin-top:24px}
+  .city-item{padding:12px 14px;gap:10px;font-size:13px}
+  .city-name{font-size:13px;font-weight:600}
+  .city-time{font-size:11px;color:var(--gray)}
 
   /* Contact */
   .form-grid{grid-template-columns:1fr}
   .inp.full{grid-column:span 1}
-  .contact-form{padding:20px 16px}
-  .contact-title{font-size:26px}
+  .contact-form{padding:24px 16px}
+  .contact-title{font-size:24px}
+  .contact-sub{font-size:13px}
+  .section-eyebrow{font-size:11px}
 
   /* Footer */
   .footer-grid{grid-template-columns:1fr;gap:24px}
@@ -773,6 +781,13 @@ a{text-decoration:none;color:inherit}
   .drawer-panel{width:100vw}
   .proj-card{min-width:230px}
   .testi-scroll .testi-card{min-width:calc(100vw - 48px)}
+  /* Blog компактнее на малых экранах */
+  .article-card{min-width:250px}
+  .article-img-1{height:120px}
+  .article-img-2,.article-img-3{height:100px}
+  .article-title{font-size:12px}
+  .article-title-sm{font-size:11px}
+  .article-card-body{padding:12px 14px}
 }
 
 /* ── FLOATING ACTIONS (NEW) ──────────────────── */
