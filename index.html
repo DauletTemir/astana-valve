@@ -467,18 +467,7 @@ a{text-decoration:none;color:inherit}
 
 <!-- ── PROMO BAR ─── -->
 <div class="promo-bar">
-  <div class="promo-scroll">
-    <div class="promo-item">🔥 <strong>Акция:</strong> Задвижки DN100–300 — скидка 7% при заказе от 10 ед.</div>
-    <div class="promo-item">📦 <strong>Доставка</strong> по всему Казахстану · Астана, Алматы, Атырау, Актау, Актобе</div>
-    <div class="promo-item">⚡ <strong>КП за 1 день</strong> · Индивидуальное коммерческое предложение</div>
-    <div class="promo-item">✅ <strong>Гарантия 2 года</strong> · Сертификаты соответствия ГОСТ</div>
-    <div class="promo-item">📞 WhatsApp: <strong>+7 707 855-55-11</strong></div>
-    <div class="promo-item">🔥 <strong>Акция:</strong> Задвижки DN100–300 — скидка 7% при заказе от 10 ед.</div>
-    <div class="promo-item">📦 <strong>Доставка</strong> по всему Казахстану · Астана, Алматы, Атырау, Актау, Актобе</div>
-    <div class="promo-item">⚡ <strong>КП за 1 день</strong> · Индивидуальное коммерческое предложение</div>
-    <div class="promo-item">✅ <strong>Гарантия 2 года</strong> · Сертификаты соответствия ГОСТ</div>
-    <div class="promo-item">📞 WhatsApp: <strong>+7 707 855-55-11</strong></div>
-  </div>
+  <div class="promo-scroll" id="promoScroll"></div>
 </div>
 
 <!-- ── HEADER ─── -->
@@ -1433,7 +1422,14 @@ const T = {
     p1d_name:"Задвижки нержавеющие", p1d_desc:"AISI 304/316. Пищевая, химия, горячая вода.",
     p2b_name:"Затворы DN1200–2000", p2b_desc:"Затворы с тройным эксцентриситетом большого диаметра.",
     p3b_name:"Обратные клапаны поворотные", p3b_desc:"Поворотные стальные клапаны для воды, нефти, газа.",
-    p7_name:"Шиберные задвижки", p7_desc:"Для канализации и шлама. DN50–2000."
+    p7_name:"Шиберные задвижки", p7_desc:"Для канализации и шлама. DN50–2000.",
+    promo:[
+      "🔥 <strong>Акция:</strong> Задвижки DN100–300 — скидка 7% при заказе от 10 ед.",
+      "📦 <strong>Доставка</strong> по всему Казахстану · Астана, Алматы, Атырау, Актау, Актобе",
+      "⚡ <strong>КП за 1 день</strong> · Индивидуальное коммерческое предложение",
+      "✅ <strong>Гарантия 2 года</strong> · Сертификаты соответствия ГОСТ",
+      "📞 WhatsApp: <strong>+7 707 855-55-11</strong>"
+    ]
   },
   kz:{
     logo_sub:"Жабу арматурасы", nav_catalog:"Каталог", nav_production:"Өндіріс",
@@ -1531,7 +1527,14 @@ const T = {
     p1d_name:"Тот баспайтын болат тығындар", p1d_desc:"AISI 304/316. Тамақ өнеркәсібі, химия, ыстық су.",
     p2b_name:"Затворлар DN1200–2000", p2b_desc:"Үш эксцентриситетті үлкен диаметрлі затворлар.",
     p3b_name:"Бұрылмалы кері клапандар", p3b_desc:"Поворотные болат клапандар су, мұнай, газ үшін.",
-    p7_name:"Шиберлі тығындар", p7_desc:"Кәріз және тұнба жүйелері үшін. DN50–2000."
+    p7_name:"Шиберлі тығындар", p7_desc:"Кәріз және тұнба жүйелері үшін. DN50–2000.",
+    promo:[
+      "🔥 <strong>Акция:</strong> DN100–300 тығындары — 10 данадан бастап 7% жеңілдік",
+      "📦 <strong>Жеткізу</strong> Қазақстан бойынша · Астана, Алматы, Атырау, Ақтау, Ақтөбе",
+      "⚡ <strong>КҰ 1 күнде</strong> · Жеке коммерциялық ұсыныс",
+      "✅ <strong>2 жыл кепілдік</strong> · МЕСТ сәйкестік сертификаттары",
+      "📞 WhatsApp: <strong>+7 707 855-55-11</strong>"
+    ]
   },
   en:{
     logo_sub:"Industrial Valves", nav_catalog:"Catalog", nav_production:"Production",
@@ -1629,7 +1632,14 @@ const T = {
     p1d_name:"Stainless steel gate valves", p1d_desc:"AISI 304/316. Food, chemical, hot water.",
     p2b_name:"Butterfly valves DN1200–2000", p2b_desc:"Triple offset large diameter butterfly valves.",
     p3b_name:"Swing check valves", p3b_desc:"Swing steel check valves for water, oil, gas.",
-    p7_name:"Knife gate valves", p7_desc:"For sewage and slurry systems. DN50–2000."
+    p7_name:"Knife gate valves", p7_desc:"For sewage and slurry systems. DN50–2000.",
+    promo:[
+      "🔥 <strong>Special offer:</strong> Gate valves DN100–300 — 7% off on orders of 10+ pcs.",
+      "📦 <strong>Delivery</strong> across Kazakhstan · Astana, Almaty, Atyrau, Aktau, Aktobe",
+      "⚡ <strong>Quote in 1 day</strong> · Custom commercial proposal",
+      "✅ <strong>2-year warranty</strong> · GOST & EAC compliance certificates",
+      "📞 WhatsApp: <strong>+7 707 855-55-11</strong>"
+    ]
   }
 };
 
@@ -1660,6 +1670,18 @@ const PH = {
   }
 };
 
+function updatePromo(lang) {
+  const items = T[lang] && T[lang].promo;
+  if (!items) return;
+  const scroll = document.getElementById('promoScroll');
+  if (!scroll) return;
+  // Дублируем строки ×2 для бесшовной анимации
+  const html = [...items, ...items]
+    .map(t => `<div class="promo-item">${t}</div>`)
+    .join('');
+  scroll.innerHTML = html;
+}
+
 function setLang(lang) {
   currentLang = lang;
   document.querySelectorAll('[data-key]').forEach(el => {
@@ -1673,6 +1695,7 @@ function setLang(lang) {
     );
   });
   document.documentElement.lang = lang==='kz'?'kk':lang;
+  updatePromo(lang);
 
   /* Update placeholders */
   const ph = PH[lang] || PH['kz'];
