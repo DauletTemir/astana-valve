@@ -407,6 +407,216 @@ a{text-decoration:none;color:inherit}
 /* ── CATALOG GRID — 3 columns → 4 columns on wide ── */
 @media(min-width:1200px){.catalog-grid{grid-template-columns:repeat(4,1fr)}}
 
+/* ════════════════════════════════════════════════
+   RESPONSIVE — MOBILE FIRST  2025
+   Breakpoints: 1024 · 768 · 480 · 360
+   ════════════════════════════════════════════════ */
+
+/* ── BURGER BUTTON ────────────────────────────── */
+.burger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:40px;height:40px;background:none;border:none;cursor:pointer;
+  padding:4px;border-radius:4px;transition:background .2s;flex-shrink:0;
+}
+.burger:hover{background:var(--off)}
+.burger span{
+  display:block;height:2px;background:var(--navy);border-radius:2px;
+  transition:transform .3s,opacity .3s,width .3s;width:100%;
+}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0;width:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ── MOBILE DRAWER ────────────────────────────── */
+.mobile-drawer{
+  display:none;
+  position:fixed;inset:0;z-index:999;
+}
+.mobile-drawer.open{display:block}
+.drawer-backdrop{
+  position:absolute;inset:0;background:rgba(0,0,0,.45);
+  animation:fadeIn .2s ease;
+}
+.drawer-panel{
+  position:absolute;top:0;left:0;bottom:0;width:min(320px,88vw);
+  background:var(--white);box-shadow:8px 0 40px rgba(0,0,0,.18);
+  display:flex;flex-direction:column;
+  animation:slideInLeft .25s cubic-bezier(.4,0,.2,1);
+  overflow-y:auto;
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideInLeft{from{transform:translateX(-100%)}to{transform:translateX(0)}}
+
+.drawer-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 24px;border-bottom:1px solid var(--border);flex-shrink:0;
+}
+.drawer-close{
+  width:36px;height:36px;border:none;background:var(--off);
+  border-radius:50%;font-size:18px;cursor:pointer;display:flex;
+  align-items:center;justify-content:center;color:var(--navy);
+  transition:background .2s;
+}
+.drawer-close:hover{background:var(--light)}
+
+.drawer-nav{padding:8px 0;flex:1}
+.drawer-nav a{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 24px;font-size:15px;font-weight:500;color:var(--navy);
+  border-bottom:1px solid var(--border);transition:background .15s,color .15s;
+}
+.drawer-nav a:hover{background:rgba(200,119,58,.05);color:var(--copper)}
+.drawer-nav a .drawer-arrow{font-size:12px;color:var(--gray)}
+
+.drawer-footer{
+  padding:20px 24px;border-top:1px solid var(--border);
+  display:flex;flex-direction:column;gap:12px;flex-shrink:0;
+}
+.drawer-phone{font-size:18px;font-weight:700;color:var(--navy)}
+.drawer-lang{display:flex;gap:6px}
+.drawer-lang span{
+  flex:1;text-align:center;padding:8px;border:1px solid var(--border);
+  border-radius:4px;font-size:12px;font-weight:700;cursor:pointer;
+  font-family:'JetBrains Mono',monospace;color:var(--gray);transition:all .2s;
+}
+.drawer-lang span.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* ── TABLET 1024px ────────────────────────────── */
+@media(max-width:1024px){
+  .container{padding:0 24px}
+
+  /* Header */
+  .burger{display:flex}
+  .nav-links{display:none}
+  .header-phone,.header-right > div{display:none}
+  .header-inner{gap:12px}
+
+  /* Hero */
+  .hero-grid{min-height:auto}
+  .hero-grid::before,.hero-grid::after{display:none}
+  .hero-left{padding:60px 32px;background:linear-gradient(135deg,#f4f7fb 0%,#e8f0f8 100%)}
+  .hero-right{display:none}
+  .hero-h1{font-size:clamp(32px,5vw,48px)}
+
+  /* Stats */
+  .stats-inner{grid-template-columns:repeat(3,1fr)}
+
+  /* Sections */
+  .why-grid,.contact-grid,.delivery-grid{grid-template-columns:1fr;gap:40px}
+  .catalog-grid{grid-template-columns:repeat(2,1fr)}
+  .projects-grid,.testi-grid{grid-template-columns:repeat(2,1fr)}
+  .blog-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .selector-inner{grid-template-columns:1fr;gap:40px}
+  .pdf-inner{grid-template-columns:1fr}
+  .pdf-visual{display:none}
+  .certs-grid{grid-template-columns:1fr 1fr}
+
+  /* Section spacing */
+  .catalog,.why,.projects,.testimonials,.blog,.delivery,.contact,.certs-section{padding:64px 0}
+  .pdf-banner,.selector-section{padding:56px 0}
+}
+
+/* ── MOBILE 640px ─────────────────────────────── */
+@media(max-width:640px){
+  .container{padding:0 16px}
+
+  /* Promo bar */
+  .promo-bar{padding:8px 0}
+  .promo-item{font-size:11px;padding:0 20px}
+
+  /* Header */
+  .header-inner{height:60px}
+  .logo-mark{width:34px;height:34px}
+  .logo-mark span{font-size:13px}
+  .logo-title{font-size:16px}
+  .logo-sub{display:none}
+  .btn-wa{padding:7px 12px;font-size:11px}
+  .lang-sw{display:none} /* язык — только в drawer */
+
+  /* Hero */
+  .hero-left{padding:44px 16px 48px}
+  .hero-badge{padding:6px 12px;margin-bottom:20px}
+  .hero-badge span{font-size:9px;letter-spacing:1.5px}
+  .hero-h1{font-size:clamp(28px,7vw,38px);margin-bottom:16px}
+  .hero-sub{font-size:14px;margin-bottom:28px}
+  .hero-cta{flex-direction:column;gap:10px}
+  .hero .btn-primary,.hero .btn-outline{width:100%;justify-content:center;padding:15px 20px}
+
+  /* Stats */
+  .stats-inner{grid-template-columns:repeat(2,1fr);gap:0}
+  .stat-item{padding:16px 12px}
+  .stat-val{font-size:28px}
+  .stat-lbl{font-size:10px}
+
+  /* Catalog */
+  .catalog-grid{grid-template-columns:1fr;gap:14px}
+  .catalog-filter{gap:6px}
+  .filter-btn{padding:6px 12px;font-size:11px}
+  .catalog,.why,.projects,.testimonials,.blog,.delivery,.contact,.certs-section{padding:48px 0}
+  .pdf-banner,.selector-section{padding:44px 0}
+  .section-title{font-size:clamp(26px,6vw,36px)}
+
+  /* Why */
+  .why-img-placeholder{height:260px}
+  .why-item{padding:18px 20px;gap:14px}
+
+  /* Projects */
+  .projects-grid{grid-template-columns:1fr;gap:14px}
+  .proj-img{height:160px}
+
+  /* Testimonials */
+  .testi-grid{grid-template-columns:1fr;gap:14px}
+
+  /* Blog */
+  .blog-grid{grid-template-columns:1fr;gap:14px}
+
+  /* Delivery */
+  .delivery-cities{grid-template-columns:1fr 1fr;gap:8px}
+  .city-item{padding:10px 12px;gap:8px}
+  .city-name{font-size:12px}
+  .map-placeholder{height:260px}
+
+  /* Contact form */
+  .form-grid{grid-template-columns:1fr}
+  .inp.full{grid-column:span 1}
+  .contact-form{padding:24px 20px}
+  .contact-title{font-size:28px}
+
+  /* Footer */
+  .footer-grid{grid-template-columns:1fr;gap:28px}
+  .footer{padding:44px 0 24px}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:12px}
+
+  /* Modal */
+  .modal{padding:28px 20px;border-radius:12px 12px 0 0;max-height:96vh;margin:auto 0 0}
+  .modal-overlay{padding:0;align-items:flex-end}
+  .modal-grid{grid-template-columns:1fr}
+
+  /* Certs */
+  .certs-grid{grid-template-columns:1fr}
+
+  /* Selector */
+  .tool-grid{grid-template-columns:1fr}
+  .selector-tool{padding:24px 20px}
+
+  /* PDF */
+  .pdf-title{font-size:24px}
+  .pdf-actions{flex-direction:column;gap:10px}
+  .btn-pdf,.btn-questionnaire{width:100%;justify-content:center}
+
+  /* Floating WA */
+  .floating-wa{bottom:20px;right:16px;width:52px;height:52px;font-size:24px}
+}
+
+/* ── SMALL MOBILE 400px ───────────────────────── */
+@media(max-width:400px){
+  .hero-h1{font-size:26px}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .delivery-cities{grid-template-columns:1fr}
+  .drawer-panel{width:100vw}
+}
+
 /* ── FLOATING ACTIONS (NEW) ──────────────────── */
 .floating-wa{
   position:fixed;bottom:32px;right:32px;z-index:500;
@@ -521,10 +731,50 @@ a{text-decoration:none;color:inherit}
         <a href="https://wa.me/77078555511" class="btn-wa">
           <span>💬</span> <span data-key="wa_btn">Жазу</span>
         </a>
+        <!-- Burger — visible on mobile only -->
+        <button class="burger" id="burgerBtn" aria-label="Меню" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </div>
 </header>
+
+<!-- ── MOBILE DRAWER ─── -->
+<div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-modal="true">
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <div class="drawer-panel">
+    <div class="drawer-header">
+      <a href="#" class="logo">
+        <div class="logo-mark"><span>AV</span></div>
+        <div class="logo-name">
+          <span class="logo-title">Astana Valve</span>
+        </div>
+      </a>
+      <button class="drawer-close" id="drawerClose">×</button>
+    </div>
+    <nav class="drawer-nav" id="drawerNav">
+      <a href="#catalog" data-key="nav_catalog">Каталог <span class="drawer-arrow">›</span></a>
+      <a href="#production" data-key="nav_production">Өндіріс <span class="drawer-arrow">›</span></a>
+      <a href="#projects" data-key="nav_projects">Объектілер <span class="drawer-arrow">›</span></a>
+      <a href="#delivery" data-key="nav_delivery">Жеткізу <span class="drawer-arrow">›</span></a>
+      <a href="#docs" data-key="nav_docs">Құжаттар <span class="drawer-arrow">›</span></a>
+      <a href="#blog" data-key="nav_blog">Мақалалар <span class="drawer-arrow">›</span></a>
+      <a href="#contact" data-key="nav_contacts">Байланыс <span class="drawer-arrow">›</span></a>
+    </nav>
+    <div class="drawer-footer">
+      <a href="tel:+77078555511" class="drawer-phone">+7 707 855-55-11</a>
+      <a href="https://wa.me/77078555511" class="btn-wa" style="width:100%;justify-content:center">
+        💬 WhatsApp
+      </a>
+      <div class="drawer-lang" id="drawerLang">
+        <span onclick="setLang('ru');closeDrawer()">RU</span>
+        <span class="active" onclick="setLang('kz');closeDrawer()">ҚЗ</span>
+        <span onclick="setLang('en');closeDrawer()">EN</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ── HERO ─── -->
 <section class="hero">
@@ -1696,6 +1946,13 @@ function setLang(lang) {
   });
   document.documentElement.lang = lang==='kz'?'kk':lang;
   updatePromo(lang);
+  // sync mobile drawer language buttons
+  document.querySelectorAll('#drawerLang span').forEach(s => {
+    const t = s.textContent.trim();
+    s.classList.toggle('active',
+      (lang==='ru' && t==='RU') || (lang==='kz' && t==='ҚЗ') || (lang==='en' && t==='EN')
+    );
+  });
 
   /* Update placeholders */
   const ph = PH[lang] || PH['kz'];
@@ -1832,6 +2089,52 @@ document.querySelectorAll('#langSw span').forEach(btn => {
     const chosen = map[btn.textContent.trim()];
     if (chosen) LS.set('av_lang', chosen);
   });
+});
+
+/* ── BURGER / MOBILE DRAWER ── */
+const burgerBtn    = document.getElementById('burgerBtn');
+const mobileDrawer = document.getElementById('mobileDrawer');
+const drawerClose  = document.getElementById('drawerClose');
+const drawerBackdrop = document.getElementById('drawerBackdrop');
+
+function openDrawer() {
+  mobileDrawer.classList.add('open');
+  burgerBtn.classList.add('open');
+  burgerBtn.setAttribute('aria-expanded','true');
+  document.body.style.overflow = 'hidden';
+}
+function closeDrawer() {
+  mobileDrawer.classList.remove('open');
+  burgerBtn.classList.remove('open');
+  burgerBtn.setAttribute('aria-expanded','false');
+  document.body.style.overflow = '';
+}
+
+burgerBtn.addEventListener('click', () => {
+  mobileDrawer.classList.contains('open') ? closeDrawer() : openDrawer();
+});
+drawerClose.addEventListener('click', closeDrawer);
+drawerBackdrop.addEventListener('click', closeDrawer);
+
+// Close drawer on nav link click
+document.querySelectorAll('.drawer-nav a').forEach(a => {
+  a.addEventListener('click', closeDrawer);
+});
+
+// Sync drawer lang buttons with setLang
+const origSetLang = setLang;
+function syncDrawerLang(lang) {
+  document.querySelectorAll('#drawerLang span').forEach(s => {
+    const t = s.textContent.trim();
+    s.classList.toggle('active',
+      (lang==='ru' && t==='RU') || (lang==='kz' && t==='ҚЗ') || (lang==='en' && t==='EN')
+    );
+  });
+}
+
+// Close drawer on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeDrawer();
 });
 
 /* ── ОТПРАВКА ЗАЯВКИ ЧЕРЕЗ WHATSAPP ── */

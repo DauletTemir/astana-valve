@@ -72,7 +72,7 @@ test.describe('🧭 SMOKE: Навигация', () => {
 
   test('SM-06 | Логотип "Astana Valve" виден в шапке', async ({ page }) => {
     await openPage(page, INDEX_URL);
-    const logo = page.locator('.logo-title');
+    const logo = page.locator('header .logo-title').first();
     await expect(logo).toBeVisible();
     await expect(logo).toContainText('Astana Valve');
   });
@@ -279,7 +279,7 @@ test.describe('📱 SMOKE: Мобильная версия', () => {
   test('SM-35 | На мобильном логотип виден', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await openPage(page, INDEX_URL);
-    await expect(page.locator('.logo-title')).toBeVisible();
+    await expect(page.locator('header .logo-title').first()).toBeVisible();
   });
 
   test('SM-36 | На планшете (768px) страница загружается', async ({ page }) => {
