@@ -313,22 +313,44 @@ a{text-decoration:none;color:inherit}
 .pdf-visual-icon{font-size:48px}
 .pdf-visual-text{font-size:11px;color:rgba(255,255,255,.5);text-align:center;letter-spacing:1px;font-family:'JetBrains Mono',monospace}
 
-/* ── BLOG / ARTICLES (NEW) ───────────────────── */
+/* ── BLOG / ARTICLES ────────────────────────── */
 .blog{padding:90px 0;background:var(--white)}
 .blog-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:24px;margin-top:48px}
-.article-card{border-radius:6px;overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:all .3s}
-.article-card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
-.article-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:40px}
-.article-img-1{background:linear-gradient(135deg,#f0e8de,#d4c4b0);height:280px}
-.article-img-2{background:linear-gradient(135deg,#e8f0de,#c4d4b0)}
-.article-img-3{background:linear-gradient(135deg,#dee8f0,#b0c4d4)}
+.article-card{border-radius:8px;overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:all .3s;background:var(--white)}
+.article-card:hover{box-shadow:0 12px 40px rgba(26,35,50,0.10);transform:translateY(-3px);border-color:var(--copper)}
+/* Визуальный блок статьи */
+.article-img{
+  height:180px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.article-img-1{background:linear-gradient(135deg,#1a2332 0%,#2d4a6b 100%);height:260px}
+.article-img-2{background:linear-gradient(135deg,#2a1f0e 0%,#6b4a1a 100%)}
+.article-img-3{background:linear-gradient(135deg,#0e1f2a 0%,#1a4a5c 100%)}
+/* SVG-схема внутри карточки */
+.article-svg{width:100%;height:100%;padding:24px;box-sizing:border-box}
+/* Тег поверх изображения */
+.article-tag{
+  position:absolute;top:14px;left:14px;
+  background:rgba(200,119,58,.9);color:#fff;
+  font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:4px 10px;border-radius:3px;font-family:'JetBrains Mono',monospace;
+}
+/* Минута-чтения бейдж */
+.article-min-badge{
+  position:absolute;bottom:14px;right:14px;
+  background:rgba(0,0,0,.45);color:rgba(255,255,255,.85);
+  font-size:10px;padding:3px 8px;border-radius:3px;
+  font-family:'JetBrains Mono',monospace;backdrop-filter:blur(4px);
+}
 .article-body{padding:20px 22px 24px}
 .article-cat{font-size:10px;font-weight:700;color:var(--copper);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;font-family:'JetBrains Mono',monospace}
 .article-title{font-size:15px;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:8px}
 .article-title-sm{font-size:13px;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:8px}
-.article-desc{font-size:12px;color:var(--gray);line-height:1.5;margin-bottom:12px}
-.article-meta{font-size:11px;color:var(--gray);display:flex;align-items:center;gap:12px}
-.article-read{font-size:12px;font-weight:700;color:var(--copper)}
+.article-desc{font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:14px}
+.article-meta{font-size:11px;color:var(--gray);display:flex;align-items:center;justify-content:space-between}
+.article-read{font-size:12px;font-weight:700;color:var(--copper);display:flex;align-items:center;gap:4px}
+.article-read::after{content:'→';transition:transform .2s}
+.article-card:hover .article-read::after{transform:translateX(4px)}
 
 /* ── DELIVERY MAP (NEW) ──────────────────────── */
 .delivery{padding:90px 0;background:var(--off)}
@@ -1502,40 +1524,139 @@ a{text-decoration:none;color:inherit}
       <a href="#" class="btn-outline" data-key="blog_all">Барлық мақалалар →</a>
     </div>
     <div class="blog-grid">
+
+      <!-- Статья 1 — главная, широкая -->
       <div class="article-card">
-        <div class="article-img article-img-1">⚙️</div>
+        <div class="article-img article-img-1">
+          <div class="article-tag" data-key="art1_cat">Выбор арматуры</div>
+          <div class="article-min-badge" data-key="art_min">8 мин</div>
+          <!-- SVG: схема задвижки с DN/PN параметрами -->
+          <svg class="article-svg" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Труба -->
+            <rect x="20" y="95" width="80" height="30" rx="2" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
+            <rect x="220" y="95" width="80" height="30" rx="2" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
+            <!-- Корпус задвижки -->
+            <rect x="100" y="75" width="120" height="70" rx="6" fill="rgba(200,119,58,.25)" stroke="rgba(200,119,58,.7)" stroke-width="2"/>
+            <!-- Клин -->
+            <rect x="148" y="85" width="24" height="50" rx="3" fill="rgba(200,119,58,.5)" stroke="rgba(200,119,58,.9)" stroke-width="1.5"/>
+            <!-- Шпиндель -->
+            <line x1="160" y1="85" x2="160" y2="20" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-dasharray="4 3"/>
+            <!-- Штурвал -->
+            <circle cx="160" cy="16" r="12" fill="none" stroke="rgba(200,119,58,.8)" stroke-width="2.5"/>
+            <line x1="148" y1="16" x2="172" y2="16" stroke="rgba(200,119,58,.8)" stroke-width="2"/>
+            <line x1="160" y1="4" x2="160" y2="28" stroke="rgba(200,119,58,.8)" stroke-width="2"/>
+            <!-- Фланцы -->
+            <rect x="94" y="85" width="12" height="50" rx="1" fill="rgba(255,255,255,.2)" stroke="rgba(255,255,255,.4)" stroke-width="1"/>
+            <rect x="214" y="85" width="12" height="50" rx="1" fill="rgba(255,255,255,.2)" stroke="rgba(255,255,255,.4)" stroke-width="1"/>
+            <!-- Подписи -->
+            <text x="58" y="90" fill="rgba(255,255,255,.5)" font-size="9" font-family="monospace" text-anchor="middle">DN</text>
+            <text x="58" y="102" fill="rgba(200,119,58,.9)" font-size="11" font-family="monospace" font-weight="bold" text-anchor="middle">200</text>
+            <text x="160" y="150" fill="rgba(255,255,255,.5)" font-size="9" font-family="monospace" text-anchor="middle">PN16</text>
+            <!-- Разметка параметров -->
+            <line x1="20" y1="140" x2="100" y2="140" stroke="rgba(255,255,255,.2)" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="50" y="155" fill="rgba(255,255,255,.35)" font-size="8" font-family="monospace" text-anchor="middle">L строй</text>
+            <!-- Правая подпись -->
+            <text x="252" y="90" fill="rgba(255,255,255,.5)" font-size="9" font-family="monospace" text-anchor="middle">PN</text>
+            <text x="252" y="102" fill="rgba(200,119,58,.9)" font-size="11" font-family="monospace" font-weight="bold" text-anchor="middle">16</text>
+            <!-- Легенда снизу -->
+            <rect x="20" y="175" width="10" height="10" rx="1" fill="rgba(200,119,58,.5)"/>
+            <text x="36" y="184" fill="rgba(255,255,255,.45)" font-size="9" font-family="monospace">Клин с резиновым уплотнением</text>
+            <rect x="20" y="193" width="10" height="10" rx="1" fill="rgba(255,255,255,.2)"/>
+            <text x="36" y="202" fill="rgba(255,255,255,.45)" font-size="9" font-family="monospace">Стальной клин WCB</text>
+          </svg>
+        </div>
         <div class="article-body">
-          <div class="article-cat" data-key="art1_cat">Выбор арматуры</div>
           <div class="article-title" data-key="art1_title">Как выбрать задвижку для водоснабжения: DN, PN и тип клина</div>
-          <div class="article-desc" data-key="art1_desc">Разбираем ключевые параметры при подборе задвижек для систем водоснабжения и водоотведения. Чем отличается обрезиненный клин от стального и когда что применять.</div>
+          <div class="article-desc" data-key="art1_desc">Разбираем ключевые параметры при подборе задвижек для систем водоснабжения. Чем отличается обрезиненный клин от стального и когда что применять.</div>
           <div class="article-meta">
-            <span data-key="art_min">8 мин чтения</span>
-            <span class="article-read" data-key="art_read">Читать →</span>
+            <span style="color:var(--gray)">8 min read</span>
+            <span class="article-read" data-key="art_read">Читать</span>
           </div>
         </div>
       </div>
+
+      <!-- Статья 2 — затвор -->
       <div class="article-card">
-        <div class="article-img article-img-2">🔄</div>
+        <div class="article-img article-img-2">
+          <div class="article-tag" data-key="art2_cat">Техника</div>
+          <div class="article-min-badge">5 мин</div>
+          <!-- SVG: сравнение двойного и тройного эксцентриситета -->
+          <svg class="article-svg" viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- 2E — левая сторона -->
+            <text x="50" y="18" fill="rgba(255,255,255,.4)" font-size="8" font-family="monospace" text-anchor="middle">2E</text>
+            <circle cx="50" cy="80" r="38" fill="rgba(200,119,58,.15)" stroke="rgba(200,119,58,.6)" stroke-width="1.5"/>
+            <ellipse cx="50" cy="80" rx="20" ry="36" fill="rgba(200,119,58,.3)" stroke="rgba(200,119,58,.9)" stroke-width="1.5"/>
+            <!-- ось эксцентриситета 2E -->
+            <line x1="50" y1="44" x2="54" y2="116" stroke="rgba(255,255,255,.5)" stroke-width="1" stroke-dasharray="3 2"/>
+            <circle cx="54" cy="80" r="2.5" fill="rgba(200,119,58,.9)"/>
+            <!-- 3E — правая сторона -->
+            <text x="150" y="18" fill="rgba(255,255,255,.4)" font-size="8" font-family="monospace" text-anchor="middle">3E</text>
+            <circle cx="150" cy="80" r="38" fill="rgba(26,100,180,.15)" stroke="rgba(100,180,255,.4)" stroke-width="1.5"/>
+            <ellipse cx="150" cy="80" rx="20" ry="36" transform="rotate(-8 150 80)" fill="rgba(100,180,255,.2)" stroke="rgba(100,180,255,.7)" stroke-width="1.5"/>
+            <!-- ось 3E -->
+            <line x1="150" y1="44" x2="156" y2="116" stroke="rgba(255,255,255,.5)" stroke-width="1" stroke-dasharray="3 2"/>
+            <circle cx="156" cy="80" r="2.5" fill="rgba(100,180,255,.9)"/>
+            <line x1="150" y1="80" x2="158" y2="74" stroke="rgba(100,180,255,.7)" stroke-width="1" stroke-dasharray="2 2"/>
+            <!-- Разделитель -->
+            <line x1="100" y1="30" x2="100" y2="130" stroke="rgba(255,255,255,.15)" stroke-width="1" stroke-dasharray="4 3"/>
+            <!-- Подписи снизу -->
+            <text x="50" y="140" fill="rgba(200,119,58,.7)" font-size="8" font-family="monospace" text-anchor="middle">до DN600</text>
+            <text x="50" y="151" fill="rgba(255,255,255,.35)" font-size="7" font-family="monospace" text-anchor="middle">вода / воздух</text>
+            <text x="150" y="140" fill="rgba(100,180,255,.7)" font-size="8" font-family="monospace" text-anchor="middle">до DN2000</text>
+            <text x="150" y="151" fill="rgba(255,255,255,.35)" font-size="7" font-family="monospace" text-anchor="middle">нефть / пар / газ</text>
+          </svg>
+        </div>
         <div class="article-body">
-          <div class="article-cat" data-key="art2_cat">Техника</div>
-          <div class="article-title-sm" data-key="art2_title">Затвор с двойным vs тройным эксцентриситетом: в чём разница</div>
+          <div class="article-title-sm" data-key="art2_title">Двойной vs тройной эксцентриситет затвора: в чём разница</div>
           <div class="article-meta" style="margin-top:12px">
-            <span>5 мин</span>
-            <span class="article-read" data-key="art_read">Читать →</span>
+            <span style="color:var(--gray)">5 min</span>
+            <span class="article-read" data-key="art_read">Читать</span>
           </div>
         </div>
       </div>
+
+      <!-- Статья 3 — монтажная вставка -->
       <div class="article-card">
-        <div class="article-img article-img-3">📋</div>
+        <div class="article-img article-img-3">
+          <div class="article-tag" data-key="art3_cat">Монтаж</div>
+          <div class="article-min-badge">6 мин</div>
+          <!-- SVG: схема монтажной вставки -->
+          <svg class="article-svg" viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Труба левая -->
+            <rect x="10" y="77" width="40" height="26" rx="2" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+            <!-- Труба правая -->
+            <rect x="150" y="77" width="40" height="26" rx="2" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+            <!-- Монтажная вставка -->
+            <rect x="50" y="65" width="100" height="50" rx="4" fill="rgba(26,120,180,.2)" stroke="rgba(100,180,255,.6)" stroke-width="2"/>
+            <!-- Фланцы вставки -->
+            <rect x="44" y="72" width="12" height="36" rx="1" fill="rgba(100,180,255,.3)" stroke="rgba(100,180,255,.6)" stroke-width="1"/>
+            <rect x="144" y="72" width="12" height="36" rx="1" fill="rgba(100,180,255,.3)" stroke="rgba(100,180,255,.6)" stroke-width="1"/>
+            <!-- Тяги -->
+            <line x1="56" y1="76" x2="144" y2="76" stroke="rgba(255,255,255,.2)" stroke-width="1" stroke-dasharray="4 3"/>
+            <line x1="56" y1="104" x2="144" y2="104" stroke="rgba(255,255,255,.2)" stroke-width="1" stroke-dasharray="4 3"/>
+            <!-- Стрелки сжатия -->
+            <line x1="50" y1="90" x2="22" y2="90" stroke="rgba(200,119,58,.8)" stroke-width="2"/>
+            <polygon points="22,86 14,90 22,94" fill="rgba(200,119,58,.8)"/>
+            <line x1="150" y1="90" x2="178" y2="90" stroke="rgba(200,119,58,.8)" stroke-width="2"/>
+            <polygon points="178,86 186,90 178,94" fill="rgba(200,119,58,.8)"/>
+            <!-- Размерная линия -->
+            <line x1="56" y1="128" x2="144" y2="128" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+            <line x1="56" y1="124" x2="56" y2="132" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+            <line x1="144" y1="124" x2="144" y2="132" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+            <text x="100" y="143" fill="rgba(100,180,255,.8)" font-size="9" font-family="monospace" text-anchor="middle">L монтажная</text>
+            <!-- Подпись -->
+            <text x="100" y="160" fill="rgba(255,255,255,.35)" font-size="8" font-family="monospace" text-anchor="middle">DN50–2400 · без разрезки</text>
+          </svg>
+        </div>
         <div class="article-body">
-          <div class="article-cat" data-key="art3_cat">Монтаж</div>
-          <div class="article-title-sm" data-key="art3_title">Монтаж монтажных вставок без разрезки трубопровода: пошаговая инструкция</div>
+          <div class="article-title-sm" data-key="art3_title">Монтаж вставок без разрезки трубопровода: пошаговая инструкция</div>
           <div class="article-meta" style="margin-top:12px">
-            <span>6 мин</span>
-            <span class="article-read" data-key="art_read">Читать →</span>
+            <span style="color:var(--gray)">6 min</span>
+            <span class="article-read" data-key="art_read">Читать</span>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
