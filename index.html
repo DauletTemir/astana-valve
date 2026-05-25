@@ -517,6 +517,86 @@ a{text-decoration:none;color:inherit}
   .pdf-banner,.selector-section{padding:56px 0}
 }
 
+/* ════════════════════════════════════════════════
+   COMPACT CATALOG — горизонтальные строки на мобиле
+   Тренд 2025/26: список вместо карточек-кирпичей
+   ════════════════════════════════════════════════ */
+.cat-row{
+  display:none; /* показываем только на мобиле */
+}
+/* Compact horizontal list card */
+.cat-row-item{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 14px;border:1px solid var(--border);border-radius:8px;
+  background:var(--white);cursor:pointer;transition:border-color .2s,box-shadow .2s;
+}
+.cat-row-item:hover{border-color:var(--copper);box-shadow:0 2px 12px rgba(200,119,58,.1)}
+.cat-row-img{
+  width:64px;height:64px;border-radius:6px;object-fit:cover;
+  flex-shrink:0;background:var(--light);
+}
+.cat-row-body{flex:1;min-width:0}
+.cat-row-name{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cat-row-spec{font-size:11px;color:var(--copper);font-family:'JetBrains Mono',monospace}
+.cat-row-arrow{font-size:16px;color:var(--gray);flex-shrink:0}
+
+/* "Показать все" кнопка */
+.catalog-show-more{
+  width:100%;margin-top:12px;padding:12px;
+  background:var(--off);border:1px solid var(--border);border-radius:8px;
+  font-size:13px;font-weight:600;color:var(--navy);cursor:pointer;
+  transition:border-color .2s;display:none;
+}
+.catalog-show-more:hover{border-color:var(--copper)}
+
+/* ════════════════════════════════════════════════
+   COMPACT TESTIMONIALS — горизонтальный скролл
+   ════════════════════════════════════════════════ */
+.testi-scroll{
+  display:none;
+  overflow-x:auto;gap:14px;padding-bottom:8px;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.testi-scroll::-webkit-scrollbar{display:none}
+.testi-scroll .testi-card{
+  min-width:calc(100vw - 32px);width:calc(100vw - 32px);
+  scroll-snap-align:start;flex-shrink:0;box-sizing:border-box;
+}
+/* Dots indicator */
+.testi-dots{
+  display:none;justify-content:center;gap:6px;margin-top:16px;
+}
+.testi-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--border);
+  transition:background .2s,width .2s;
+}
+.testi-dot.active{background:var(--copper);width:18px;border-radius:3px}
+
+/* ════════════════════════════════════════════════
+   COMPACT CERTS — одна строка с иконками
+   ════════════════════════════════════════════════ */
+.certs-compact{
+  display:none;
+  flex-direction:column;gap:12px;margin-top:28px;
+}
+.cert-compact-item{
+  display:flex;align-items:center;gap:16px;
+  padding:14px 16px;border:1px solid var(--border);border-radius:8px;
+  background:var(--white);
+}
+.cert-compact-icon{
+  width:48px;height:48px;background:var(--off);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;border:1px solid var(--border);
+  overflow:hidden;
+}
+.cert-compact-icon img{width:100%;height:100%;object-fit:cover}
+.cert-compact-body{}
+.cert-compact-title{font-size:13px;font-weight:700;color:var(--navy)}
+.cert-compact-meta{font-size:11px;color:var(--gray);font-family:'JetBrains Mono',monospace;margin-top:2px}
+
 /* ── MOBILE 640px ─────────────────────────────── */
 @media(max-width:640px){
   .container{padding:0 16px}
@@ -525,96 +605,137 @@ a{text-decoration:none;color:inherit}
   .promo-bar{padding:8px 0}
   .promo-item{font-size:11px;padding:0 20px}
 
-  /* Header */
-  .header-inner{height:60px}
-  .logo-mark{width:34px;height:34px}
+  /* ── Header — фикс бургера за краем ── */
+  .header-inner{height:60px;gap:8px}
+  .logo-mark{width:34px;height:34px;flex-shrink:0}
   .logo-mark span{font-size:13px}
-  .logo-title{font-size:16px}
+  .logo-title{font-size:15px}
   .logo-sub{display:none}
-  .btn-wa{padding:7px 12px;font-size:11px}
-  .lang-sw{display:none} /* язык — только в drawer */
+  /* btn-wa скрываем — есть в drawer */
+  .btn-wa{display:none}
+  .lang-sw{display:none}
+  /* burger всегда внутри экрана */
+  .header-right{gap:0;padding-right:0}
+  .burger{margin-left:4px;flex-shrink:0}
 
   /* Hero */
-  .hero-left{padding:44px 16px 48px}
-  .hero-badge{padding:6px 12px;margin-bottom:20px}
-  .hero-badge span{font-size:9px;letter-spacing:1.5px}
-  .hero-h1{font-size:clamp(28px,7vw,38px);margin-bottom:16px}
-  .hero-sub{font-size:14px;margin-bottom:28px}
+  .hero-left{padding:40px 16px 44px}
+  .hero-badge{padding:5px 12px;margin-bottom:18px}
+  .hero-badge span{font-size:9px;letter-spacing:1px}
+  .hero-h1{font-size:clamp(26px,7vw,36px);margin-bottom:14px}
+  .hero-sub{font-size:13px;margin-bottom:24px}
   .hero-cta{flex-direction:column;gap:10px}
-  .hero .btn-primary,.hero .btn-outline{width:100%;justify-content:center;padding:15px 20px}
+  .hero .btn-primary,.hero .btn-outline{width:100%;justify-content:center;padding:14px 20px}
 
   /* Stats */
   .stats-inner{grid-template-columns:repeat(2,1fr);gap:0}
-  .stat-item{padding:16px 12px}
-  .stat-val{font-size:28px}
+  .stat-item{padding:14px 10px}
+  .stat-val{font-size:26px}
   .stat-lbl{font-size:10px}
 
-  /* Catalog */
-  .catalog-grid{grid-template-columns:1fr;gap:14px}
-  .catalog-filter{gap:6px}
-  .filter-btn{padding:6px 12px;font-size:11px}
-  .catalog,.why,.projects,.testimonials,.blog,.delivery,.contact,.certs-section{padding:48px 0}
-  .pdf-banner,.selector-section{padding:44px 0}
-  .section-title{font-size:clamp(26px,6vw,36px)}
+  /* ── Catalog: скрываем карточки, показываем список ── */
+  .catalog-grid{display:none}
+  .catalog-filter{gap:6px;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;scrollbar-width:none}
+  .catalog-filter::-webkit-scrollbar{display:none}
+  .filter-btn{padding:6px 12px;font-size:11px;white-space:nowrap;flex-shrink:0}
+  .cat-row{display:flex;flex-direction:column;gap:10px}
+  .catalog-show-more{display:block}
+  .catalog,.why,.projects,.testimonials,.blog,.delivery,.contact,.certs-section{padding:44px 0}
+  .pdf-banner,.selector-section{padding:40px 0}
+  .section-title{font-size:clamp(24px,6vw,34px)}
 
   /* Why */
-  .why-img-placeholder{height:260px}
-  .why-item{padding:18px 20px;gap:14px}
+  .why-img-placeholder{height:220px}
+  .why-img-placeholder::before{display:none}
+  .why-item{padding:14px 16px;gap:12px}
+  .why-icon{font-size:22px;width:36px}
 
-  /* Projects */
-  .projects-grid{grid-template-columns:1fr;gap:14px}
-  .proj-img{height:160px}
+  /* Projects — горизонтальный скролл */
+  .projects-grid{
+    grid-template-columns:none;
+    display:flex;overflow-x:auto;gap:12px;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none;padding-bottom:4px;
+  }
+  .projects-grid::-webkit-scrollbar{display:none}
+  .proj-card{min-width:260px;flex-shrink:0;scroll-snap-align:start}
+  .proj-img{height:140px}
 
-  /* Testimonials */
-  .testi-grid{grid-template-columns:1fr;gap:14px}
+  /* ── Testimonials: скролл + точки ── */
+  .testi-grid{display:none}
+  .testi-scroll{display:flex}
+  .testi-dots{display:flex}
 
-  /* Blog */
-  .blog-grid{grid-template-columns:1fr;gap:14px}
+  /* Blog — горизонтальный скролл */
+  .blog-grid{
+    grid-template-columns:none;
+    display:flex;overflow-x:auto;gap:12px;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none;padding-bottom:4px;
+  }
+  .blog-grid::-webkit-scrollbar{display:none}
+  .article-card{min-width:260px;flex-shrink:0;scroll-snap-align:start}
+  .article-img-1{height:160px}
 
-  /* Delivery */
+  /* ── Delivery: карта скрыта, города 2 колонки ── */
+  .delivery-grid{gap:28px}
+  .map-placeholder{display:none}
   .delivery-cities{grid-template-columns:1fr 1fr;gap:8px}
   .city-item{padding:10px 12px;gap:8px}
   .city-name{font-size:12px}
-  .map-placeholder{height:260px}
+  .city-time{font-size:10px}
 
-  /* Contact form */
+  /* Contact */
   .form-grid{grid-template-columns:1fr}
   .inp.full{grid-column:span 1}
-  .contact-form{padding:24px 20px}
-  .contact-title{font-size:28px}
+  .contact-form{padding:20px 16px}
+  .contact-title{font-size:26px}
 
   /* Footer */
-  .footer-grid{grid-template-columns:1fr;gap:28px}
-  .footer{padding:44px 0 24px}
-  .footer-bottom{flex-direction:column;align-items:flex-start;gap:12px}
+  .footer-grid{grid-template-columns:1fr;gap:24px}
+  .footer{padding:40px 0 20px}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:10px}
 
-  /* Modal */
-  .modal{padding:28px 20px;border-radius:12px 12px 0 0;max-height:96vh;margin:auto 0 0}
+  /* Modal — bottom sheet */
+  .modal{padding:24px 16px;border-radius:16px 16px 0 0;max-height:94vh;margin:auto 0 0}
   .modal-overlay{padding:0;align-items:flex-end}
   .modal-grid{grid-template-columns:1fr}
 
-  /* Certs */
-  .certs-grid{grid-template-columns:1fr}
+  /* ── Certs: компактный список ── */
+  .certs-section .certs-grid{display:none}
+  .certs-compact{display:flex}
 
   /* Selector */
   .tool-grid{grid-template-columns:1fr}
-  .selector-tool{padding:24px 20px}
+  .selector-tool{padding:20px 16px}
 
   /* PDF */
-  .pdf-title{font-size:24px}
+  .pdf-title{font-size:22px}
   .pdf-actions{flex-direction:column;gap:10px}
   .btn-pdf,.btn-questionnaire{width:100%;justify-content:center}
 
   /* Floating WA */
-  .floating-wa{bottom:20px;right:16px;width:52px;height:52px;font-size:24px}
+  .floating-wa{bottom:20px;right:16px;width:50px;height:50px;font-size:22px}
+}
+
+/* ── SWIPE HINT ───────────────────────────────── */
+.swipe-hint{
+  display:none;align-items:center;gap:6px;
+  font-size:11px;color:var(--gray);font-family:'JetBrains Mono',monospace;
+  letter-spacing:.5px;margin-bottom:12px;
+}
+.swipe-hint svg{flex-shrink:0;opacity:.5}
+@media(max-width:640px){
+  .swipe-hint{display:flex}
 }
 
 /* ── SMALL MOBILE 400px ───────────────────────── */
 @media(max-width:400px){
-  .hero-h1{font-size:26px}
-  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .hero-h1{font-size:24px}
   .delivery-cities{grid-template-columns:1fr}
   .drawer-panel{width:100vw}
+  .proj-card{min-width:230px}
+  .testi-scroll .testi-card{min-width:calc(100vw - 48px)}
 }
 
 /* ── FLOATING ACTIONS (NEW) ──────────────────── */
@@ -1008,6 +1129,53 @@ a{text-decoration:none;color:inherit}
         </div>
       </div>
     </div>
+
+    <!-- ── MOBILE: компактный список (скрыт на десктопе) ── -->
+    <div class="cat-row" id="catRowList">
+      <div class="cat-row-item" data-cat="zadv">
+        <img class="cat-row-img" src="img/products/gate-valve-rubber-dn100.png" alt="" loading="lazy">
+        <div class="cat-row-body"><div class="cat-row-name" data-key="p1_name">Клиндік тығындар</div><div class="cat-row-spec">DN50–1200 · PN10/16/25</div></div>
+        <span class="cat-row-arrow">›</span>
+      </div>
+      <div class="cat-row-item" data-cat="zatv">
+        <img class="cat-row-img" src="img/products/butterfly-valve-wafer.jpeg" alt="" loading="lazy">
+        <div class="cat-row-body"><div class="cat-row-name" data-key="p2_name">Дискілік затворлар</div><div class="cat-row-spec">DN50–2000 · PN10/16</div></div>
+        <span class="cat-row-arrow">›</span>
+      </div>
+      <div class="cat-row-item" data-cat="klap">
+        <img class="cat-row-img" src="img/products/check-valve-wafer.jpeg" alt="" loading="lazy">
+        <div class="cat-row-body"><div class="cat-row-name" data-key="p3_name">Кері клапандар</div><div class="cat-row-spec">DN50–600 · PN10/16</div></div>
+        <span class="cat-row-arrow">›</span>
+      </div>
+      <div class="cat-row-item" data-cat="klap">
+        <img class="cat-row-img" src="img/products/air-valve-dn80.png" alt="" loading="lazy">
+        <div class="cat-row-body"><div class="cat-row-name" data-key="p4_name">Ауа клапандары</div><div class="cat-row-spec">DN50–200 · PN10/16</div></div>
+        <span class="cat-row-arrow">›</span>
+      </div>
+      <!-- скрытые позиции (показываются по кнопке) -->
+      <div class="cat-row-item cat-row-hidden" data-cat="other" style="display:none">
+        <img class="cat-row-img" src="img/products/fire-hydrant.jpg" alt="" loading="lazy">
+        <div class="cat-row-body"><div class="cat-row-name" data-key="p5_name">Өрт гидранттары</div><div class="cat-row-spec">DN100 · H500–4000</div></div>
+        <span class="cat-row-arrow">›</span>
+      </div>
+      <div class="cat-row-item cat-row-hidden" data-cat="other" style="display:none">
+        <img class="cat-row-img" src="img/products/dismantling-joint.jpeg" alt="" loading="lazy">
+        <div class="cat-row-body"><div class="cat-row-name" data-key="p6_name">Монтаждық кірістірмелер</div><div class="cat-row-spec">DN50–2400 · PN10/16</div></div>
+        <span class="cat-row-arrow">›</span>
+      </div>
+      <div class="cat-row-item cat-row-hidden" data-cat="zadv" style="display:none">
+        <img class="cat-row-img" src="img/products/gate-valve-steel-dn450.jpeg" alt="" loading="lazy">
+        <div class="cat-row-body"><div class="cat-row-name" data-key="p1c_name">Болат тығындар WCB</div><div class="cat-row-spec">DN50–1200 · PN25–64</div></div>
+        <span class="cat-row-arrow">›</span>
+      </div>
+      <div class="cat-row-item cat-row-hidden" data-cat="zatv" style="display:none">
+        <img class="cat-row-img" src="img/products/butterfly-valve-triple.png" alt="" loading="lazy">
+        <div class="cat-row-body"><div class="cat-row-name" data-key="p2b_name">Затворлар DN1200–2000</div><div class="cat-row-spec">DN1200–2000 · PN10/16</div></div>
+        <span class="cat-row-arrow">›</span>
+      </div>
+    </div>
+    <button class="catalog-show-more" id="catShowMore" data-key="cat_show_more">Барлық өнімді көрсету (12) ▾</button>
+
   </div>
 </section>
 
@@ -1147,6 +1315,11 @@ a{text-decoration:none;color:inherit}
       <h2 class="section-title" data-key="proj_title">Қазақстан бойынша объектілеріміз</h2>
       <a href="#" class="btn-outline" data-key="proj_all">Барлық объектілер →</a>
     </div>
+    <!-- swipe hint — только на мобиле -->
+    <div class="swipe-hint">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <span data-key="swipe_hint">Сырғытыңыз</span>
+    </div>
     <div class="projects-grid">
       <div class="proj-card">
         <div class="proj-img proj-img-1">
@@ -1223,6 +1396,10 @@ a{text-decoration:none;color:inherit}
   <div class="container">
     <div class="section-eyebrow" data-key="testi_eyebrow">Тұтынушылар пікірлері</div>
     <h2 class="section-title" data-key="testi_title">Бізге не дейді</h2>
+    <div class="swipe-hint">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <span data-key="swipe_hint">Сырғытыңыз</span>
+    </div>
     <div class="testi-grid">
       <div class="testi-card">
         <div class="testi-quote">"</div>
@@ -1258,6 +1435,40 @@ a{text-decoration:none;color:inherit}
         </div>
       </div>
     </div>
+
+    <!-- ── MOBILE: горизонтальный скролл отзывов ── -->
+    <div class="testi-scroll" id="testiScroll">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="testi-text" data-key="t1_text">Работаем с Astana Valve уже второй год. Качество стабильное, сроки соблюдают. Рекомендуем!</div>
+        <div class="testi-author">
+          <div class="testi-avatar">А</div>
+          <div><div class="testi-name" data-key="t1_name">Асет Жаксыбеков</div><div class="testi-role" data-key="t1_role">Главный инженер, ТОО «КазСтройМонтаж»</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="testi-text" data-key="t2_text">КП получили в тот же день. Цены ниже, чем у других поставщиков. Уже третий заказ!</div>
+        <div class="testi-author">
+          <div class="testi-avatar">Р</div>
+          <div><div class="testi-name" data-key="t2_name">Руслан Ибрагимов</div><div class="testi-role" data-key="t2_role">Директор по снабжению, «АтырауНефтеСервис»</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="testi-text" data-key="t3_text">Затворы DN800 прошли приёмочные испытания без замечаний. Документация в порядке.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">М</div>
+          <div><div class="testi-name" data-key="t3_name">Марат Сейткали</div><div class="testi-role" data-key="t3_role">Начальник снабжения, Горводоканал Шымкент</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-dots" id="testiDots">
+      <div class="testi-dot active"></div>
+      <div class="testi-dot"></div>
+      <div class="testi-dot"></div>
+    </div>
+
   </div>
 </section>
 
@@ -1387,11 +1598,11 @@ a{text-decoration:none;color:inherit}
       <div class="contact-form">
         <div class="form-title" data-key="form_title">Өтінім қалдыру</div>
         <div class="form-grid">
-          <input class="inp" type="text" placeholder="Имя / Аты / Name" data-key-ph="ph_name">
-          <input class="inp" type="tel" placeholder="+7 (___) ___-__-__">
-          <input class="inp full" type="text" placeholder="Компания / Компания / Company">
-          <input class="inp full" type="text" placeholder="Тип арматуры и DN / Тип пен DN / Type and DN">
-          <textarea class="inp full" rows="3" style="resize:none" placeholder="Пікіріңіз / Комментарий / Comment"></textarea>
+          <input class="inp" type="text" id="cf_name" data-key-ph="contact_name">
+          <input class="inp" type="tel" id="cf_phone" placeholder="+7 (___) ___-__-__">
+          <input class="inp full" type="text" id="cf_company" data-key-ph="contact_company">
+          <input class="inp full" type="text" id="cf_type" data-key-ph="contact_type">
+          <textarea class="inp full" id="cf_msg" rows="3" style="resize:none" data-key-ph="contact_msg"></textarea>
         </div>
         <div class="form-check">
           <input type="checkbox" id="agree" checked>
@@ -1443,6 +1654,34 @@ a{text-decoration:none;color:inherit}
         </div>
       </div>
     </div>
+
+    <!-- ── MOBILE: компактный список сертификатов ── -->
+    <div class="certs-compact" id="certsCompact">
+      <div class="cert-compact-item">
+        <div class="cert-compact-icon">
+          <img src="img/company/certificate-eac.jpeg" alt="EAC" loading="lazy">
+        </div>
+        <div class="cert-compact-body">
+          <div class="cert-compact-title">Декларация ЕАС</div>
+          <div class="cert-compact-meta">ТР ТС 010/2011 · до 16.07.2028</div>
+        </div>
+      </div>
+      <div class="cert-compact-item">
+        <div class="cert-compact-icon">📜</div>
+        <div class="cert-compact-body">
+          <div class="cert-compact-title" data-key="cert_b1">МЕСТ сертификаты</div>
+          <div class="cert-compact-meta">ГОСТ 12.2.003-91</div>
+        </div>
+      </div>
+      <div class="cert-compact-item">
+        <div class="cert-compact-icon">🏢</div>
+        <div class="cert-compact-body">
+          <div class="cert-compact-title">ТОО «Astana Valve»</div>
+          <div class="cert-compact-meta">БИН 230640000662</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1673,6 +1912,8 @@ const T = {
     p2b_name:"Затворы DN1200–2000", p2b_desc:"Затворы с тройным эксцентриситетом большого диаметра.",
     p3b_name:"Обратные клапаны поворотные", p3b_desc:"Поворотные стальные клапаны для воды, нефти, газа.",
     p7_name:"Шиберные задвижки", p7_desc:"Для канализации и шлама. DN50–2000.",
+    cat_show_more:"Показать все товары (12) ▾",
+    swipe_hint:"Листайте →",
     promo:[
       "🔥 <strong>Акция:</strong> Задвижки DN100–300 — скидка 7% при заказе от 10 ед.",
       "📦 <strong>Доставка</strong> по всему Казахстану · Астана, Алматы, Атырау, Актау, Актобе",
@@ -1778,6 +2019,8 @@ const T = {
     p2b_name:"Затворлар DN1200–2000", p2b_desc:"Үш эксцентриситетті үлкен диаметрлі затворлар.",
     p3b_name:"Бұрылмалы кері клапандар", p3b_desc:"Поворотные болат клапандар су, мұнай, газ үшін.",
     p7_name:"Шиберлі тығындар", p7_desc:"Кәріз және тұнба жүйелері үшін. DN50–2000.",
+    cat_show_more:"Барлық өнімді көрсету (12) ▾",
+    swipe_hint:"Сырғытыңыз →",
     promo:[
       "🔥 <strong>Акция:</strong> DN100–300 тығындары — 10 данадан бастап 7% жеңілдік",
       "📦 <strong>Жеткізу</strong> Қазақстан бойынша · Астана, Алматы, Атырау, Ақтау, Ақтөбе",
@@ -1883,6 +2126,8 @@ const T = {
     p2b_name:"Butterfly valves DN1200–2000", p2b_desc:"Triple offset large diameter butterfly valves.",
     p3b_name:"Swing check valves", p3b_desc:"Swing steel check valves for water, oil, gas.",
     p7_name:"Knife gate valves", p7_desc:"For sewage and slurry systems. DN50–2000.",
+    cat_show_more:"Show all products (12) ▾",
+    swipe_hint:"Swipe →",
     promo:[
       "🔥 <strong>Special offer:</strong> Gate valves DN100–300 — 7% off on orders of 10+ pcs.",
       "📦 <strong>Delivery</strong> across Kazakhstan · Astana, Almaty, Atyrau, Aktau, Aktobe",
@@ -1901,22 +2146,28 @@ const PH = {
     name:'ФИО', company:'ТОО «Название»',
     dn:'DN50, DN200, DN400...', medium:'Вода, нефть, газ...',
     comment:'Дополнительные требования, объект...',
-    contact_name:'Ваше имя', contact_phone:'+7 (777) 000-00-00',
-    contact_email:'your@email.com', contact_msg:'Опишите задачу или укажите объект...'
+    contact_name:'Имя', contact_phone:'+7 (777) 000-00-00',
+    contact_email:'your@email.com', contact_msg:'Задача или объект...',
+    contact_company:'Компания', contact_type:'Тип арматуры и DN',
+    swipe_hint:'Листайте'
   },
   kz: {
     name:'Аты-жөніңіз', company:'ЖШС «Атауы»',
     dn:'DN50, DN200, DN400...', medium:'Су, мұнай, газ...',
     comment:'Қосымша талаптар, объект...',
     contact_name:'Атыңыз', contact_phone:'+7 (777) 000-00-00',
-    contact_email:'your@email.com', contact_msg:'Пікіріңізді жазыңыз немесе объектіні көрсетіңіз...'
+    contact_email:'your@email.com', contact_msg:'Тапсырма немесе объект...',
+    contact_company:'Компания', contact_type:'Арматура түрі және DN',
+    swipe_hint:'Сырғытыңыз'
   },
   en: {
     name:'Full name', company:'Company name',
     dn:'DN50, DN200, DN400...', medium:'Water, oil, gas...',
     comment:'Additional requirements, project...',
-    contact_name:'Your name', contact_phone:'+7 (777) 000-00-00',
-    contact_email:'your@email.com', contact_msg:'Describe your task or specify the project...'
+    contact_name:'Name', contact_phone:'+7 (777) 000-00-00',
+    contact_email:'your@email.com', contact_msg:'Task or project...',
+    contact_company:'Company', contact_type:'Valve type and DN',
+    swipe_hint:'Swipe'
   }
 };
 
@@ -1967,12 +2218,10 @@ function setLang(lang) {
   q('.modal-inp[placeholder^="Вода"], .modal-inp[placeholder^="Су"], .modal-inp[placeholder^="Water"]', ph.medium);
   q('.modal-inp[rows]', ph.comment);
 
-  /* Contact form placeholders */
-  document.querySelectorAll('.contact-inp').forEach((el,i) => {
-    if(el.name==='name' || i===0) el.placeholder = ph.contact_name;
-    if(el.name==='phone' || i===1) el.placeholder = ph.contact_phone;
-    if(el.name==='email' || i===2) el.placeholder = ph.contact_email;
-    if(el.tagName==='TEXTAREA') el.placeholder = ph.contact_msg;
+  /* Contact form placeholders via data-key-ph */
+  document.querySelectorAll('[data-key-ph]').forEach(el => {
+    const key = el.getAttribute('data-key-ph');
+    if(ph[key]) el.placeholder = ph[key];
   });
 
   /* Re-run selector result if visible */
@@ -2090,6 +2339,31 @@ document.querySelectorAll('#langSw span').forEach(btn => {
     if (chosen) LS.set('av_lang', chosen);
   });
 });
+
+/* ── CATALOG: показать все на мобиле ── */
+const catShowMore = document.getElementById('catShowMore');
+if (catShowMore) {
+  catShowMore.addEventListener('click', function() {
+    document.querySelectorAll('.cat-row-hidden').forEach(el => el.style.display = 'flex');
+    this.style.display = 'none';
+  });
+}
+
+/* ── TESTIMONIALS: точки-индикаторы ── */
+const testiScroll = document.getElementById('testiScroll');
+const testiDots   = document.querySelectorAll('.testi-dot');
+if (testiScroll && testiDots.length) {
+  testiScroll.addEventListener('scroll', () => {
+    const idx = Math.round(testiScroll.scrollLeft / testiScroll.offsetWidth);
+    testiDots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  }, { passive: true });
+  // свайп точками
+  testiDots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      testiScroll.scrollTo({ left: i * testiScroll.offsetWidth, behavior: 'smooth' });
+    });
+  });
+}
 
 /* ── BURGER / MOBILE DRAWER ── */
 const burgerBtn    = document.getElementById('burgerBtn');
