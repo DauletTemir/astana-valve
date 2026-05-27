@@ -26,6 +26,22 @@ docs/v2-arctic-blueprint-full.png
 docs/v2-preview-full.html
 docs/astana-valve.pdf
 
+# ── Дизайн и прототипы (дополнительные варианты) ──
+design-variants/
+design-variants.html
+design-real-certs.html
+create-summary.html
+DESIGN-SUMMARY.md
+COMPARISON-real-certs.md
+IMPLEMENTATION-REPORT.md
+certs-section-screenshot.png
+
+# ── Карты (обработанные версии) ──────────────────
+# Хранится только img/kazakhstan-map-starred.jpg (48KB JPG)
+img/kazakhstan-map-starred.png
+img/kazakhstan-map.jpg
+img/kz-map*
+
 # ── Логи ─────────────────────────────────────────
 logs/
 *.log
