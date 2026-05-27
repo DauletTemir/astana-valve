@@ -232,17 +232,7 @@ a{text-decoration:none;color:inherit}
 .cat-card-badges{display:flex;gap:4px;flex-wrap:wrap}
 .badge-mini{background:var(--off);color:var(--gray);font-size:9px;padding:2px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace}
 
-/* ── CATALOG: Hide cards after 4th on tablet ── */
-.cat-card:nth-child(n+5){display:none}
-.cat-card:nth-child(n+5).show{display:block}
-
-/* ── PROJECTS: Hide cards after 4th on tablet ── */
-.projects-grid .proj-card:nth-child(n+5){display:none}
-.projects-grid .proj-card:nth-child(n+5).show{display:block}
-
-/* ── BLOG: Hide articles after 2nd on tablet ── */
-.blog-grid .article-card:nth-child(n+3){display:none}
-.blog-grid .article-card:nth-child(n+3).show{display:block}
+/* ── TABLET: collapse sections after N items ── */
 
 /* ── PRODUCTION ────────────────────────────── */
 .production{padding:80px 0;background:var(--white)}
@@ -375,8 +365,8 @@ a{text-decoration:none;color:inherit}
 .article-desc{font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:14px}
 .article-meta{font-size:11px;color:var(--gray);display:flex;align-items:center;justify-content:space-between}
 .article-read{font-size:12px;font-weight:700;color:var(--copper);display:flex;align-items:center;gap:4px}
-.article-read::after{content:'→';transition:transform .2s}
-.article-card:hover .article-read::after{transform:translateX(4px)}
+.article-read::after{content:'';transition:transform .2s}
+.article-card:hover .article-read::after{transform:none}
 .article-card.hidden-article{display:none}
 .article-card.hidden-article.show{display:block}
 
@@ -389,7 +379,7 @@ a{text-decoration:none;color:inherit}
 .city-dot{width:10px;height:10px;border-radius:50%;background:var(--copper);flex-shrink:0}
 .city-name{font-size:13px;font-weight:600;color:var(--navy)}
 .city-time{font-size:11px;color:var(--gray);margin-top:2px}
-.map-placeholder{background:#E1E0DE;border-radius:8px;height:400px;display:flex;align-items:center;justify-content:center;position:relative;border:1px solid var(--border);overflow:hidden;padding:0}
+.map-placeholder{background:#E1E0DE;border-radius:8px;height:320px;display:flex;align-items:center;justify-content:center;position:relative;border:1px solid var(--border);overflow:hidden;padding:0}
 .kz-map-img{width:100%;height:100%;object-fit:contain;border-radius:4px;box-shadow:inset 0 1px 3px rgba(0,0,0,.1)}
 .kz-map{width:100%;height:100%;padding:20px;box-sizing:border-box}
 
@@ -418,8 +408,8 @@ a{text-decoration:none;color:inherit}
 .btn-submit:hover{background:var(--flame)}
 
 /* ── FOOTER ──────────────────────────────────── */
-.footer{background:#0d1421;padding:60px 0 32px}
-.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer{background:#0d1421;padding:44px 0 24px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;margin-bottom:32px}
 .footer-logo-block{}
 .footer-logo-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--copper);margin-bottom:12px}
 .footer-desc{font-size:12px;color:rgba(255,255,255,.4);line-height:1.7;max-width:240px}
@@ -564,14 +554,27 @@ a{text-decoration:none;color:inherit}
   .why-img-placeholder{height:300px}
   .why-img-placeholder::before{display:none}
   .catalog-grid{grid-template-columns:repeat(2,1fr)}
-  .projects-grid,.testi-grid{grid-template-columns:repeat(2,1fr)}
+  .projects-grid{grid-template-columns:repeat(2,1fr)}
   .blog-grid{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:24px}
+  /* Testimonials — scroll slider on tablet */
+  .testi-grid{display:none}
+  .testi-scroll{display:flex}
+  .testi-scroll .testi-card{min-width:calc(50vw - 40px);width:calc(50vw - 40px);scroll-snap-align:start}
+  .testi-dots{display:flex}
   .selector-inner{grid-template-columns:1fr;gap:40px}
   .pdf-inner{grid-template-columns:1fr}
   .pdf-visual{display:none}
   .certs-grid{grid-template-columns:1fr 1fr}
-  .certs-grid-v2{grid-template-columns:1fr}
+  .certs-grid-v2{grid-template-columns:1fr 1fr}
+
+  /* Collapse sections after N items — only on tablet */
+  .catalog-grid .cat-card:nth-child(n+5){display:none}
+  .catalog-grid .cat-card:nth-child(n+5).show{display:block}
+  .projects-grid .proj-card:nth-child(n+5){display:none}
+  .projects-grid .proj-card:nth-child(n+5).show{display:block}
+  .blog-grid .article-card:nth-child(n+3){display:none}
+  .blog-grid .article-card:nth-child(n+3).show{display:block}
 
   /* Section spacing */
   .catalog,.why,.projects,.testimonials,.blog,.delivery,.contact,.certs-section{padding:64px 0}
@@ -2757,16 +2760,37 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', function(){
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     this.classList.add('active');
-    const cat = this.dataset.key; // e.g. "f_all", "f_zadv", "f_zatv", "f_klap", "f_other"
+    const cat = this.dataset.key;
     const catMap = { f_all:'all', f_zadv:'zadv', f_zatv:'zatv', f_klap:'klap', f_other:'other' };
     const target = catMap[cat] || 'all';
-    document.querySelectorAll('.cat-card').forEach(card => {
-      if(target === 'all' || card.dataset.cat === target) {
+    const isTablet = window.innerWidth <= 1024;
+
+    document.querySelectorAll('.cat-card').forEach((card, idx) => {
+      const matches = target === 'all' || card.dataset.cat === target;
+      if (!matches) {
+        card.style.display = 'none';
+        return;
+      }
+      // На планшете считаем порядковый номер среди видимых
+      if (isTablet && target === 'all') {
+        // показываем только первые 4, остальные — если есть класс show
+        card.style.display = (idx < 4 || card.classList.contains('show')) ? '' : '';
+        // сбрасываем инлайн — управляет CSS nth-child
         card.style.display = '';
       } else {
-        card.style.display = 'none';
+        // фильтр по категории — показываем все совпадающие
+        card.style.display = '';
+        card.classList.add('show'); // снимаем CSS-ограничение nth-child
       }
     });
+
+    // Если выбрано "Все" на планшете — убираем show чтобы nth-child снова скрыл лишние
+    if (target === 'all' && isTablet) {
+      document.querySelectorAll('.cat-card').forEach(card => card.classList.remove('show'));
+      // показываем кнопку снова
+      const btn = document.getElementById('catShowMore');
+      if (btn) btn.style.display = '';
+    }
   });
 });
 
@@ -2906,13 +2930,34 @@ document.querySelectorAll('#langSw span').forEach(btn => {
   });
 });
 
-/* ── CATALOG: показать все на мобиле ── */
+/* ── CATALOG: показать/скрыть товары ── */
 const catShowMore = document.getElementById('catShowMore');
 if (catShowMore) {
   catShowMore.addEventListener('click', function() {
-    document.querySelectorAll('.cat-row-hidden').forEach(el => el.style.display = 'flex');
-    document.querySelectorAll('.cat-card:nth-child(n+5)').forEach(el => el.classList.add('show'));
-    this.style.display = 'none';
+    const isMobile = window.innerWidth <= 640;
+    const isExpanded = this.dataset.expanded === 'true';
+
+    if (isMobile) {
+      // мобиль: список строк
+      if (isExpanded) {
+        document.querySelectorAll('.cat-row-hidden').forEach(el => el.style.display = 'none');
+      } else {
+        document.querySelectorAll('.cat-row-hidden').forEach(el => el.style.display = 'flex');
+      }
+    } else {
+      // планшет: карточки
+      if (isExpanded) {
+        document.querySelectorAll('.catalog-grid .cat-card').forEach(el => el.classList.remove('show'));
+      } else {
+        document.querySelectorAll('.catalog-grid .cat-card').forEach(el => el.classList.add('show'));
+      }
+    }
+
+    this.dataset.expanded = isExpanded ? 'false' : 'true';
+    const lang = typeof currentLang !== 'undefined' ? currentLang : 'ru';
+    const showText = { ru:'Показать все товары ▾', kz:'Барлық өнімді көрсету ▾', en:'Show all products ▾' };
+    const hideText = { ru:'Скрыть ▴', kz:'Жасыру ▴', en:'Hide ▴' };
+    this.textContent = isExpanded ? (showText[lang] || showText.ru) : (hideText[lang] || hideText.ru);
   });
 }
 
