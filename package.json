@@ -8,7 +8,7 @@
     "test:functional": "playwright test tests/functional/",
     "test:headed": "playwright test --headed",
     "test:report": "playwright show-report",
-    "serve": "npx http-server src -p 3000 -o",
+    "serve": "npx http-server . -p 3000 -o",
     "lint:html": "node tests/utils/html-validator.js"
   },
   "devDependencies": {
