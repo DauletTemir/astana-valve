@@ -297,6 +297,7 @@ a{text-decoration:none;color:inherit}
 .proj-img-3{background:linear-gradient(135deg,#0c2a1a,#1a6c3a)}
 .proj-img-4{background:linear-gradient(135deg,#2a0a1a,#8c1a4a)}
 .proj-img-5{background:linear-gradient(135deg,#1a1a2a,#3a3a8c)}
+.proj-img-5 img{object-position:center 20%}
 .proj-img-6{background:linear-gradient(135deg,#2a1a0a,#6c4a1a)}
 .proj-tag-overlay{position:absolute;top:12px;left:12px}
 .proj-body{padding:16px 18px 20px;background:var(--white)}
@@ -424,6 +425,7 @@ a{text-decoration:none;color:inherit}
 .footer-langs{display:flex;gap:12px}
 .footer-lang{font-size:11px;color:rgba(255,255,255,.4);cursor:pointer;font-family:'JetBrains Mono',monospace;transition:color .2s}
 .footer-lang:hover{color:var(--copper)}
+.footer-phone-compact{display:none}
 
 /* ── CERTIFICATES SECTION ───────────────────── */
 .certs-section{padding:80px 0;background:var(--white)}
@@ -591,6 +593,9 @@ a{text-decoration:none;color:inherit}
   /* Section spacing */
   .catalog,.why,.projects,.testimonials,.blog,.delivery,.contact,.certs-section{padding:64px 0}
   .pdf-banner,.selector-section{padding:56px 0}
+
+  /* Footer — убираем кнопку WhatsApp, она избыточна на планшете */
+  .footer .btn-wa{display:none}
 }
 
 /* ════════════════════════════════════════════════
@@ -602,20 +607,46 @@ a{text-decoration:none;color:inherit}
 }
 /* Compact horizontal list card */
 .cat-row-item{
-  display:flex;align-items:center;gap:14px;
-  padding:12px 14px;border:1px solid var(--border);border-radius:8px;
+  display:flex;flex-direction:column;
+  border:1px solid var(--border);border-radius:8px;
   background:var(--white);cursor:pointer;transition:border-color .2s,box-shadow .2s;
+  overflow:hidden;
 }
 .cat-row-item:hover{border-color:var(--copper);box-shadow:0 2px 12px rgba(200,119,58,.1)}
+.cat-row-item.open{border-color:var(--copper)}
+.cat-row-top{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 14px;
+}
 .cat-row-img{
-  width:64px;height:64px;border-radius:6px;object-fit:cover;
+  width:56px;height:56px;border-radius:6px;object-fit:cover;
   flex-shrink:0;background:var(--light);
 }
 .cat-row-body{flex:1;min-width:0}
 .cat-row-name{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cat-row-spec{font-size:11px;color:var(--copper);font-family:'JetBrains Mono',monospace}
-.cat-row-arrow{font-size:16px;color:var(--gray);flex-shrink:0}
+.cat-row-arrow{
+  font-size:18px;color:var(--copper);flex-shrink:0;
+  transition:transform .25s;font-weight:700;
+}
+.cat-row-item.open .cat-row-arrow{transform:rotate(90deg)}
+/* Раскрывающийся блок */
+.cat-row-detail{
+  display:none;
+  padding:0 14px 14px;
+  border-top:1px solid var(--border);
+}
+.cat-row-item.open .cat-row-detail{display:block}
+.cat-row-desc{font-size:12px;color:var(--gray);line-height:1.5;margin:10px 0 10px}
+.cat-row-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.cat-row-cta{
+  display:inline-block;font-size:12px;font-weight:700;
+  color:#fff;background:var(--copper);
+  padding:8px 16px;border-radius:4px;text-decoration:none;
+  transition:background .2s;
+}
+.cat-row-cta:hover{background:var(--flame)}
 
 /* "Показать все" кнопка */
 /* show-more wrapper — центрирует кнопку под секцией */
@@ -706,11 +737,10 @@ a{text-decoration:none;color:inherit}
 
   /* ── Catalog: скрываем карточки, показываем список ── */
   .catalog-grid{display:none}
-  .catalog-filter{gap:6px;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;scrollbar-width:none}
-  .catalog-filter::-webkit-scrollbar{display:none}
+  .catalog-filter{display:none}
   .filter-btn{padding:6px 12px;font-size:11px;white-space:nowrap;flex-shrink:0}
-  .cat-row{display:flex;flex-direction:column;gap:10px}
-  #catShowWrap{display:flex}
+  .cat-row{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+  #catShowWrap{display:flex;margin-top:0;margin-bottom:16px}
   .catalog,.why,.projects,.testimonials,.blog,.delivery,.contact,.certs-section{padding:44px 0}
   .pdf-banner,.selector-section{padding:40px 0}
   .section-title{font-size:clamp(24px,6vw,34px)}
@@ -727,7 +757,9 @@ a{text-decoration:none;color:inherit}
   .why-item{padding:14px 16px;gap:12px}
   .why-icon{font-size:22px;width:36px}
 
-  /* Projects — горизонтальный скролл */
+  /* Projects — горизонтальный скролл, все карточки видны */
+  #projShowWrap{display:none}
+  .projects-grid .proj-card:nth-child(n+5){display:flex}
   .projects-grid{
     grid-template-columns:none;
     display:flex;overflow-x:auto;gap:12px;
@@ -751,7 +783,11 @@ a{text-decoration:none;color:inherit}
     scrollbar-width:none;padding-bottom:4px;
   }
   .blog-grid::-webkit-scrollbar{display:none}
-  .article-card{min-width:280px;flex-shrink:0;scroll-snap-align:start}
+  .article-card{min-width:calc(100vw - 48px);width:calc(100vw - 48px);flex-shrink:0;scroll-snap-align:start}
+  /* Все статьи видны в скролле, кнопка не нужна */
+  #showAllArticles{display:none}
+  .blog-grid .article-card:nth-child(n+3){display:block}
+  .blog-grid .article-card.hidden-article{display:block}
   .article-img-1{height:140px}
   .article-img-2,.article-img-3{height:120px}
   .article-title{font-size:13px}
@@ -760,16 +796,21 @@ a{text-decoration:none;color:inherit}
   .article-meta{flex-direction:column;align-items:flex-start;gap:6px;font-size:10px}
   .article-card-body{padding:14px 16px 16px}
 
-  /* ── Production: 1 колонка ── */
-  .production-grid{grid-template-columns:1fr}
+  /* ── Production: компактные горизонтальные строки ── */
+  .production{padding:44px 0}
+  .production-grid{grid-template-columns:1fr;gap:8px;margin-top:24px;border:none}
+  .prod-card{
+    display:flex;align-items:center;gap:14px;
+    padding:14px 16px;border-radius:8px;border:1px solid var(--border);
+    background:var(--off);
+  }
+  .prod-card:hover{border-color:var(--copper);box-shadow:none;background:#fff7f0}
+  .prod-icon{font-size:26px;margin:0;flex-shrink:0;width:36px;text-align:center}
+  .prod-card h3{font-size:13px;margin-bottom:2px}
+  .prod-card p{font-size:11px;line-height:1.4;margin:0}
 
-  /* ── Delivery: карта видна, города 1 колонка ── */
-  .delivery-grid{grid-template-columns:1fr 1fr;gap:40px}
-  .map-placeholder{height:300px}
-  .delivery-cities{grid-template-columns:1fr;gap:8px;margin-top:24px}
-  .city-item{padding:12px 14px;gap:10px;font-size:13px}
-  .city-name{font-size:13px;font-weight:600}
-  .city-time{font-size:11px;color:var(--gray)}
+  /* ── Delivery ── */
+  .map-placeholder{display:none}
 
   /* Contact */
   .form-grid{grid-template-columns:1fr}
@@ -780,18 +821,25 @@ a{text-decoration:none;color:inherit}
   .section-eyebrow{font-size:11px}
 
   /* Footer mobile: compact stacked */
-  .footer{padding:28px 0 16px}
-  .footer-grid{grid-template-columns:1fr;gap:0;margin-bottom:20px}
-  .footer-logo-block{display:flex;align-items:center;gap:16px;padding-bottom:16px;margin-bottom:0;border-bottom:1px solid rgba(255,255,255,.08);grid-column:auto}
+  .footer{padding:20px 0 12px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px}
+  /* Логотип + бейджи — на всю ширину */
+  .footer-logo-block{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .footer-logo-name{font-size:16px}
   .footer-desc{display:none}
-  .footer-cert{margin-top:0;gap:6px}
-  .footer-cert-badge{padding:4px 8px;font-size:9px}
-  .footer-col-title{font-size:10px;margin-bottom:8px;margin-top:16px}
-  .footer-links{gap:6px}
-  .footer-links a{font-size:12px}
-  .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;padding-top:14px}
+  .footer-cert{margin-top:0;gap:4px}
+  .footer-cert-badge{padding:3px 7px;font-size:9px}
+  /* Колонки Каталог + Компания рядом */
+  .footer-col-title{font-size:10px;margin-bottom:6px;margin-top:0}
+  .footer-links{gap:5px}
+  .footer-links a{font-size:11px}
+  /* Контакты — скрыть, оставить только телефон */
+  .footer-grid > div:last-child{display:none}
+  .footer-phone-compact{display:block;grid-column:1/-1;font-size:12px;color:rgba(255,255,255,.5);padding:10px 0;border-top:1px solid rgba(255,255,255,.08)}
+  .footer-phone-compact a{color:rgba(255,255,255,.7);text-decoration:none}
+  .footer-bottom{flex-direction:row;align-items:center;justify-content:space-between;gap:8px;padding-top:10px}
   .footer-copy{font-size:10px}
-  .footer-langs{gap:10px}
+  .footer-langs{gap:8px}
 
   /* Modal — bottom sheet */
   .modal{padding:24px 16px;border-radius:16px 16px 0 0;max-height:94vh;margin:auto 0 0}
@@ -894,11 +942,11 @@ a{text-decoration:none;color:inherit}
   .catalog-grid,.projects-grid,.testi-grid{grid-template-columns:1fr}
   .blog-grid{grid-template-columns:1fr}
   .form-grid{grid-template-columns:1fr}
-  .delivery-cities{grid-template-columns:1fr}
-  .delivery-grid{grid-template-columns:1fr 1fr;gap:32px}
-  .map-placeholder{height:280px}
+  .delivery-cities{grid-template-columns:1fr 1fr}
+  .delivery-grid{grid-template-columns:1fr;gap:24px}
+  .map-placeholder{display:none}
   .stats-inner{grid-template-columns:repeat(2,1fr)}
-  .footer-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -1273,45 +1321,101 @@ a{text-decoration:none;color:inherit}
     <!-- ── MOBILE: компактный список (скрыт на десктопе) ── -->
     <div class="cat-row" id="catRowList">
       <div class="cat-row-item" data-cat="zadv">
-        <img class="cat-row-img" src="img/products/gate-valve-rubber-dn100.png" alt="" loading="lazy">
-        <div class="cat-row-body"><div class="cat-row-name" data-key="p1_name">Клиндік тығындар</div><div class="cat-row-spec">DN50–1200 · PN10/16/25</div></div>
-        <span class="cat-row-arrow">›</span>
+        <div class="cat-row-top">
+          <img class="cat-row-img" src="img/products/gate-valve-rubber-dn100.png" alt="" loading="lazy">
+          <div class="cat-row-body"><div class="cat-row-name" data-key="p1_name">Клиндік тығындар</div><div class="cat-row-spec">DN50–1200 · PN10/16/25</div></div>
+          <span class="cat-row-arrow">›</span>
+        </div>
+        <div class="cat-row-detail">
+          <p class="cat-row-desc" data-key="p1_desc">Резеңкемен қапталған, болат, тот баспайтын болат. Штурвал, редуктор немесе электрожетекке арналған.</p>
+          <div class="cat-row-badges"><span class="badge-mini" data-key="badge_mest">МЕСТ</span><span class="badge-mini">PN25</span></div>
+          <a href="#contact" class="cat-row-cta" data-key="more">Толығырақ →</a>
+        </div>
       </div>
       <div class="cat-row-item" data-cat="zatv">
-        <img class="cat-row-img" src="img/products/butterfly-valve-wafer.jpeg" alt="" loading="lazy">
-        <div class="cat-row-body"><div class="cat-row-name" data-key="p2_name">Дискілік затворлар</div><div class="cat-row-spec">DN50–2000 · PN10/16</div></div>
-        <span class="cat-row-arrow">›</span>
+        <div class="cat-row-top">
+          <img class="cat-row-img" src="img/products/butterfly-valve-wafer.jpeg" alt="" loading="lazy">
+          <div class="cat-row-body"><div class="cat-row-name" data-key="p2_name">Дискілік затворлар</div><div class="cat-row-spec">DN50–2000 · PN10/16</div></div>
+          <span class="cat-row-arrow">›</span>
+        </div>
+        <div class="cat-row-detail">
+          <p class="cat-row-desc" data-key="p2_desc">Қос және үш эксцентриситет. Фланцаралық. DN2000-ға дейін.</p>
+          <div class="cat-row-badges"><span class="badge-mini">DN2000</span><span class="badge-mini" data-key="badge_pn16">PN16</span></div>
+          <a href="#contact" class="cat-row-cta" data-key="more">Толығырақ →</a>
+        </div>
       </div>
       <div class="cat-row-item" data-cat="klap">
-        <img class="cat-row-img" src="img/products/check-valve-wafer.jpeg" alt="" loading="lazy">
-        <div class="cat-row-body"><div class="cat-row-name" data-key="p3_name">Кері клапандар</div><div class="cat-row-spec">DN50–600 · PN10/16</div></div>
-        <span class="cat-row-arrow">›</span>
+        <div class="cat-row-top">
+          <img class="cat-row-img" src="img/products/check-valve-wafer.jpeg" alt="" loading="lazy">
+          <div class="cat-row-body"><div class="cat-row-name" data-key="p3_name">Кері клапандар</div><div class="cat-row-spec">DN50–600 · PN10/16</div></div>
+          <span class="cat-row-arrow">›</span>
+        </div>
+        <div class="cat-row-detail">
+          <p class="cat-row-desc" data-key="p3_desc">Фланцаралық, шарлы және бұрылмалы болат.</p>
+          <div class="cat-row-badges"><span class="badge-mini" data-key="badge_mest">МЕСТ</span><span class="badge-mini">PN16</span></div>
+          <a href="#contact" class="cat-row-cta" data-key="more">Толығырақ →</a>
+        </div>
       </div>
       <div class="cat-row-item" data-cat="klap">
-        <img class="cat-row-img" src="img/products/air-valve-dn80.png" alt="" loading="lazy">
-        <div class="cat-row-body"><div class="cat-row-name" data-key="p4_name">Ауа клапандары</div><div class="cat-row-spec">DN50–200 · PN10/16</div></div>
-        <span class="cat-row-arrow">›</span>
+        <div class="cat-row-top">
+          <img class="cat-row-img" src="img/products/air-valve-dn80.png" alt="" loading="lazy">
+          <div class="cat-row-body"><div class="cat-row-name" data-key="p4_name">Ауа клапандары</div><div class="cat-row-spec">DN50–200 · PN10/16</div></div>
+          <span class="cat-row-arrow">›</span>
+        </div>
+        <div class="cat-row-detail">
+          <p class="cat-row-desc" data-key="p4_desc">Су шаруашылығы жүйелерінен ауаны шығару.</p>
+          <div class="cat-row-badges"><span class="badge-mini">DN200</span><span class="badge-mini">PN16</span></div>
+          <a href="#contact" class="cat-row-cta" data-key="more">Толығырақ →</a>
+        </div>
       </div>
       <!-- скрытые позиции (показываются по кнопке) -->
       <div class="cat-row-item cat-row-hidden" data-cat="other" style="display:none">
-        <img class="cat-row-img" src="img/products/fire-hydrant.jpg" alt="" loading="lazy">
-        <div class="cat-row-body"><div class="cat-row-name" data-key="p5_name">Өрт гидранттары</div><div class="cat-row-spec">DN100 · H500–4000</div></div>
-        <span class="cat-row-arrow">›</span>
+        <div class="cat-row-top">
+          <img class="cat-row-img" src="img/products/fire-hydrant.jpg" alt="" loading="lazy">
+          <div class="cat-row-body"><div class="cat-row-name" data-key="p5_name">Өрт гидранттары</div><div class="cat-row-spec">DN100 · H500–4000</div></div>
+          <span class="cat-row-arrow">›</span>
+        </div>
+        <div class="cat-row-detail">
+          <p class="cat-row-desc" data-key="p5_desc">Екі жабу мүмкіндігімен. Сыртқы өртті сөндіруге арналған.</p>
+          <div class="cat-row-badges"><span class="badge-mini">DN100</span><span class="badge-mini" data-key="badge_gost">ГОСТ</span></div>
+          <a href="#contact" class="cat-row-cta" data-key="more">Толығырақ →</a>
+        </div>
       </div>
       <div class="cat-row-item cat-row-hidden" data-cat="other" style="display:none">
-        <img class="cat-row-img" src="img/products/dismantling-joint.jpeg" alt="" loading="lazy">
-        <div class="cat-row-body"><div class="cat-row-name" data-key="p6_name">Монтаждық кірістірмелер</div><div class="cat-row-spec">DN50–2400 · PN10/16</div></div>
-        <span class="cat-row-arrow">›</span>
+        <div class="cat-row-top">
+          <img class="cat-row-img" src="img/products/dismantling-joint.jpeg" alt="" loading="lazy">
+          <div class="cat-row-body"><div class="cat-row-name" data-key="p6_name">Монтаждық кірістірмелер</div><div class="cat-row-spec">DN50–2400 · PN10/16</div></div>
+          <span class="cat-row-arrow">›</span>
+        </div>
+        <div class="cat-row-detail">
+          <p class="cat-row-desc" data-key="p6_desc">Құбырды кеспей арматураны ауыстыру.</p>
+          <div class="cat-row-badges"><span class="badge-mini">DN2400</span><span class="badge-mini">PN16</span></div>
+          <a href="#contact" class="cat-row-cta" data-key="more">Толығырақ →</a>
+        </div>
       </div>
       <div class="cat-row-item cat-row-hidden" data-cat="zadv" style="display:none">
-        <img class="cat-row-img" src="img/products/gate-valve-steel-dn450.jpeg" alt="" loading="lazy">
-        <div class="cat-row-body"><div class="cat-row-name" data-key="p1c_name">Болат тығындар WCB</div><div class="cat-row-spec">DN50–1200 · PN25–64</div></div>
-        <span class="cat-row-arrow">›</span>
+        <div class="cat-row-top">
+          <img class="cat-row-img" src="img/products/gate-valve-steel-dn450.jpeg" alt="" loading="lazy">
+          <div class="cat-row-body"><div class="cat-row-name" data-key="p1c_name">Болат тығындар WCB</div><div class="cat-row-spec">DN50–1200 · PN25–64</div></div>
+          <span class="cat-row-arrow">›</span>
+        </div>
+        <div class="cat-row-detail">
+          <p class="cat-row-desc" data-key="p1c_desc">Болат WCB/WC6. Мұнай, газ, бу үшін. Жоғары қысымға PN25–64 арналған.</p>
+          <div class="cat-row-badges"><span class="badge-mini" data-key="badge_wcb">WCB</span><span class="badge-mini">PN64</span></div>
+          <a href="#contact" class="cat-row-cta" data-key="more">Толығырақ →</a>
+        </div>
       </div>
       <div class="cat-row-item cat-row-hidden" data-cat="zatv" style="display:none">
-        <img class="cat-row-img" src="img/products/butterfly-valve-triple.png" alt="" loading="lazy">
-        <div class="cat-row-body"><div class="cat-row-name" data-key="p2b_name">Затворлар DN1200–2000</div><div class="cat-row-spec">DN1200–2000 · PN10/16</div></div>
-        <span class="cat-row-arrow">›</span>
+        <div class="cat-row-top">
+          <img class="cat-row-img" src="img/products/butterfly-valve-triple.png" alt="" loading="lazy">
+          <div class="cat-row-body"><div class="cat-row-name" data-key="p2b_name">Затворлар DN1200–2000</div><div class="cat-row-spec">DN1200–2000 · PN10/16</div></div>
+          <span class="cat-row-arrow">›</span>
+        </div>
+        <div class="cat-row-detail">
+          <p class="cat-row-desc" data-key="p2b_desc">Үш эксцентриситетті затворлар. Ірі диаметрлі жүйелерге арналған.</p>
+          <div class="cat-row-badges"><span class="badge-mini">DN2000</span><span class="badge-mini">PN16</span></div>
+          <a href="#contact" class="cat-row-cta" data-key="more">Толығырақ →</a>
+        </div>
       </div>
     </div>
 
@@ -2202,6 +2306,7 @@ a{text-decoration:none;color:inherit}
         </div>
       </div>
     </div>
+    <div class="footer-phone-compact">📞 <a href="tel:+77078555511">+7 707 855-55-11</a> · astanavalve@mail.ru</div>
     <div class="footer-bottom">
       <div class="footer-copy">© 2023–2026 ТОО «Astana Valve» · БИН 230640000662 · astanavalve.kz</div>
       <div class="footer-langs">
@@ -2362,6 +2467,9 @@ const T = {
     art2_cat:"Техника", art2_title:"Затвор с двойным vs тройным эксцентриситетом",
     art3_cat:"Монтаж", art3_title:"Монтажные вставки без разрезки трубопровода",
     art_min:"8 мин чтения", art_read:"Читать",
+    art1_content:"<p><strong>Что такое DN и PN?</strong></p><p>DN (Диаметр Номинальный) — это условный диаметр трубопровода в миллиметрах. Общепринятые размеры: DN50, DN100, DN200, DN300, DN500, DN800, DN1200. Выбор DN зависит от размера вашей трубы.</p><p>PN (Давление Номинальное) — это максимальное рабочее давление в барах. Стандартные значения: PN10, PN16, PN25. Чем выше PN, тем толще металл и дороже задвижка. Выбирайте PN в соответствии с давлением в вашей системе.</p><p><strong>Резиновый клин vs стальной клин</strong></p><p>Резиновый клин (обрезиненный) подходит для холодной и горячей воды, хорошо герметизирует, не требует сложного обслуживания. Применяется в системах водоснабжения, отопления.</p><p>Стальной клин используется для более агрессивных сред (нефть, газ, высокие давления). Требует периодической смазки шпинделя, но выдерживает экстремальные условия.</p><p><strong>Советы по выбору:</strong></p><p>1. Проверьте диаметр и давление вашего трубопровода<br>2. Для водоснабжения выбирайте задвижки с резиновым клином<br>3. Покупайте с запасом надежности по давлению (PN16 вместо PN10)<br>4. Требуйте сертификаты качества и гарантию</p>",
+    art2_content:"<p><strong>Что такое эксцентриситет?</strong></p><p>Эксцентриситет — это смещение диска затвора относительно геометрической оси. Это делает затвор более герметичным и долговечным.</p><p><strong>Двойной эксцентриситет (2E)</strong></p><p>Диск смещен в двух плоскостях. Используется для среднего диапазона давлений (PN10–PN16). Хороший выбор для систем водоснабжения и отопления. Цена доступнее.</p><p><strong>Тройной эксцентриситет (3E)</strong></p><p>Диск смещен в трех плоскостях. Обеспечивает более плотное прилегание. Применяется для высоких давлений и агрессивных сред. Более надежен и герметичен, но дороже.</p><p><strong>Как выбрать?</strong></p><p>Для водоснабжения и стандартных применений: 2E. Для нефти, газа, высоких температур: 3E.</p>",
+    art3_content:"<p><strong>Что такое монтажная вставка?</strong></p><p>Монтажная вставка позволяет заменить арматуру без разрезки трубопровода. Экономит время и деньги при обслуживании.</p><p><strong>Преимущества:</strong></p><p>• Замена без отключения подачи воды<br>• Работа при функционирующей системе<br>• Экономия на стоимости работ<br>• Доступны размеры DN50–DN2400</p><p><strong>Как работает?</strong></p><p>Вставка устанавливается между фланцами трубопровода. Ослабьте болты — и арматура выходит без резки трубы.</p><p><strong>Когда применять?</strong></p><p>В критичных системах (водоснабжение, отопление, промышленность), где простой стоит дорого.</p>",
     art4_cat:"Материалы", art4_title:"Новые сплавы в арматуре: что изменится в 2026 году",
     art4_content:"<p><strong>Революция в материаловедении</strong></p><p>В 2026 году производители арматуры активно внедряют новые высокопрочные сплавы на основе нержавеющей стали с добавлением молибдена и никеля. Эти материалы обеспечивают на 40% лучшую коррозионную стойкость в агрессивных средах.</p><p><strong>Где это применяется?</strong></p><p>Нефтегазовая отрасль, химические производства, системы с морской водой — везде, где требуется максимальная надежность.</p><p><strong>Экономическое преимущество</strong></p><p>Хотя новые материалы дороже на 20-25%, они служат в 2-3 раза дольше, окупаясь за счет отсутствия замен и простоев.</p>",
     art5_cat:"Технологии", art5_title:"Цифровизация производства: умная арматура 2025",
@@ -2731,7 +2839,14 @@ function setLang(lang) {
   currentLang = lang;
   document.querySelectorAll('[data-key]').forEach(el => {
     const k = el.getAttribute('data-key');
-    if(T[lang][k] !== undefined) el.textContent = T[lang][k];
+    if(T[lang][k] === undefined) return;
+    // Для блоков с HTML-контентом используем innerHTML
+    if(k.endsWith('_content')) {
+      // Обновляем только если контент уже был показан (display:block)
+      if(el.style.display !== 'none') el.innerHTML = T[lang][k];
+    } else {
+      el.textContent = T[lang][k];
+    }
   });
   document.querySelectorAll('#langSw span').forEach(s => {
     const t = s.textContent.trim();
@@ -2876,7 +2991,11 @@ document.getElementById('showAllArticles')?.addEventListener('click', function(e
   hiddenArticles.forEach(article => {
     if (allShown) {
       article.classList.remove('show');
+      // вернуть hidden-article если он был изначально
+      if (article.dataset.wasHidden === 'true') article.classList.add('hidden-article');
     } else {
+      article.dataset.wasHidden = article.classList.contains('hidden-article') ? 'true' : 'false';
+      article.classList.remove('hidden-article'); // снять глобальное скрытие
       article.classList.add('show');
     }
   });
@@ -2887,7 +3006,7 @@ document.getElementById('showAllArticles')?.addEventListener('click', function(e
   const hideText = { ru:'Скрыть ▴', kz:'Жасыру ▴', en:'Hide ▴' };
   this.textContent = allShown ? (showText[lang] || showText.ru) : (hideText[lang] || hideText.ru);
   // При скрытии — прокрутить к началу секции
-  if (!allShown) {
+  if (allShown) {
     document.getElementById('blog')?.scrollIntoView({ behavior:'smooth', block:'start' });
   }
 });
@@ -2901,10 +3020,10 @@ document.querySelectorAll('.article-toggle').forEach(btn => {
     if (content) {
       const isShown = content.style.display !== 'none';
       if (!isShown) {
-        // При открытии — заполняем HTML из переводов
+        // При открытии — заполняем HTML из переводов (только если нет inline-контента)
         const key = content.getAttribute('data-key');
         const html = T[currentLang][key] || T['ru'][key] || '';
-        content.innerHTML = html;
+        if (html) content.innerHTML = html;
       }
       content.style.display = isShown ? 'none' : 'block';
       const langText = currentLang === 'ru' ? (isShown ? 'Читать' : 'Скрыть')
@@ -3131,7 +3250,7 @@ document.querySelector('.btn-submit').addEventListener('click', function(e) {
   }
 
   const waURL = 'https://wa.me/77078555511?text=' + encodeURIComponent(text);
-  window.open(waURL, '_blank');
+  window.location.href = waURL;
 
   // Очищаем форму
   document.getElementById('cf_name').value = '';
@@ -3239,8 +3358,22 @@ document.getElementById('modalSendBtn').addEventListener('click', function() {
   }
 
   const waURL = 'https://wa.me/77078555511?text=' + encodeURIComponent(text);
-  window.open(waURL, '_blank');
   closeModal('questionnaire');
+  window.location.href = waURL;
+});
+
+/* ── MOBILE CATALOG: аккордеон — раскрытие деталей товара ── */
+document.querySelectorAll('.cat-row-item').forEach(item => {
+  item.addEventListener('click', function(e) {
+    // Клик по кнопке "Подробнее" — не перехватываем, пусть идёт на #contact
+    if (e.target.closest('.cat-row-cta')) return;
+
+    const isOpen = this.classList.contains('open');
+    // Закрыть все открытые
+    document.querySelectorAll('.cat-row-item.open').forEach(el => el.classList.remove('open'));
+    // Если не был открыт — открыть
+    if (!isOpen) this.classList.add('open');
+  });
 });
 </script>
 </body>
