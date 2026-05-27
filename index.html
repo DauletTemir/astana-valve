@@ -44,6 +44,7 @@ html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
+#product-1, #product-2, #product-zatv, #product-zatv-main, #product-klap, #product-aua-klapan, #product-hydrant, #product-montaj{scroll-margin-top:120px}
 
 /* ── UTILITY ─────────────────────────────────── */
 .container{max-width:1280px;margin:0 auto;padding:0 48px}
@@ -107,7 +108,7 @@ a{text-decoration:none;color:inherit}
   box-shadow:0 16px 48px rgba(0,0,0,0.12);z-index:200;
 }
 .nav-links > li:hover .megamenu{display:grid;grid-template-columns:repeat(3,1fr)}
-.mega-item{padding:12px;border-radius:4px;cursor:pointer;transition:background .2s}
+.mega-item{padding:12px;border-radius:4px;cursor:pointer;transition:background .2s;display:block;text-decoration:none}
 .mega-item:hover{background:var(--off)}
 .mega-item-name{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px}
 .mega-item-spec{font-size:10px;color:var(--copper);font-family:'JetBrains Mono',monospace;letter-spacing:1px}
@@ -117,7 +118,8 @@ a{text-decoration:none;color:inherit}
 .lang-sw{display:flex;gap:2px;background:var(--off);padding:3px;border-radius:4px}
 .lang-sw span{font-size:11px;font-weight:700;color:var(--gray);cursor:pointer;padding:5px 10px;border-radius:3px;transition:all .2s;font-family:'JetBrains Mono',monospace;letter-spacing:1px}
 .lang-sw span.active{background:var(--navy);color:#fff}
-.header-phone{font-size:13px;font-weight:700;color:var(--navy)}
+.header-phone{font-size:13px;font-weight:700;color:var(--navy);transition:color .2s}
+.header-phone:hover{color:var(--copper)}
 .header-phone small{display:block;font-size:9px;color:var(--gray);font-weight:400;letter-spacing:1px}
 .btn-wa{background:#25D366;color:#fff;padding:9px 16px;border-radius:4px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px;transition:background .2s}
 .btn-wa:hover{background:#1ebe5d}
@@ -363,6 +365,8 @@ a{text-decoration:none;color:inherit}
 .article-read{font-size:12px;font-weight:700;color:var(--copper);display:flex;align-items:center;gap:4px}
 .article-read::after{content:'→';transition:transform .2s}
 .article-card:hover .article-read::after{transform:translateX(4px)}
+.article-card.hidden-article{display:none}
+.article-card.hidden-article.show{display:block}
 
 /* ── DELIVERY MAP (NEW) ──────────────────────── */
 .delivery{padding:90px 0;background:var(--off)}
@@ -373,7 +377,7 @@ a{text-decoration:none;color:inherit}
 .city-dot{width:10px;height:10px;border-radius:50%;background:var(--copper);flex-shrink:0}
 .city-name{font-size:13px;font-weight:600;color:var(--navy)}
 .city-time{font-size:11px;color:var(--gray);margin-top:2px}
-.map-placeholder{background:linear-gradient(135deg,#f4f7fb,#e8ecf2);border-radius:8px;height:400px;display:flex;align-items:center;justify-content:center;position:relative;border:1px solid var(--border);overflow:hidden;padding:16px}
+.map-placeholder{background:#E1E0DE;border-radius:8px;height:400px;display:flex;align-items:center;justify-content:center;position:relative;border:1px solid var(--border);overflow:hidden;padding:0}
 .kz-map-img{width:100%;height:100%;object-fit:contain;border-radius:4px;box-shadow:inset 0 1px 3px rgba(0,0,0,.1)}
 .kz-map{width:100%;height:100%;padding:20px;box-sizing:border-box}
 
@@ -385,7 +389,8 @@ a{text-decoration:none;color:inherit}
 .contact-list{display:flex;flex-direction:column;gap:16px}
 .contact-row{display:flex;gap:16px;align-items:flex-start}
 .contact-ico{width:44px;height:44px;background:rgba(200,119,58,0.15);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;border:1px solid rgba(200,119,58,0.25)}
-.contact-val{font-size:15px;font-weight:600;color:#fff}
+.contact-val{font-size:15px;font-weight:600;color:#fff;transition:color .2s;display:inline-block}
+.contact-val:hover{color:var(--copper)}
 .contact-meta{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px}
 .contact-form{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:40px;border-radius:8px}
 .form-title{font-size:18px;font-weight:700;color:#fff;margin-bottom:24px}
@@ -429,6 +434,21 @@ a{text-decoration:none;color:inherit}
 .cert-placeholder{height:220px;background:linear-gradient(135deg,#edf1f5,#dde5ef);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
 .cert-placeholder-icon{font-size:48px}
 .cert-placeholder-text{font-size:12px;font-weight:700;color:var(--navy);letter-spacing:1px;font-family:'JetBrains Mono',monospace}
+
+/* ── NEW: CERTIFICATES V2 — Minimalist with icons ── */
+.certs-grid-v2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:40px}
+.cert-card-v2{display:flex;gap:20px;padding:24px;background:#FFFAF5;border:1px solid var(--border);border-radius:8px;transition:all .3s}
+.cert-card-v2:hover{background:#FFF5E6;border-color:var(--copper);box-shadow:0 8px 24px rgba(200,119,58,.08)}
+.cert-icon-v2{width:100px;height:100px;flex-shrink:0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:48px}
+.cert-icon-v2.eac{background:linear-gradient(135deg,#C87736,#D4895C);color:white}
+.cert-icon-v2.gost{background:linear-gradient(135deg,#27AE60,#32C77B);color:white}
+.cert-icon-v2.company{background:linear-gradient(135deg,#3498DB,#5DADE2);color:white}
+.cert-icon-v2.iso{background:linear-gradient(135deg,#9B59B6,#AF7AC5);color:white}
+.cert-content-v2{flex:1}
+.cert-title-v2{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.cert-meta-v2{font-size:11px;color:var(--gray);line-height:1.7;font-family:'JetBrains Mono',monospace}
+.cert-badge-v2{display:inline-block;margin-top:12px;padding:8px 14px;background:white;border:1px solid var(--border);border-radius:4px;font-size:11px;color:var(--copper);font-weight:600;text-decoration:none;transition:all .2s}
+.cert-badge-v2:hover{border-color:var(--copper);background:var(--copper);color:white}
 
 /* ── CATALOG GRID — 3 columns → 4 columns on wide ── */
 @media(min-width:1200px){.catalog-grid{grid-template-columns:repeat(4,1fr)}}
@@ -537,6 +557,7 @@ a{text-decoration:none;color:inherit}
   .pdf-inner{grid-template-columns:1fr}
   .pdf-visual{display:none}
   .certs-grid{grid-template-columns:1fr 1fr}
+  .certs-grid-v2{grid-template-columns:1fr}
 
   /* Section spacing */
   .catalog,.why,.projects,.testimonials,.blog,.delivery,.contact,.certs-section{padding:64px 0}
@@ -870,12 +891,12 @@ a{text-decoration:none;color:inherit}
             <span class="arrow">▾</span>
           </a>
           <div class="megamenu">
-            <div class="mega-item"><div class="mega-item-name" data-key="p1_name">Клиндік тығындар</div><div class="mega-item-spec">DN50–1200 · PN10/16/25</div></div>
-            <div class="mega-item"><div class="mega-item-name" data-key="p2_name">Дискілік затворлар</div><div class="mega-item-spec">DN50–2000 · PN10/16</div></div>
-            <div class="mega-item"><div class="mega-item-name" data-key="p3_name">Кері клапандар</div><div class="mega-item-spec">DN50–600 · PN10/16</div></div>
-            <div class="mega-item"><div class="mega-item-name" data-key="p4_name">Ауа клапандары</div><div class="mega-item-spec">DN50–200 · PN10/16</div></div>
-            <div class="mega-item"><div class="mega-item-name" data-key="p5_name">Өрт гидранттары</div><div class="mega-item-spec">DN100 · H500–4000</div></div>
-            <div class="mega-item"><div class="mega-item-name" data-key="p6_name">Монтаждық кірістірмелер</div><div class="mega-item-spec">DN50–2400 · PN10/16</div></div>
+            <a href="#product-1" class="mega-item"><div class="mega-item-name" data-key="p1_name">Клиндік тығындар</div><div class="mega-item-spec">DN50–1200 · PN10/16/25</div></a>
+            <a href="#product-zatv-main" class="mega-item"><div class="mega-item-name" data-key="p2_name">Дискілік затворлар</div><div class="mega-item-spec">DN50–2000 · PN10/16</div></a>
+            <a href="#product-klap" class="mega-item"><div class="mega-item-name" data-key="p3_name">Кері клапандар</div><div class="mega-item-spec">DN50–600 · PN10/16</div></a>
+            <a href="#product-aua-klapan" class="mega-item"><div class="mega-item-name" data-key="p4_name">Ауа клапандары</div><div class="mega-item-spec">DN50–200 · PN10/16</div></a>
+            <a href="#product-hydrant" class="mega-item"><div class="mega-item-name" data-key="p5_name">Өрт гидранттары</div><div class="mega-item-spec">DN100 · H500–4000</div></a>
+            <a href="#product-montaj" class="mega-item"><div class="mega-item-name" data-key="p6_name">Монтаждық кірістірмелер</div><div class="mega-item-spec">DN50–2400 · PN10/16</div></a>
           </div>
         </li>
         <li><a href="#production" data-key="nav_production">Өндіріс</a></li>
@@ -894,7 +915,7 @@ a{text-decoration:none;color:inherit}
           <span onclick="setLang('en')">EN</span>
         </div>
         <div>
-          <div class="header-phone">+7 707 855-55-11</div>
+          <a href="tel:+77078555511" class="header-phone">+7 707 855-55-11</a>
           <div class="header-phone"><small data-key="phone_label">Қоңырау және WhatsApp</small></div>
         </div>
         <a href="https://wa.me/77078555511" class="btn-wa">
@@ -1040,7 +1061,6 @@ a{text-decoration:none;color:inherit}
         <div class="section-eyebrow" data-key="cat_eyebrow">Өнімдер каталогы</div>
         <h2 class="section-title" data-key="cat_title">Барлық өнімдер</h2>
       </div>
-      <a href="#" class="btn-outline" data-key="cat_all">Толық каталог →</a>
     </div>
     <div class="catalog-filter">
       <button class="filter-btn active" data-key="f_all">Барлығы</button>
@@ -1051,7 +1071,7 @@ a{text-decoration:none;color:inherit}
     </div>
     <div class="catalog-grid">
       <!-- 1 -->
-      <div class="cat-card" data-cat="zadv">
+      <div class="cat-card" data-cat="zadv" id="product-1">
         <div class="cat-card-img"><img src="img/products/gate-valve-rubber-dn100.png" alt="Клиндік тығын DN100 PN16" loading="lazy"></div>
         <div class="cat-card-body">
           <div class="cat-card-name" data-key="p1_name">Клиндік тығындар</div>
@@ -1059,12 +1079,12 @@ a{text-decoration:none;color:inherit}
           <div class="cat-card-desc" data-key="p1_desc">Резеңкемен қапталған, болат, тот баспайтын болат. Штурвал, редуктор немесе электрожетекке арналған.</div>
           <div class="cat-card-footer">
             <a href="#contact" class="cat-card-link" data-key="more">Толығырақ →</a>
-            <div class="cat-card-badges"><span class="badge-mini">МЕСТ</span><span class="badge-mini">PN25</span></div>
+            <div class="cat-card-badges"><span class="badge-mini" data-key="badge_mest">МЕСТ</span><span class="badge-mini">PN25</span></div>
           </div>
         </div>
       </div>
       <!-- 2 -->
-      <div class="cat-card" data-cat="zadv">
+      <div class="cat-card" data-cat="zadv" id="product-2">
         <div class="cat-card-img"><img src="img/products/gate-valve-rubber-large.jpeg" alt="Клиндік тығындар үлкен DN" loading="lazy"></div>
         <div class="cat-card-body">
           <div class="cat-card-name" data-key="p1b_name">Клиндік тығындар DN700–1200</div>
@@ -1072,12 +1092,12 @@ a{text-decoration:none;color:inherit}
           <div class="cat-card-desc" data-key="p1b_desc">Үлкен диаметрлі тығындар редуктор және электрожетекпен. Су жабдықтау және өнеркәсіп үшін.</div>
           <div class="cat-card-footer">
             <a href="#contact" class="cat-card-link" data-key="more">Толығырақ →</a>
-            <div class="cat-card-badges"><span class="badge-mini">DN1200</span><span class="badge-mini">PN16</span></div>
+            <div class="cat-card-badges"><span class="badge-mini">DN1200</span><span class="badge-mini" data-key="badge_pn16">PN16</span></div>
           </div>
         </div>
       </div>
       <!-- 3 -->
-      <div class="cat-card" data-cat="zadv">
+      <div class="cat-card" data-cat="zadv" id="product-zatv">
         <div class="cat-card-img"><img src="img/products/gate-valve-steel-dn450.jpeg" alt="Болат тығын DN450 WCB" loading="lazy"></div>
         <div class="cat-card-body">
           <div class="cat-card-name" data-key="p1c_name">Болат тығындар WCB</div>
@@ -1085,7 +1105,7 @@ a{text-decoration:none;color:inherit}
           <div class="cat-card-desc" data-key="p1c_desc">Болат WCB/WC6. Мұнай, газ, бу үшін. Жоғары қысымға PN25–64 арналған.</div>
           <div class="cat-card-footer">
             <a href="#contact" class="cat-card-link" data-key="more">Толығырақ →</a>
-            <div class="cat-card-badges"><span class="badge-mini">WCB</span><span class="badge-mini">PN64</span></div>
+            <div class="cat-card-badges"><span class="badge-mini" data-key="badge_wcb">WCB</span><span class="badge-mini">PN64</span></div>
           </div>
         </div>
       </div>
@@ -1098,12 +1118,12 @@ a{text-decoration:none;color:inherit}
           <div class="cat-card-desc" data-key="p1d_desc">Нержавеющая сталь AISI 304/316. Пищевая промышленность, химия, горячая вода и пар.</div>
           <div class="cat-card-footer">
             <a href="#contact" class="cat-card-link" data-key="more">Толығырақ →</a>
-            <div class="cat-card-badges"><span class="badge-mini">SS304</span><span class="badge-mini">SS316</span></div>
+            <div class="cat-card-badges"><span class="badge-mini" data-key="badge_ss304">SS304</span><span class="badge-mini" data-key="badge_ss316">SS316</span></div>
           </div>
         </div>
       </div>
       <!-- 5 -->
-      <div class="cat-card" data-cat="zatv">
+      <div class="cat-card" data-cat="zatv" id="product-zatv-main">
         <div class="cat-card-img"><img src="img/products/butterfly-valve-wafer.jpeg" alt="Дискілік затвор межфланцевый" loading="lazy"></div>
         <div class="cat-card-body">
           <div class="cat-card-name" data-key="p2_name">Дискілік затворлар</div>
@@ -1111,7 +1131,7 @@ a{text-decoration:none;color:inherit}
           <div class="cat-card-desc" data-key="p2_desc">Қос және үш эксцентриситет. Фланцаралық. DN2000-ға дейін.</div>
           <div class="cat-card-footer">
             <a href="#contact" class="cat-card-link" data-key="more">Толығырақ →</a>
-            <div class="cat-card-badges"><span class="badge-mini">2E</span><span class="badge-mini">3E</span></div>
+            <div class="cat-card-badges"><span class="badge-mini" data-key="badge_2e">2E</span><span class="badge-mini" data-key="badge_3e">3E</span></div>
           </div>
         </div>
       </div>
@@ -1129,7 +1149,7 @@ a{text-decoration:none;color:inherit}
         </div>
       </div>
       <!-- 7 -->
-      <div class="cat-card" data-cat="klap">
+      <div class="cat-card" data-cat="klap" id="product-klap">
         <div class="cat-card-img"><img src="img/products/check-valve-wafer.jpeg" alt="Кері клапан межфланцевый" loading="lazy"></div>
         <div class="cat-card-body">
           <div class="cat-card-name" data-key="p3_name">Кері клапандар</div>
@@ -1137,7 +1157,7 @@ a{text-decoration:none;color:inherit}
           <div class="cat-card-desc" data-key="p3_desc">Фланцаралық, шарлы және бұрылмалы болат клапандар.</div>
           <div class="cat-card-footer">
             <a href="#contact" class="cat-card-link" data-key="more">Толығырақ →</a>
-            <div class="cat-card-badges"><span class="badge-mini">Болат</span><span class="badge-mini">PN16</span></div>
+            <div class="cat-card-badges"><span class="badge-mini" data-key="badge_bolat">Болат</span><span class="badge-mini" data-key="badge_pn16">PN16</span></div>
           </div>
         </div>
       </div>
@@ -1150,12 +1170,12 @@ a{text-decoration:none;color:inherit}
           <div class="cat-card-desc" data-key="p3b_desc">Поворотные стальные обратные клапаны для водоснабжения, нефте- и газопроводов.</div>
           <div class="cat-card-footer">
             <a href="#contact" class="cat-card-link" data-key="more">Толығырақ →</a>
-            <div class="cat-card-badges"><span class="badge-mini">Swing</span><span class="badge-mini">PN25</span></div>
+            <div class="cat-card-badges"><span class="badge-mini" data-key="badge_swing">Swing</span><span class="badge-mini">PN25</span></div>
           </div>
         </div>
       </div>
       <!-- 9 -->
-      <div class="cat-card" data-cat="klap">
+      <div class="cat-card" data-cat="klap" id="product-aua-klapan">
         <div class="cat-card-img"><img src="img/products/air-valve-dn80.png" alt="Воздушный клапан DN80 PN16" loading="lazy"></div>
         <div class="cat-card-body">
           <div class="cat-card-name" data-key="p4_name">Ауа клапандары</div>
@@ -1163,12 +1183,12 @@ a{text-decoration:none;color:inherit}
           <div class="cat-card-desc" data-key="p4_desc">Су жабдықтау құбыр жүйелерінен ауаны шығару.</div>
           <div class="cat-card-footer">
             <a href="#contact" class="cat-card-link" data-key="more">Толығырақ →</a>
-            <div class="cat-card-badges"><span class="badge-mini">ВКХ</span></div>
+            <div class="cat-card-badges"><span class="badge-mini" data-key="badge_vkh">ВКХ</span></div>
           </div>
         </div>
       </div>
       <!-- 10 -->
-      <div class="cat-card" data-cat="other">
+      <div class="cat-card" data-cat="other" id="product-hydrant">
         <div class="cat-card-img"><img src="img/products/fire-hydrant.jpg" alt="Пожарный гидрант DN100" loading="lazy"></div>
         <div class="cat-card-body">
           <div class="cat-card-name" data-key="p5_name">Өрт гидранттары</div>
@@ -1176,12 +1196,12 @@ a{text-decoration:none;color:inherit}
           <div class="cat-card-desc" data-key="p5_desc">Қос жауып-ашу. Сыртқы өрт сөндіруге арналған.</div>
           <div class="cat-card-footer">
             <a href="#contact" class="cat-card-link" data-key="more">Толығырақ →</a>
-            <div class="cat-card-badges"><span class="badge-mini">ӨҚ</span></div>
+            <div class="cat-card-badges"><span class="badge-mini" data-key="badge_fire">ӨҚ</span></div>
           </div>
         </div>
       </div>
       <!-- 11 -->
-      <div class="cat-card" data-cat="other">
+      <div class="cat-card" data-cat="other" id="product-montaj">
         <div class="cat-card-img"><img src="img/products/dismantling-joint.jpeg" alt="Монтажная вставка DN" loading="lazy"></div>
         <div class="cat-card-body">
           <div class="cat-card-name" data-key="p6_name">Монтаждық кірістірмелер</div>
@@ -1202,7 +1222,7 @@ a{text-decoration:none;color:inherit}
           <div class="cat-card-desc" data-key="p7_desc">Кәріз және тұнба жүйелері үшін. Толық тесік. Резеңке және нержавейка орындалуы.</div>
           <div class="cat-card-footer">
             <a href="#contact" class="cat-card-link" data-key="more">Толығырақ →</a>
-            <div class="cat-card-badges"><span class="badge-mini">DN2000</span><span class="badge-mini">Knife</span></div>
+            <div class="cat-card-badges"><span class="badge-mini">DN2000</span><span class="badge-mini" data-key="badge_knife">Knife</span></div>
           </div>
         </div>
       </div>
@@ -1559,8 +1579,8 @@ a{text-decoration:none;color:inherit}
         <div class="pdf-title" data-key="pdf_title">Өнімдер каталогы PDF</div>
         <div class="pdf-sub" data-key="pdf_sub">Все виды арматуры, технические характеристики, таблицы DN/PN, габаритные чертежи</div>
         <div class="pdf-actions">
-          <button class="btn-pdf" data-key="pdf_btn1">📥 PDF-каталог жүктеу</button>
-          <button class="btn-questionnaire" onclick="openModal('questionnaire')" data-key="pdf_btn2">📋 Сауалнама толтыру</button>
+          <button class="btn-pdf" id="downloadPdf" data-key="pdf_btn1">📥 PDF-каталог жүктеу</button>
+          <button class="btn-questionnaire" id="openQuestionnaireForm" data-key="pdf_btn2">📋 Сауалнама толтыру</button>
         </div>
       </div>
       <div class="pdf-visual">
@@ -1577,7 +1597,7 @@ a{text-decoration:none;color:inherit}
     <div class="section-eyebrow" data-key="blog_eyebrow">Пайдалы мақалалар</div>
     <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px">
       <h2 class="section-title" data-key="blog_title">Инженер анықтамалығы</h2>
-      <a href="#" class="btn-outline" data-key="blog_all">Барлық мақалалар →</a>
+      <a href="#" class="btn-outline" id="showAllArticles" data-key="blog_all">Барлық мақалалар →</a>
     </div>
     <div class="blog-grid">
 
@@ -1624,9 +1644,19 @@ a{text-decoration:none;color:inherit}
         <div class="article-body">
           <div class="article-title" data-key="art1_title">Как выбрать задвижку для водоснабжения: DN, PN и тип клина</div>
           <div class="article-desc" data-key="art1_desc">Разбираем ключевые параметры при подборе задвижек для систем водоснабжения. Чем отличается обрезиненный клин от стального и когда что применять.</div>
+          <div class="article-content" data-key="art1_content" style="font-size:14px;color:#666;line-height:1.6;margin-top:16px;display:none">
+            <p><strong>Что такое DN и PN?</strong></p>
+            <p>DN (Диаметр Номинальный) — это условный диаметр трубопровода в миллиметрах. Общепринятые размеры: DN50, DN100, DN200, DN300, DN500, DN800, DN1200. Выбор DN зависит от размера вашей трубы.</p>
+            <p>PN (Давление Номинальное) — это максимальное рабочее давление в барах. Стандартные значения: PN10, PN16, PN25. Чем выше PN, тем толще металл и дороже задвижка. Выбирайте PN в соответствии с давлением в вашей системе.</p>
+            <p><strong>Резиновый клин vs стальной клин</strong></p>
+            <p>Резиновый клин (обрезиненный) подходит для холодной и горячей воды, хорошо герметизирует, не требует сложного обслуживания. Применяется в системах водоснабжения, отопления.</p>
+            <p>Стальной клин используется для более агрессивных сред (нефть, газ, высокие давления). Требует периодической смазки шпинделя, но выдерживает экстремальные условия.</p>
+            <p><strong>Советы по выбору:</strong></p>
+            <p>1. Проверьте диаметр и давление вашего трубопровода<br>2. Для водоснабжения выбирайте задвижки с резиновым клином<br>3. Покупайте с запасом надежности по давлению (PN16 вместо PN10)<br>4. Требуйте сертификаты качества и гарантию</p>
+          </div>
           <div class="article-meta">
             <span style="color:var(--gray)">8 min read</span>
-            <span class="article-read" data-key="art_read">Читать</span>
+            <span class="article-read article-toggle" data-key="art_read" style="cursor:pointer">Читать</span>
           </div>
         </div>
       </div>
@@ -1664,9 +1694,19 @@ a{text-decoration:none;color:inherit}
         </div>
         <div class="article-body">
           <div class="article-title-sm" data-key="art2_title">Двойной vs тройной эксцентриситет затвора: в чём разница</div>
+          <div class="article-content" data-key="art2_content" style="font-size:13px;color:#666;line-height:1.6;margin-top:12px;display:none">
+            <p><strong>Что такое эксцентриситет?</strong></p>
+            <p>Эксцентриситет — это смещение диска затвора относительно геометрической оси. Это делает затвор более герметичным и долговечным.</p>
+            <p><strong>Двойной эксцентриситет (2E)</strong></p>
+            <p>Диск смещен в двух плоскостях. Используется для среднего диапазона давлений (PN10–PN16). Хороший выбор для систем водоснабжения и отопления. Цена доступнее.</p>
+            <p><strong>Тройной эксцентриситет (3E)</strong></p>
+            <p>Диск смещен в трех плоскостях. Обеспечивает более плотное прилегание. Применяется для высоких давлений и агрессивных сред. Более надежен и герметичен, но дороже.</p>
+            <p><strong>Как выбрать?</strong></p>
+            <p>Для водоснабжения и стандартных применений: 2E. Для нефти, газа, высоких температур: 3E.</p>
+          </div>
           <div class="article-meta" style="margin-top:12px">
             <span style="color:var(--gray)">5 min</span>
-            <span class="article-read" data-key="art_read">Читать</span>
+            <span class="article-read article-toggle" data-key="art_read" style="cursor:pointer">Читать</span>
           </div>
         </div>
       </div>
@@ -1706,9 +1746,221 @@ a{text-decoration:none;color:inherit}
         </div>
         <div class="article-body">
           <div class="article-title-sm" data-key="art3_title">Монтаж вставок без разрезки трубопровода: пошаговая инструкция</div>
+          <div class="article-content" data-key="art3_content" style="font-size:13px;color:#666;line-height:1.6;margin-top:12px;display:none">
+            <p><strong>Что такое монтажная вставка?</strong></p>
+            <p>Монтажная вставка (фланцевая вставка) позволяет заменить арматуру без отключения и разрезки трубопровода. Это экономит время и деньги при обслуживании.</p>
+            <p><strong>Преимущества:</strong></p>
+            <p>• Замена без перекрытия подачи воды<br>• Можно менять арматуру во время работы системы<br>• Экономия на демонтаже<br>• Используется для DN50–DN2400</p>
+            <p><strong>Как это работает?</strong></p>
+            <p>Вставка устанавливается между фланцами трубопровода. Когда нужна замена, отворачиваются болты, и арматура вытаскивается без разреза трубы.</p>
+            <p><strong>Когда использовать?</strong></p>
+            <p>В критичных системах (водоснабжение, отопление, промышленность), где отключение системы дорого или опасно. Стандартные размеры: DN50, DN100, DN150, DN200, DN300, до DN2400.</p>
+          </div>
           <div class="article-meta" style="margin-top:12px">
             <span style="color:var(--gray)">6 min</span>
-            <span class="article-read" data-key="art_read">Читать</span>
+            <span class="article-read article-toggle" data-key="art_read" style="cursor:pointer">Читать</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Статья 4 — Новые сплавы -->
+      <div class="article-card hidden-article">
+        <div class="article-img">
+          <div class="article-tag" data-key="art4_cat">Материалы</div>
+          <div class="article-min-badge">7 мин</div>
+          <svg class="article-svg" viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#c8773a;stop-opacity:0.3"/><stop offset="100%" style="stop-color:#e8520a;stop-opacity:0.1"/></linearGradient></defs>
+            <rect width="280" height="200" fill="url(#g4)"/>
+            <!-- Молекула/сплав -->
+            <circle cx="70" cy="80" r="20" fill="rgba(200,119,58,.4)" stroke="rgba(200,119,58,.8)" stroke-width="2"/>
+            <circle cx="130" cy="60" r="22" fill="rgba(200,119,58,.3)" stroke="rgba(200,119,58,.7)" stroke-width="2"/>
+            <circle cx="170" cy="90" r="18" fill="rgba(200,119,58,.35)" stroke="rgba(200,119,58,.75)" stroke-width="2"/>
+            <!-- Связи -->
+            <line x1="88" y1="75" x2="115" y2="65" stroke="rgba(200,119,58,.6)" stroke-width="2"/>
+            <line x1="148" y1="68" x2="158" y2="82" stroke="rgba(200,119,58,.6)" stroke-width="2"/>
+            <!-- Атомы Ni, Mo -->
+            <text x="70" y="86" fill="rgba(255,255,255,.8)" font-size="10" font-weight="bold" text-anchor="middle">Ni</text>
+            <text x="130" y="66" fill="rgba(255,255,255,.8)" font-size="10" font-weight="bold" text-anchor="middle">Mo</text>
+            <text x="170" y="96" fill="rgba(255,255,255,.8)" font-size="10" font-weight="bold" text-anchor="middle">Fe</text>
+            <!-- Тексты справа -->
+            <text x="200" y="85" fill="rgba(255,255,255,.7)" font-size="12" font-weight="600">+40%</text>
+            <text x="200" y="105" fill="rgba(255,255,255,.5)" font-size="10">стойкость</text>
+            <!-- Индикаторы -->
+            <rect x="50" y="150" width="180" height="8" rx="4" fill="rgba(200,119,58,.2)"/>
+            <rect x="50" y="150" width="144" height="8" rx="4" fill="rgba(200,119,58,.7)"/>
+            <text x="240" y="158" fill="rgba(255,255,255,.6)" font-size="9">80%</text>
+          </svg>
+        </div>
+        <div class="article-body">
+          <div class="article-title-sm" data-key="art4_title">Новые сплавы в арматуре: что изменится в 2026 году</div>
+          <div class="article-content" data-key="art4_content" style="font-size:13px;color:#666;line-height:1.6;margin-top:12px;display:none"></div>
+          <div class="article-meta" style="margin-top:12px">
+            <span style="color:var(--gray)">7 min</span>
+            <span class="article-read article-toggle" data-key="art_read" style="cursor:pointer">Читать</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Статья 5 — Цифровизация -->
+      <div class="article-card hidden-article">
+        <div class="article-img">
+          <div class="article-tag" data-key="art5_cat">Технологии</div>
+          <div class="article-min-badge">8 мин</div>
+          <svg class="article-svg" viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#64b4ff;stop-opacity:0.2"/><stop offset="100%" style="stop-color:#2a5cdb;stop-opacity:0.1"/></linearGradient></defs>
+            <rect width="280" height="200" fill="url(#g5)"/>
+            <!-- IoT датчик -->
+            <circle cx="80" cy="70" r="25" fill="rgba(100,180,255,.2)" stroke="rgba(100,180,255,.7)" stroke-width="2"/>
+            <circle cx="80" cy="70" r="15" fill="rgba(100,180,255,.3)" stroke="rgba(100,180,255,.8)" stroke-width="1.5"/>
+            <rect x="76" y="66" width="8" height="8" rx="1" fill="rgba(100,180,255,.9)"/>
+            <!-- Сигналы WiFi -->
+            <path d="M 120 50 Q 130 45 140 50" stroke="rgba(100,180,255,.6)" stroke-width="2" fill="none" stroke-dasharray="2 2"/>
+            <path d="M 125 55 Q 140 45 155 55" stroke="rgba(100,180,255,.5)" stroke-width="2" fill="none" stroke-dasharray="2 2"/>
+            <path d="M 130 60 Q 150 45 170 60" stroke="rgba(100,180,255,.4)" stroke-width="2" fill="none" stroke-dasharray="2 2"/>
+            <!-- Облако -->
+            <path d="M 180 80 Q 190 70 205 75 Q 210 65 220 75 Q 225 85 220 95 Q 190 105 180 95 Z" fill="rgba(100,180,255,.15)" stroke="rgba(100,180,255,.6)" stroke-width="1.5"/>
+            <!-- График -->
+            <polyline points="50,140 70,120 90,130 110,110 130,125 150,115" stroke="rgba(100,180,255,.8)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="50" cy="140" r="3" fill="rgba(100,180,255,.9)"/>
+            <circle cx="130" cy="125" r="3" fill="rgba(100,180,255,.9)"/>
+            <!-- Текст -->
+            <text x="190" y="120" fill="rgba(255,255,255,.6)" font-size="11" font-weight="600">Real-time</text>
+            <text x="195" y="135" fill="rgba(255,255,255,.5)" font-size="10">24/7</text>
+          </svg>
+        </div>
+        <div class="article-body">
+          <div class="article-title-sm" data-key="art5_title">Цифровизация производства: умная арматура 2025</div>
+          <div class="article-content" data-key="art5_content" style="font-size:13px;color:#666;line-height:1.6;margin-top:12px;display:none"></div>
+          <div class="article-meta" style="margin-top:12px">
+            <span style="color:var(--gray)">8 min</span>
+            <span class="article-read article-toggle" data-key="art_read" style="cursor:pointer">Читать</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Статья 6 — Атомная энергетика -->
+      <div class="article-card hidden-article">
+        <div class="article-img">
+          <div class="article-tag" data-key="art6_cat">Энергия</div>
+          <div class="article-min-badge">9 мин</div>
+          <svg class="article-svg" viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#ffc864;stop-opacity:0.2"/><stop offset="100%" style="stop-color:#ff6b35;stop-opacity:0.1"/></linearGradient></defs>
+            <rect width="280" height="200" fill="url(#g6)"/>
+            <!-- Реактор -->
+            <circle cx="100" cy="80" r="28" fill="rgba(255,200,100,.15)" stroke="rgba(255,200,100,.7)" stroke-width="2.5"/>
+            <circle cx="100" cy="80" r="20" fill="rgba(255,150,100,.2)" stroke="rgba(255,150,100,.8)" stroke-width="2"/>
+            <rect x="96" y="76" width="8" height="8" fill="rgba(255,150,100,.9)"/>
+            <!-- Линии энергии -->
+            <line x1="130" y1="75" x2="170" y2="75" stroke="rgba(255,200,100,.6)" stroke-width="2"/>
+            <line x1="130" y1="85" x2="170" y2="85" stroke="rgba(255,200,100,.6)" stroke-width="2"/>
+            <!-- Стрелочки -->
+            <path d="M 170 75 L 175 72 L 175 78" fill="rgba(255,200,100,.7)" stroke="rgba(255,200,100,.7)" stroke-width="1"/>
+            <path d="M 170 85 L 175 82 L 175 88" fill="rgba(255,200,100,.7)" stroke="rgba(255,200,100,.7)" stroke-width="1"/>
+            <!-- Параметры -->
+            <text x="70" y="140" fill="rgba(255,255,255,.7)" font-size="11" font-weight="600">300°C</text>
+            <text x="125" y="140" fill="rgba(255,255,255,.7)" font-size="11" font-weight="600">300 bar</text>
+            <text x="190" y="140" fill="rgba(255,255,255,.7)" font-size="11" font-weight="600">PN64</text>
+            <!-- Сертификат -->
+            <rect x="50" y="155" width="70" height="30" rx="3" fill="rgba(255,200,100,.15)" stroke="rgba(255,200,100,.5)" stroke-width="1"/>
+            <text x="85" y="170" fill="rgba(255,255,255,.8)" font-size="9" font-weight="600" text-anchor="middle">ISO</text>
+            <text x="85" y="180" fill="rgba(255,255,255,.6)" font-size="8" text-anchor="middle">9001</text>
+            <!-- Щит -->
+            <path d="M 180 160 L 195 150 L 210 160 L 210 180 L 180 180 Z" fill="rgba(255,200,100,.15)" stroke="rgba(255,200,100,.6)" stroke-width="1.5"/>
+            <text x="195" y="172" fill="rgba(255,200,100,.9)" font-size="14" font-weight="bold" text-anchor="middle">✓</text>
+          </svg>
+        </div>
+        <div class="article-body">
+          <div class="article-title-sm" data-key="art6_title">Арматура для атомной энергетики: стандарты безопасности</div>
+          <div class="article-content" data-key="art6_content" style="font-size:13px;color:#666;line-height:1.6;margin-top:12px;display:none"></div>
+          <div class="article-meta" style="margin-top:12px">
+            <span style="color:var(--gray)">9 min</span>
+            <span class="article-read article-toggle" data-key="art_read" style="cursor:pointer">Читать</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Статья 7 — Энергоэффективность -->
+      <div class="article-card hidden-article">
+        <div class="article-img">
+          <div class="article-tag" data-key="art7_cat">Экономия</div>
+          <div class="article-min-badge">8 мин</div>
+          <svg class="article-svg" viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#64ff96;stop-opacity:0.2"/><stop offset="100%" style="stop-color:#2ecc71;stop-opacity:0.1"/></linearGradient></defs>
+            <rect width="280" height="200" fill="url(#g7)"/>
+            <!-- Затвор 1 (старый - большое сопротивление) -->
+            <rect x="30" y="60" width="35" height="50" rx="3" fill="rgba(255,100,100,.2)" stroke="rgba(255,100,100,.6)" stroke-width="2"/>
+            <text x="47.5" y="88" fill="rgba(255,255,255,.7)" font-size="10" font-weight="600" text-anchor="middle">Δp</text>
+            <text x="47.5" y="125" fill="rgba(255,100,100,.8)" font-size="11" font-weight="600" text-anchor="middle">25%</text>
+            <!-- Стрелка -->
+            <path d="M 75 85 L 95 85" stroke="rgba(100,255,150,.6)" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+            <text x="85" y="78" fill="rgba(100,255,150,.7)" font-size="10" font-weight="600" text-anchor="middle">-15%</text>
+            <!-- Затвор 2 (новый - оптимизированный) -->
+            <rect x="110" y="60" width="35" height="50" rx="3" fill="rgba(100,255,150,.2)" stroke="rgba(100,255,150,.6)" stroke-width="2"/>
+            <text x="127.5" y="88" fill="rgba(255,255,255,.7)" font-size="10" font-weight="600" text-anchor="middle">Δp</text>
+            <text x="127.5" y="125" fill="rgba(100,255,150,.8)" font-size="11" font-weight="600" text-anchor="middle">10%</text>
+            <!-- Диаграмма экономии -->
+            <rect x="160" y="55" width="100" height="95" rx="3" fill="rgba(100,255,150,.1)" stroke="rgba(100,255,150,.4)" stroke-width="1"/>
+            <text x="210" y="72" fill="rgba(255,255,255,.7)" font-size="10" font-weight="600" text-anchor="middle">Экономия</text>
+            <!-- Столбцы -->
+            <rect x="175" y="95" width="12" height="40" fill="rgba(255,100,100,.7)"/>
+            <rect x="195" y="75" width="12" height="60" fill="rgba(100,255,150,.7)"/>
+            <rect x="215" y="85" width="12" height="50" fill="rgba(100,200,255,.7)"/>
+            <!-- Метки -->
+            <text x="181" y="145" fill="rgba(255,255,255,.5)" font-size="8" text-anchor="middle">Год 1</text>
+            <text x="201" y="145" fill="rgba(255,255,255,.5)" font-size="8" text-anchor="middle">Год 2</text>
+            <text x="221" y="145" fill="rgba(255,255,255,.5)" font-size="8" text-anchor="middle">Год 3</text>
+          </svg>
+        </div>
+        <div class="article-body">
+          <div class="article-title-sm" data-key="art7_title">Энергоэффективная арматура: экономия на потерях давления</div>
+          <div class="article-content" data-key="art7_content" style="font-size:13px;color:#666;line-height:1.6;margin-top:12px;display:none"></div>
+          <div class="article-meta" style="margin-top:12px">
+            <span style="color:var(--gray)">8 min</span>
+            <span class="article-read article-toggle" data-key="art_read" style="cursor:pointer">Читать</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Статья 8 — Стандарты -->
+      <div class="article-card hidden-article">
+        <div class="article-img">
+          <div class="article-tag" data-key="art8_cat">Стандарты</div>
+          <div class="article-min-badge">10 мин</div>
+          <svg class="article-svg" viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#c8773a;stop-opacity:0.2"/><stop offset="100%" style="stop-color:#8a6a3a;stop-opacity:0.1"/></linearGradient></defs>
+            <rect width="280" height="200" fill="url(#g8)"/>
+            <!-- Сертификат 1 -->
+            <rect x="20" y="45" width="65" height="85" rx="2" fill="rgba(200,119,58,.15)" stroke="rgba(200,119,58,.6)" stroke-width="1.5"/>
+            <text x="52.5" y="68" fill="rgba(255,255,255,.8)" font-size="11" font-weight="bold" text-anchor="middle">ТР ТС</text>
+            <text x="52.5" y="85" fill="rgba(255,255,255,.7)" font-size="10" text-anchor="middle">010/2011</text>
+            <circle cx="52.5" cy="105" r="6" fill="rgba(200,119,58,.8)"/>
+            <text x="52.5" y="108" fill="rgba(255,255,255,.9)" font-size="8" font-weight="bold" text-anchor="middle">✓</text>
+            <!-- Сертификат 2 -->
+            <rect x="105" y="45" width="65" height="85" rx="2" fill="rgba(100,180,255,.15)" stroke="rgba(100,180,255,.6)" stroke-width="1.5"/>
+            <text x="137.5" y="68" fill="rgba(255,255,255,.8)" font-size="11" font-weight="bold" text-anchor="middle">ГОСТ</text>
+            <text x="137.5" y="85" fill="rgba(255,255,255,.7)" font-size="10" text-anchor="middle">26349</text>
+            <circle cx="137.5" cy="105" r="6" fill="rgba(100,180,255,.8)"/>
+            <text x="137.5" y="108" fill="rgba(255,255,255,.9)" font-size="8" font-weight="bold" text-anchor="middle">✓</text>
+            <!-- Сертификат 3 -->
+            <rect x="190" y="45" width="65" height="85" rx="2" fill="rgba(100,255,150,.15)" stroke="rgba(100,255,150,.6)" stroke-width="1.5"/>
+            <text x="222.5" y="68" fill="rgba(255,255,255,.8)" font-size="11" font-weight="bold" text-anchor="middle">ISO</text>
+            <text x="222.5" y="85" fill="rgba(255,255,255,.7)" font-size="10" text-anchor="middle">9001:2015</text>
+            <circle cx="222.5" cy="105" r="6" fill="rgba(100,255,150,.8)"/>
+            <text x="222.5" y="108" fill="rgba(255,255,255,.9)" font-size="8" font-weight="bold" text-anchor="middle">✓</text>
+            <!-- Сроки -->
+            <text x="52.5" y="150" fill="rgba(255,255,255,.5)" font-size="8" text-anchor="middle">обязателен</text>
+            <text x="137.5" y="150" fill="rgba(255,255,255,.5)" font-size="8" text-anchor="middle">стандарт</text>
+            <text x="222.5" y="150" fill="rgba(255,255,255,.5)" font-size="8" text-anchor="middle">качество</text>
+            <!-- Охват -->
+            <text x="140" y="175" fill="rgba(255,255,255,.6)" font-size="11" font-weight="600" text-anchor="middle">180+ млн человек</text>
+          </svg>
+        </div>
+        <div class="article-body">
+          <div class="article-title-sm" data-key="art8_title">ТР ТС 010/2011: требования к импорту и производству</div>
+          <div class="article-content" data-key="art8_content" style="font-size:13px;color:#666;line-height:1.6;margin-top:12px;display:none"></div>
+          <div class="article-meta" style="margin-top:12px">
+            <span style="color:var(--gray)">10 min</span>
+            <span class="article-read article-toggle" data-key="art_read" style="cursor:pointer">Читать</span>
           </div>
         </div>
       </div>
@@ -1726,17 +1978,17 @@ a{text-decoration:none;color:inherit}
         <h2 class="section-title" data-key="del_title">Қазақстан бойынша жеткізу</h2>
         <p class="section-desc" data-key="del_desc">Работаем с транспортными компаниями по всем регионам. Для крупных заказов — индивидуальные условия доставки.</p>
         <div class="delivery-cities">
-          <div class="city-item"><div class="city-dot"></div><div><div class="city-name">Астана</div><div class="city-time" data-key="city_astana">Самовывоз / 1–2 дня</div></div></div>
-          <div class="city-item"><div class="city-dot"></div><div><div class="city-name">Алматы</div><div class="city-time" data-key="city_almaty">3–5 рабочих дней</div></div></div>
-          <div class="city-item"><div class="city-dot"></div><div><div class="city-name">Атырау</div><div class="city-time" data-key="city_atyrau">4–6 рабочих дней</div></div></div>
-          <div class="city-item"><div class="city-dot"></div><div><div class="city-name">Актау</div><div class="city-time" data-key="city_aktau">5–7 рабочих дней</div></div></div>
-          <div class="city-item"><div class="city-dot"></div><div><div class="city-name">Актобе</div><div class="city-time" data-key="city_aktobe">4–6 рабочих дней</div></div></div>
-          <div class="city-item"><div class="city-dot"></div><div><div class="city-name">Шымкент</div><div class="city-time" data-key="city_shymkent">4–6 рабочих дней</div></div></div>
+          <div class="city-item"><div class="city-dot"></div><div><div class="city-name" data-key="city_name_astana">Астана</div><div class="city-time" data-key="city_astana">Самовывоз / 1–2 дня</div></div></div>
+          <div class="city-item"><div class="city-dot"></div><div><div class="city-name" data-key="city_name_almaty">Алматы</div><div class="city-time" data-key="city_almaty">3–5 рабочих дней</div></div></div>
+          <div class="city-item"><div class="city-dot"></div><div><div class="city-name" data-key="city_name_atyrau">Атырау</div><div class="city-time" data-key="city_atyrau">4–6 рабочих дней</div></div></div>
+          <div class="city-item"><div class="city-dot"></div><div><div class="city-name" data-key="city_name_aktau">Актау</div><div class="city-time" data-key="city_aktau">5–7 рабочих дней</div></div></div>
+          <div class="city-item"><div class="city-dot"></div><div><div class="city-name" data-key="city_name_aktobe">Актобе</div><div class="city-time" data-key="city_aktobe">4–6 рабочих дней</div></div></div>
+          <div class="city-item"><div class="city-dot"></div><div><div class="city-name" data-key="city_name_shymkent">Шымкент</div><div class="city-time" data-key="city_shymkent">4–6 рабочих дней</div></div></div>
         </div>
       </div>
       <div>
         <div class="map-placeholder">
-          <img src="img/kz-map-marked.jpg" alt="Карта Казахстана с городами" class="kz-map-img">
+          <img src="img/kazakhstan-map-starred.jpg" alt="Карта Казахстана с городами" class="kz-map-img" loading="lazy">
         </div>
       </div>
     </div>
@@ -1754,11 +2006,11 @@ a{text-decoration:none;color:inherit}
         <div class="contact-list">
           <div class="contact-row">
             <div class="contact-ico">📞</div>
-            <div><div class="contact-val">+7 707 855-55-11</div><div class="contact-meta" data-key="c_phone">Қоңырау және WhatsApp · Дс–Жм 9:00–18:00</div></div>
+            <div><a href="tel:+77078555511" class="contact-val">+7 707 855-55-11</a><div class="contact-meta" data-key="c_phone">Қоңырау және WhatsApp · Дс–Жм 9:00–18:00</div></div>
           </div>
           <div class="contact-row">
             <div class="contact-ico">📧</div>
-            <div><div class="contact-val">astanavalve@mail.ru</div><div class="contact-meta" data-key="c_email">КҰ және тендерлер үшін Email</div></div>
+            <div><a href="mailto:astanavalve@mail.ru" class="contact-val">astanavalve@mail.ru</a><div class="contact-meta" data-key="c_email">КҰ және тендерлер үшін Email</div></div>
           </div>
           <div class="contact-row">
             <div class="contact-ico">📍</div>
@@ -1790,67 +2042,75 @@ a{text-decoration:none;color:inherit}
   <div class="container">
     <div class="section-eyebrow" data-key="certs_eyebrow">Сертификаттар мен құжаттар</div>
     <h2 class="section-title" data-key="certs_title">Сапа растау</h2>
-    <div class="certs-grid">
-      <div class="cert-card">
-        <a href="img/company/certificate-eac.jpeg" target="_blank">
-          <img class="cert-img" src="img/company/certificate-eac.jpeg"
-               alt="ЕАС декларациясы — Astana Valve БИН 230640000662 · ТР ТС 010/2011 · ЕАЭС KG417/033.Д.0017301"
-               loading="lazy">
-        </a>
-        <div class="cert-card-body">
-          <div class="cert-card-title">Декларация о соответствии ЕАС</div>
-          <div class="cert-card-meta">ТР ТС 010/2011 · Рег. № ЕАЭС KG417/033.Д.0017301</div>
-          <div class="cert-card-meta">Действительна до 16.07.2028</div>
+    <div class="certs-grid-v2">
+      <!-- ЕАС Декларация -->
+      <div class="cert-card-v2">
+        <div class="cert-icon-v2 eac">🛡</div>
+        <div class="cert-content-v2">
+          <div class="cert-title-v2">ЕАС Декларация</div>
+          <div class="cert-meta-v2">
+            <strong>ТР ТС 010/2011</strong><br>
+            Таможенный союз<br>
+            Рег. № ЕАЭС KG417/033.Д.0017301<br>
+            <strong>Действительна до:</strong> 16.07.2028
+          </div>
+          <a href="img/company/certificate-eac.jpeg" target="_blank" class="cert-badge-v2">👁 Просмотр документа</a>
         </div>
       </div>
-      <div class="cert-card">
-        <div class="cert-placeholder">
-          <div class="cert-placeholder-icon">📜</div>
-          <div class="cert-placeholder-text" data-key="cert_gost_lbl">МЕСТ сертификаты</div>
-        </div>
-        <div class="cert-card-body">
-          <div class="cert-card-title" data-key="cert_b1">МЕСТ сертификаты</div>
-          <div class="cert-card-meta">ГОСТ 12.2.003-91 · Өнеркәсіптік жабдықтар</div>
+
+      <!-- ГОСТ Сертификаты -->
+      <div class="cert-card-v2">
+        <div class="cert-icon-v2 gost">✓</div>
+        <div class="cert-content-v2">
+          <div class="cert-title-v2" data-key="cert_b1">ГОСТ Сертификаты</div>
+          <div class="cert-meta-v2">
+            <strong>ГОСТ 12815-96</strong><br>
+            Запорная арматура<br>
+            трубопроводная<br>
+            <strong>Статус:</strong> Постоянная сертификация
+          </div>
+          <span class="cert-badge-v2" style="cursor: default;">📋 Документация</span>
         </div>
       </div>
-      <div class="cert-card">
-        <div class="cert-placeholder">
-          <div class="cert-placeholder-icon">🏭</div>
-          <div class="cert-placeholder-text">БИН 230640000662</div>
+
+      <!-- Компания -->
+      <div class="cert-card-v2">
+        <div class="cert-icon-v2 company">🏢</div>
+        <div class="cert-content-v2">
+          <div class="cert-title-v2">ТОО «Astana Valve»</div>
+          <div class="cert-meta-v2">
+            <strong>БИН 230640000662</strong><br>
+            г. Астана, ул. Мустафина 7/1<br>
+            Директор: Атамбаев Ж.Т.<br>
+            <strong>Статус:</strong> Активна
+          </div>
+          <span class="cert-badge-v2" style="cursor: default;">🏢 О компании</span>
         </div>
-        <div class="cert-card-body">
-          <div class="cert-card-title">ТОО «Astana Valve»</div>
-          <div class="cert-card-meta">БИН 230640000662 · Атамбаев Жанузак Темиртасович</div>
-          <div class="cert-card-meta">Астана қ., Мұстафин к-сі 7/1, оф. 101</div>
+      </div>
+
+      <!-- ISO 9001 (на будущее) -->
+      <div class="cert-card-v2">
+        <div class="cert-icon-v2 iso">⚙</div>
+        <div class="cert-content-v2">
+          <div class="cert-title-v2">ISO 9001:2015</div>
+          <div class="cert-meta-v2">
+            <strong>Менеджмент качества</strong><br>
+            Международный стандарт<br>
+            Система управления<br>
+            <strong>Статус:</strong> В разработке
+          </div>
+          <span class="cert-badge-v2" style="cursor: default; opacity: 0.6;">⏳ Скоро</span>
         </div>
       </div>
     </div>
 
-    <!-- ── MOBILE: компактный список сертификатов ── -->
-    <div class="certs-compact" id="certsCompact">
-      <div class="cert-compact-item">
-        <div class="cert-compact-icon">
-          <img src="img/company/certificate-eac.jpeg" alt="EAC" loading="lazy">
-        </div>
-        <div class="cert-compact-body">
-          <div class="cert-compact-title">Декларация ЕАС</div>
-          <div class="cert-compact-meta">ТР ТС 010/2011 · до 16.07.2028</div>
-        </div>
-      </div>
-      <div class="cert-compact-item">
-        <div class="cert-compact-icon">📜</div>
-        <div class="cert-compact-body">
-          <div class="cert-compact-title" data-key="cert_b1">МЕСТ сертификаты</div>
-          <div class="cert-compact-meta">ГОСТ 12.2.003-91</div>
-        </div>
-      </div>
-      <div class="cert-compact-item">
-        <div class="cert-compact-icon">🏢</div>
-        <div class="cert-compact-body">
-          <div class="cert-compact-title">ТОО «Astana Valve»</div>
-          <div class="cert-compact-meta">БИН 230640000662</div>
-        </div>
-      </div>
+    <div class="cert-action" style="margin-top: 40px; text-align: center;">
+      <a href="#" class="btn-primary" style="display: inline-flex; gap: 8px; align-items: center;">
+        📥 Скачать все сертификаты
+      </a>
+      <p style="margin-top: 16px; font-size: 12px; color: #999;">
+        Все документы прошли независимую проверку
+      </p>
     </div>
 
   </div>
@@ -1894,15 +2154,15 @@ a{text-decoration:none;color:inherit}
       <div>
         <div class="footer-col-title" data-key="footer_contacts">Байланыс</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <div style="font-size:13px;color:rgba(255,255,255,.6)">+7 707 855-55-11</div>
-          <div style="font-size:13px;color:rgba(255,255,255,.6)">astanavalve@mail.ru</div>
+          <a href="tel:+77078555511" style="font-size:13px;color:rgba(255,255,255,.6);text-decoration:none">+7 707 855-55-11</a>
+          <a href="mailto:astanavalve@mail.ru" style="font-size:13px;color:rgba(255,255,255,.6);text-decoration:none">astanavalve@mail.ru</a>
           <div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.5" data-key="c_addr">г. Астана,<br>ул. Мустафина 7/1</div>
           <a href="https://wa.me/77078555511" class="btn-wa" style="margin-top:8px;justify-content:center">💬 WhatsApp</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2023–2025 ТОО «Astana Valve» · БИН 230640000662 · astanavalve.kz</div>
+      <div class="footer-copy">© 2023–2026 ТОО «Astana Valve» · БИН 230640000662 · astanavalve.kz</div>
       <div class="footer-langs">
         <span class="footer-lang" onclick="setLang('ru')">Русский</span>
         <span class="footer-lang" onclick="setLang('kz')">Қазақша</span>
@@ -2061,8 +2321,20 @@ const T = {
     art2_cat:"Техника", art2_title:"Затвор с двойным vs тройным эксцентриситетом",
     art3_cat:"Монтаж", art3_title:"Монтажные вставки без разрезки трубопровода",
     art_min:"8 мин чтения", art_read:"Читать →",
+    art4_cat:"Материалы", art4_title:"Новые сплавы в арматуре: что изменится в 2026 году",
+    art4_content:"<p><strong>Революция в материаловедении</strong></p><p>В 2026 году производители арматуры активно внедряют новые высокопрочные сплавы на основе нержавеющей стали с добавлением молибдена и никеля. Эти материалы обеспечивают на 40% лучшую коррозионную стойкость в агрессивных средах.</p><p><strong>Где это применяется?</strong></p><p>Нефтегазовая отрасль, химические производства, системы с морской водой — везде, где требуется максимальная надежность.</p><p><strong>Экономическое преимущество</strong></p><p>Хотя новые материалы дороже на 20-25%, они служат в 2-3 раза дольше, окупаясь за счет отсутствия замен и простоев.</p>",
+    art5_cat:"Технологии", art5_title:"Цифровизация производства: умная арматура 2025",
+    art5_content:"<p><strong>IoT в арматуре: будущее уже здесь</strong></p><p>Крупные производители устанавливают датчики на задвижки и затворы. Они отслеживают давление, температуру, количество включений. Данные передаются в облако в реальном времени.</p><p><strong>Для чего это нужно?</strong></p><p>Предиктивное обслуживание — система предупредит о проблеме за месяц до отказа. Снижаются аварии, растет безопасность.</p><p><strong>Применение в промышленности</strong></p><p>Водопроводные сети, теплоэнергетика, промышленные трубопроводы. Казахстан начинает внедрять такие системы в критичных объектах.</p>",
+    art6_cat:"Энергия", art6_title:"Арматура для атомной энергетики: стандарты безопасности",
+    art6_content:"<p><strong>Требования 2025-2026 нарастают</strong></p><p>Атомная отрасль — самая требовательная. Задвижки и клапаны для реакторов должны выдерживать экстремальные условия: 300°C, 300 бар, радиация.</p><p><strong>Сертификация</strong></p><p>Все компоненты проходят многоступенчатые испытания, включая механические тесты и контроль на дефекты. Требуется сертификат ГОСТ и международные стандарты.</p><p><strong>Инновация в безопасности</strong></p><p>Новые дизайны с тройным уплотнением снижают риск утечек с 0.01% до 0.001%. Это спасает жизни.</p>",
+    art7_cat:"Экономия", art7_title:"Энергоэффективная арматура: экономия на потерях давления",
+    art7_content:"<p><strong>Проблема: потери давления в системах</strong></p><p>Стандартные затворы и задвижки создают гидравлическое сопротивление, требуя мощнее насосы. Это стоит денег: на крупных сетях — сотни тысяч тенге в год.</p><p><strong>Решение: оптимизированная геометрия</strong></p><p>Новая конструкция затворов 2025-2026 снижает коэффициент сопротивления на 15-25%. Насосы работают экономнее, счета за электричество падают.</p><p><strong>ROI на примере водопровода</strong></p><p>Замена 100 затворов на энергоэффективные: инвестиция ~500K тенге, экономия за год: 150K тенге. Окупается за 3-4 года.</p>",
+    art8_cat:"Стандарты", art8_title:"ТР ТС 010/2011: требования к импорту и производству",
+    art8_content:"<p><strong>Что это за стандарт?</strong></p><p>ТР ТС 010/2011 — технический регламент Таможенного союза. Устанавливает требования безопасности для трубопроводной арматуры в России, Казахстане, Беларуси.</p><p><strong>Основные требования:</strong></p><p>• Герметичность (не более 0.1% утечек)<br>• Прочность (испытание давлением)<br>• Маркировка и документация<br>• Сертификаты качества для каждой партии</p><p><strong>Почему это важно?</strong></p><p>Без этого сертификата вы не можете продавать арматуру в странах Евразийского союза. Это вход на рынок в 180+ миллионов человек.</p>",
     del_eyebrow:"Логистика", del_title:"Доставка по всему Казахстану",
     del_desc:"Работаем с транспортными компаниями по всем регионам. Для крупных заказов — индивидуальные условия.",
+    city_name_astana:"Астана", city_name_almaty:"Алматы", city_name_atyrau:"Атырау",
+    city_name_aktau:"Актау", city_name_aktobe:"Актобе", city_name_shymkent:"Шымкент",
     city_astana:"Самовывоз / 1–2 дня", city_almaty:"3–5 рабочих дней",
     city_atyrau:"4–6 рабочих дней", city_aktau:"5–7 рабочих дней",
     city_aktobe:"4–6 рабочих дней", city_shymkent:"4–6 рабочих дней",
@@ -2080,6 +2352,11 @@ const T = {
     ml_qty:"Количество, ед.", ml_medium:"Рабочая среда", ml_comment:"Комментарий",
     modal_submit:"📨 Отправить опросный лист →",
     ph_name:"Имя / Аты / Name",
+    badge_mest:"МЕСТНОГО", badge_pn16:"PN16", badge_pn25:"PN25", badge_pn64:"PN64",
+    badge_wcb:"WCB", badge_ss304:"SS304", badge_ss316:"SS316",
+    badge_2e:"Двойной эксцентр", badge_3e:"Тройной эксцентр",
+    badge_bolat:"Сталь", badge_swing:"Поворотный", badge_vkh:"Воздухоотводчик",
+    badge_fire:"Гидрант", badge_knife:"Ножевой",
     certs_eyebrow:"Сертификаты и документация", certs_title:"Подтверждение качества",
     cert_gost_lbl:"Сертификат ГОСТ",
     p1b_name:"Задвижки клиновые DN700–1200", p1b_desc:"Крупные задвижки с редуктором и электроприводом.",
@@ -2170,11 +2447,26 @@ const T = {
     blog_eyebrow:"Пайдалы мақалалар", blog_title:"Инженер анықтамалығы", blog_all:"Барлық мақалалар →",
     art1_cat:"Арматура таңдау", art1_title:"Сумен жабдықтауға тығын қалай таңдауға болады: DN, PN және клин түрі",
     art1_desc:"Сумен жабдықтау жүйелеріне тығын таңдаудың негізгі параметрлерін талдаймыз.",
+    art1_content:"<p><strong>DN және PN дегеніміз не?</strong></p><p>DN (Номиналды диаметр) — құбырдың салыстырмалы диаметрі миллиметрмен. Ортақ өлшемдер: DN50, DN100, DN200, DN300, DN500, DN800, DN1200.</p><p>PN (Номиналды қысым) — барда максималды жұмыс қысымы. Стандартты мәндер: PN10, PN16, PN25.</p><p><strong>Резеңкелі клин vs болат клин</strong></p><p>Резеңкелі клин суға және жылылық жүйелеріне тиесілі. Болат клин мұнай, газ, жоғары қысымға қолданылады.</p><p><strong>Таңдау кеңесі:</strong></p><p>Сумен жабдықтау үшін резеңкелі клинді таңдаңыз. Мұнай-газ үшін болат клинді қолданыңыз. Сертификат сұраңыз.</p>",
     art2_cat:"Техника", art2_title:"Қос және үш эксцентриситетті затвор: айырмашылығы неде",
+    art2_content:"<p><strong>Эксцентриситет дегеніміз не?</strong></p><p>Эксцентриситет — диск өсімен ығысуы. Затворды герметтік және ұзақ қызмет істеу мүмкін болады.</p><p><strong>Қос эксцентриситет (2E)</strong></p><p>Орта қысым үшін (PN10–PN16). Сумен жабдықтау және жылықтау үшін таңдалады.</p><p><strong>Үш эксцентриситет (3E)</strong></p><p>Жоғары қысым және қатал ортаға. Мұнай, газ, жоғары температураға құлай құлай.</p>",
     art3_cat:"Монтаж", art3_title:"Монтаждық кірістірмелер — құбырды кеспей ауыстыру",
+    art3_content:"<p><strong>Монтаждық кірістірме дегеніміз не?</strong></p><p>Монтаждық кірістірме құбырды кеспей ғана арматураны ауыстыруға мүмкін болады. Уақыт және ақша сәттеу.</p><p><strong>Артықшылықтары:</strong></p><p>• Су беруін өндіктемей ауыстыру<br>• Жүйе жұмыс істеген кезде ауыстыру<br>• Төмен құны<br>• DN50–DN2400 өлшемдері</p><p><strong>Қалай құрады?</strong></p><p>Кірістірме құбыр фланцасы арасына орнатылады. Болтты босатып, арматураны шығарады.</p>",
     art_min:"8 мин оқу", art_read:"Оқу →",
+    art4_cat:"Материалдар", art4_title:"Арматурадағы жаңа合金: 2026 жылы не өзгеріс болады",
+    art4_content:"<p><strong>Материалдар революциясы</strong></p><p>2026 жылы өндірушілер молибден және никельді қосқан тот баспайтын болат сплавын қабылдауда. Бұл материалдар қатал ортада 40% жақсы тозуға сай болады.</p><p><strong>Қайда қолданылады?</strong></p><p>Мұнай-газ өндірісі, химиялық өндіріс, теңіз су жүйелері — ешқайда болсын ең жоғары сенімділік қажет болғанда.</p><p><strong>Экономикалық артықшылық</strong></p><p>Жаңа материалдар 20-25% қымбат болғына қарамай, 2-3 есе ұзақ ұстайды, ағыны төмендетсе де төлөңіз.</p>",
+    art5_cat:"Технологиялар", art5_title:"Өндіністі цифрлау: ақылды арматура 2025",
+    art5_content:"<p><strong>IoT арматурада: болашақ қазір</strong></p><p>Ірі өндірушілер датчиктарды тығындарға орнатады. Олар қысым, температураны, ашу саныны қадағалайды. Мәліметтер облакқа нақты уақытта беріледі.</p><p><strong>Не үшін қажет?</strong></p><p>Болжамдау техникасы — жүйе ақау болар бір айдан бұрын анықтайды. Апаттар азаяды, қауіпсіздік ұлғайды.</p><p><strong>Өндіріске қолдану</strong></p><p>Су жүйелері, жылылық энергетика, өнеркәсіп құбыр желілері. Қазақстан әлеуметтік объектілерде енгіземеге басталды.</p>",
+    art6_cat:"Энергия", art6_title:"Атомды энергетика үшін арматура: қауіпсіздік стандарттары",
+    art6_content:"<p><strong>2025-2026 талаптары өсіп келеді</strong></p><p>Атомды сала ең қатаарт. Реакторлар үшін тығындар мен клапандар экстремалды: 300°C, 300 бар, радиация сақтауы керек.</p><p><strong>Сертификация</strong></p><p>Барлық компоненттер көп сатылы сынақтан өтеді, механикалық сынақтар мен ақау бақылауын қоса. ГОСТ сертификаты және халықаралық стандарттар қажет.</p><p><strong>Қауіпсіздіктегі инновация</strong></p><p>Үш сілтемелі жаңа дизайн ағуының қатері 0.01% дан 0.001% -ге төмендетеді. Бұл өндіріс құтқарады.</p>",
+    art7_cat:"Аралық", art7_title:"Энергиялық сәтті арматура: қысымды ығынықта аралықты",
+    art7_content:"<p><strong>Мәселе: жүйелердегі қысым шығындары</strong></p><p>Стандартты затворлар мен тығындар гидравликалық қарсылықты құрады, ағыны күшейтуді талап етеді. Бұл ақыға ықпал етеді: ірі желілерде — жүз мың теңге жылына.</p><p><strong>Шешімі: оңтайлық геометрия</strong></p><p>2025-2026 затворлау жаңа құрылымы сопаттаңды 15-25% төмендетеді. Ағындар сәтті істейді, электр есептері төмендейді.</p><p><strong>Мысал: су құбыры</strong></p><p>100 затворы энергиялық болып ауыстыру: салмақ ~500K теңге, жылдық өнімдеу: 150K теңге. 3-4 жылда төлөнеді.</p>",
+    art8_cat:"Стандарттар", art8_title:"ТР ТС 010/2011: импорт және өндіріске талаптар",
+    art8_content:"<p><strong>Бұл стандарт не?</strong></p><p>ТР ТС 010/2011 — Қажетті одағы техникалық регламенті. Ресей, Қазақстан, Беларусьда құбыр арматурасына қауіпсіздік талаптарын орнатады.</p><p><strong>Негізгі талаптар:</strong></p><p>• Герметизм (0.1% ағудан артық емес)<br>• Беріктік (қысым сынағы)<br>• Бөлек белгі және құжаттама<br>• Әрбір партияға сапа сертификаты</p><p><strong>Неге маңызды?</strong></p><p>Осы сертификатсыз Евразиялық одағының елдерінде арматура сатушы болмайсыз. Бұл 180+ миллион адамды нарығына кіру.</p>",
     del_eyebrow:"Логистика", del_title:"Қазақстан бойынша жеткізу",
     del_desc:"Барлық өңірлерге жеткізу жүзеге асырылады. Ірі тапсырыстар үшін — жеке шарттар.",
+    city_name_astana:"Астана", city_name_almaty:"Алматы", city_name_atyrau:"Атырау",
+    city_name_aktau:"Ақтау", city_name_aktobe:"Ақтөбе", city_name_shymkent:"Шымкент",
     city_astana:"Өздігінен алу / 1–2 күн", city_almaty:"3–5 жұмыс күні",
     city_atyrau:"4–6 жұмыс күні", city_aktau:"5–7 жұмыс күні",
     city_aktobe:"4–6 жұмыс күні", city_shymkent:"4–6 жұмыс күні",
@@ -2184,6 +2476,11 @@ const T = {
     c_addr:"Астана қ., Мұстафин к-сі 7/1", c_addr_s:"Өндіріс және кеңсе · astanavalve.kz",
     form_title:"Өтінім қалдыру", form_agree:"Жеке деректерді өңдеуге келісемін",
     form_submit:"📨 Өтінім жіберу →",
+    badge_mest:"ЖЕРГІЛІК", badge_pn16:"PN16", badge_pn25:"PN25", badge_pn64:"PN64",
+    badge_wcb:"WCB", badge_ss304:"SS304", badge_ss316:"SS316",
+    badge_2e:"Қос эксцентр", badge_3e:"Үш эксцентр",
+    badge_bolat:"Болат", badge_swing:"Айналмалы", badge_vkh:"Ауа шығару",
+    badge_fire:"Гидрант", badge_knife:"Пышақты",
     footer_desc:"Қазақстандық өнеркәсіптік жабу арматурасы өндірушісі. Өз өндірісіміздің тығындары, затворлары, клапандары DN50–2000.",
     footer_catalog:"Каталог", footer_company:"Компания", footer_contacts:"Байланыс",
     modal_title:"Сауалнама парақшасы", modal_sub:"Параметрлерді толтырыңыз — инженер оңтайлы арматура таңдап, 1 жұмыс күнінде КҰ дайындайды.",
@@ -2282,11 +2579,26 @@ const T = {
     blog_eyebrow:"Technical articles", blog_title:"Engineer's reference", blog_all:"All articles →",
     art1_cat:"Valve selection", art1_title:"How to choose a gate valve for water supply: DN, PN & wedge type",
     art1_desc:"Key parameters when selecting gate valves for water supply and drainage systems.",
+    art1_content:"<p><strong>What is DN and PN?</strong></p><p>DN (Nominal Diameter) is the nominal pipe diameter in millimeters. Common sizes: DN50, DN100, DN200, DN300, DN500, DN800, DN1200.</p><p>PN (Nominal Pressure) is maximum working pressure in bars. Standard values: PN10, PN16, PN25.</p><p><strong>Rubber wedge vs steel wedge</strong></p><p>Rubber wedge is ideal for cold and hot water, seals well, requires minimal maintenance. Steel wedge is for aggressive media (oil, gas, high pressures), requires periodic lubrication but handles extreme conditions.</p><p><strong>Selection tips:</strong></p><p>For water supply, choose rubber wedge. For oil/gas, choose steel wedge. Request certificates.</p>",
     art2_cat:"Technical", art2_title:"Double vs triple offset butterfly valve: what's the difference",
+    art2_content:"<p><strong>What is eccentricity?</strong></p><p>Eccentricity means the disc is offset from the geometric center. This makes the valve more reliable and long-lasting.</p><p><strong>Double offset (2E)</strong></p><p>Disc offset in two planes. For medium pressure (PN10–PN16). Good for water and heating systems. More affordable.</p><p><strong>Triple offset (3E)</strong></p><p>Disc offset in three planes. For high pressure and aggressive media. More reliable and tight seal but more expensive.</p><p><strong>Choose 2E for water, 3E for oil/gas/steam.</strong></p>",
     art3_cat:"Installation", art3_title:"Dismantling joints: replacement without cutting the pipeline",
+    art3_content:"<p><strong>What is a dismantling joint?</strong></p><p>A dismantling joint allows valve replacement without cutting the pipe. Saves time and money during maintenance.</p><p><strong>Benefits:</strong></p><p>• Replace without shutting off water<br>• Change during system operation<br>• Cost savings<br>• Available DN50–DN2400</p><p><strong>How it works:</strong></p><p>Installed between pipe flanges. Loosen bolts and pull out the valve without cutting.</p><p><strong>When to use?</strong></p><p>In critical systems (water supply, heating, industrial) where downtime is expensive.</p>",
     art_min:"8 min read", art_read:"Read →",
+    art4_cat:"Materials", art4_title:"New alloys in valve manufacturing: what will change in 2026",
+    art4_content:"<p><strong>Materials revolution</strong></p><p>In 2026, valve manufacturers are adopting high-strength stainless steel alloys with molybdenum and nickel additions. These materials provide 40% better corrosion resistance in aggressive environments.</p><p><strong>Where is this used?</strong></p><p>Oil & gas, chemical production, seawater systems — anywhere maximum reliability is critical.</p><p><strong>Economic advantage</strong></p><p>New materials cost 20-25% more, but last 2-3 times longer, paying for themselves through reduced replacements and downtime.</p>",
+    art5_cat:"Technology", art5_title:"Smart valve manufacturing: Industry 4.0 in 2025",
+    art5_content:"<p><strong>IoT in valves: the future is now</strong></p><p>Major manufacturers install sensors on gate valves and butterfly valves. They track pressure, temperature, and cycle counts in real-time to the cloud.</p><p><strong>Why this matters</strong></p><p>Predictive maintenance — the system alerts you to problems a month before failure. This reduces accidents and increases safety.</p><p><strong>Industrial application</strong></p><p>Water networks, power generation, industrial pipelines. Kazakhstan is deploying these systems in critical facilities.</p>",
+    art6_cat:"Energy", art6_title:"Valves for nuclear power: safety standards explained",
+    art6_content:"<p><strong>2025-2026 requirements are becoming stricter</strong></p><p>Nuclear energy is the most demanding sector. Valves for reactors must withstand extreme conditions: 300°C, 300 bar, radiation exposure.</p><p><strong>Certification process</strong></p><p>All components undergo multi-stage testing, including mechanical tests and defect detection. GOST certificates and international standards are mandatory.</p><p><strong>Safety innovation</strong></p><p>New triple-seal designs reduce leakage risk from 0.01% to 0.001%. This saves lives.</p>",
+    art7_cat:"Efficiency", art7_title:"Energy-efficient valves: saving on pressure losses",
+    art7_content:"<p><strong>The problem: pressure losses in systems</strong></p><p>Standard valves create hydraulic resistance, requiring more powerful pumps. This costs money: on large networks, hundreds of thousands of tenge per year.</p><p><strong>The solution: optimized geometry</strong></p><p>New 2025-2026 valve designs reduce resistance coefficient by 15-25%. Pumps operate more efficiently, electricity bills drop.</p><p><strong>ROI example for water systems</strong></p><p>Replacing 100 standard valves with efficient ones: investment ~500K tenge, annual savings: 150K tenge. Pays back in 3-4 years.</p>",
+    art8_cat:"Standards", art8_title:"TR TS 010/2011: requirements for manufacturing and imports",
+    art8_content:"<p><strong>What is this standard?</strong></p><p>TR TS 010/2011 is the Technical Regulations of the Eurasian Customs Union. It sets safety requirements for piping valves in Russia, Kazakhstan, and Belarus.</p><p><strong>Key requirements:</strong></p><p>• Sealing (no more than 0.1% leakage)<br>• Strength (pressure testing)<br>• Marking and documentation<br>• Quality certificates for each batch</p><p><strong>Why does this matter?</strong></p><p>Without this certification, you cannot sell valves in Eurasian Union countries. This is market access for 180+ million people.</p>",
     del_eyebrow:"Logistics", del_title:"Delivery across Kazakhstan",
     del_desc:"Working with carriers across all regions. Custom delivery terms for large orders.",
+    city_name_astana:"Astana", city_name_almaty:"Almaty", city_name_atyrau:"Atyrau",
+    city_name_aktau:"Aktau", city_name_aktobe:"Aktobe", city_name_shymkent:"Shymkent",
     city_astana:"Pickup / 1–2 days", city_almaty:"3–5 business days",
     city_atyrau:"4–6 business days", city_aktau:"5–7 business days",
     city_aktobe:"4–6 business days", city_shymkent:"4–6 business days",
@@ -2296,6 +2608,11 @@ const T = {
     c_addr:"Astana, Mustafina St. 7/1", c_addr_s:"Factory & Office · astanavalve.kz",
     form_title:"Send a request", form_agree:"I agree to the processing of personal data",
     form_submit:"📨 Send request →",
+    badge_mest:"LOCAL", badge_pn16:"PN16", badge_pn25:"PN25", badge_pn64:"PN64",
+    badge_wcb:"WCB", badge_ss304:"SS304", badge_ss316:"SS316",
+    badge_2e:"Double offset", badge_3e:"Triple offset",
+    badge_bolat:"Steel", badge_swing:"Swing", badge_vkh:"Air release",
+    badge_fire:"Hydrant", badge_knife:"Knife gate",
     footer_desc:"Kazakhstani manufacturer of industrial valves and fittings DN50–2000.",
     footer_catalog:"Catalog", footer_company:"Company", footer_contacts:"Contacts",
     modal_title:"Technical questionnaire", modal_sub:"Fill in the parameters — quote within 1 business day.",
@@ -2488,6 +2805,49 @@ function closeModal(id) {
   document.body.style.overflow = '';
 }
 
+/* ── СТАТЬИ: Показать все статьи ── */
+document.getElementById('showAllArticles')?.addEventListener('click', function(e) {
+  e.preventDefault();
+  const hiddenArticles = document.querySelectorAll('.article-card.hidden-article');
+  const allShown = Array.from(hiddenArticles).every(el => el.classList.contains('show'));
+
+  hiddenArticles.forEach(article => {
+    if (allShown) {
+      article.classList.remove('show');
+    } else {
+      article.classList.add('show');
+    }
+  });
+
+  // Меняем текст кнопки
+  const btnText = allShown ? T[currentLang]['blog_all'] || T['ru']['blog_all']
+                           : (currentLang === 'ru' ? 'Скрыть' : currentLang === 'en' ? 'Hide' : 'Жасыру');
+  this.textContent = btnText + ' ' + (allShown ? '▲' : '▼');
+});
+
+/* ── СТАТЬИ: Раскрытие/скрытие содержимого ── */
+document.querySelectorAll('.article-toggle').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const card = this.closest('.article-body');
+    const content = card.querySelector('.article-content');
+    if (content) {
+      const isShown = content.style.display !== 'none';
+      if (!isShown) {
+        // При открытии — заполняем HTML из переводов
+        const key = content.getAttribute('data-key');
+        const html = T[currentLang][key] || T['ru'][key] || '';
+        content.innerHTML = html;
+      }
+      content.style.display = isShown ? 'none' : 'block';
+      const langText = currentLang === 'ru' ? (isShown ? 'Читать' : 'Скрыть')
+                      : currentLang === 'en' ? (isShown ? 'Read' : 'Hide')
+                      : (isShown ? 'Оқу' : 'Жасыру');
+      this.textContent = langText;
+    }
+  });
+});
+
 /* ── localStorage helper (безопасный) ── */
 const LS = {
   get(k)    { try { return localStorage.getItem(k); }    catch(e){ return null; } },
@@ -2597,6 +2957,95 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeDrawer();
 });
 
+/* ── ОТПРАВКА КОНТАКТНОЙ ФОРМЫ ЧЕРЕЗ WHATSAPP ── */
+document.querySelector('.btn-submit').addEventListener('click', function(e) {
+  e.preventDefault();
+  const name    = document.getElementById('cf_name').value.trim();
+  const phone   = document.getElementById('cf_phone').value.trim();
+  const company = document.getElementById('cf_company').value.trim();
+  const type    = document.getElementById('cf_type').value.trim();
+  const msg     = document.getElementById('cf_msg').value.trim();
+
+  // Валидация — минимум имя и телефон
+  if (!name || !phone) {
+    const alert_msg = currentLang === 'ru' ? 'Пожалуйста, укажите имя и телефон.'
+                    : currentLang === 'en' ? 'Please enter your name and phone.'
+                    : 'Атыңызды және телефонды енгізіңіз.';
+    alert(alert_msg);
+    return;
+  }
+
+  // Валидация формата номера телефона (должен содержать минимум 10 цифр)
+  const phoneDigits = phone.replace(/\D/g, '');
+  if (phoneDigits.length < 10) {
+    const alert_msg = currentLang === 'ru' ? 'Неверный формат номера телефона. Укажите минимум 10 цифр.'
+                    : currentLang === 'en' ? 'Invalid phone format. Enter at least 10 digits.'
+                    : 'Телефон нөмерінің пішімі дұрыс емес. Кемінде 10 цифр енгізіңіз.';
+    alert(alert_msg);
+    return;
+  }
+
+  // Защита от XSS — экранируем HTML-спецсимволы
+  const escapeHtml = (text) => text.replace(/[&<>"']/g, (char) => {
+    const map = {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'};
+    return map[char];
+  });
+
+  const safeName    = escapeHtml(name);
+  const safePhone   = escapeHtml(phone);
+  const safeCompany = escapeHtml(company);
+  const safeType    = escapeHtml(type);
+  const safeMsg     = escapeHtml(msg);
+
+  // Формируем сообщение в зависимости от языка
+  let text;
+  if (currentLang === 'ru') {
+    text = 'Заявка: ФИО: ' + safeName + ', Номер: ' + safePhone;
+    if (safeCompany) text += ', Компания: ' + safeCompany;
+    if (safeType)    text += ', Тип арматуры: ' + safeType;
+    if (safeMsg)     text += ', Комментарий: ' + safeMsg;
+  } else if (currentLang === 'en') {
+    text = 'Request: Name: ' + safeName + ', Phone: ' + safePhone;
+    if (safeCompany) text += ', Company: ' + safeCompany;
+    if (safeType)    text += ', Valve type: ' + safeType;
+    if (safeMsg)     text += ', Message: ' + safeMsg;
+  } else {
+    text = 'Өтінім: Аты: ' + safeName + ', Телефон: ' + safePhone;
+    if (safeCompany) text += ', Компания: ' + safeCompany;
+    if (safeType)    text += ', Арматура түрі: ' + safeType;
+    if (safeMsg)     text += ', Пікір: ' + safeMsg;
+  }
+
+  const waURL = 'https://wa.me/77078555511?text=' + encodeURIComponent(text);
+  window.open(waURL, '_blank');
+
+  // Очищаем форму
+  document.getElementById('cf_name').value = '';
+  document.getElementById('cf_phone').value = '';
+  document.getElementById('cf_company').value = '';
+  document.getElementById('cf_type').value = '';
+  document.getElementById('cf_msg').value = '';
+});
+
+/* ── ОТКРЫТИЕ ФОРМЫ ОПРОСНИКА (PDF Section) ── */
+document.getElementById('openQuestionnaireForm')?.addEventListener('click', function(e) {
+  e.preventDefault();
+  openModal('questionnaire');
+});
+
+/* ── СКАЧИВАНИЕ PDF ── */
+document.getElementById('downloadPdf')?.addEventListener('click', function(e) {
+  e.preventDefault();
+  // Путь к PDF файлу в папке docs
+  const pdfUrl = './docs/astana-valve.pdf';
+  const link = document.createElement('a');
+  link.href = pdfUrl;
+  link.download = 'astana-valve-catalog.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+});
+
 /* ── ОТПРАВКА ЗАЯВКИ ЧЕРЕЗ WHATSAPP ── */
 document.getElementById('modalSendBtn').addEventListener('click', function() {
   const name    = document.getElementById('mf_name').value.trim();
@@ -2618,26 +3067,62 @@ document.getElementById('modalSendBtn').addEventListener('click', function() {
     return;
   }
 
-  // Формируем сообщение
-  const labels = {
-    kz: { title:'Жаңа өтінім — Astana Valve сайты', name:'Аты', phone:'Телефон', company:'Компания', type:'Арматура түрі', dn:'DN', pn:'PN', qty:'Саны', medium:'Жұмыс ортасы', comment:'Пікір' },
-    ru: { title:'Новая заявка — сайт Astana Valve',  name:'Имя', phone:'Телефон', company:'Компания', type:'Тип арматуры', dn:'DN', pn:'PN', qty:'Кол-во', medium:'Рабочая среда', comment:'Комментарий' },
-    en: { title:'New request — Astana Valve website', name:'Name', phone:'Phone', company:'Company', type:'Valve type', dn:'DN', pn:'PN', qty:'Qty', medium:'Medium', comment:'Comment' },
-  };
-  const L = labels[currentLang] || labels.ru;
+  // Валидация формата номера телефона
+  const phoneDigits = phone.replace(/\D/g, '');
+  if (phoneDigits.length < 10) {
+    const alert_msg = currentLang === 'ru' ? 'Неверный формат номера телефона. Укажите минимум 10 цифр.'
+                    : currentLang === 'en' ? 'Invalid phone format. Enter at least 10 digits.'
+                    : 'Телефон нөмерінің пішімі дұрыс емес. Кемінде 10 цифр енгізіңіз.';
+    alert(alert_msg);
+    return;
+  }
 
-  let text = `📋 ${L.title}\n`;
-  text += `━━━━━━━━━━━━━━━━━━━\n`;
-  text += `👤 ${L.name}: ${name}\n`;
-  text += `📞 ${L.phone}: ${phone}\n`;
-  if (company) text += `🏢 ${L.company}: ${company}\n`;
-  if (type && !type.includes('—')) text += `⚙️ ${L.type}: ${type}\n`;
-  if (dn)      text += `📐 ${L.dn}: ${dn}\n`;
-  if (pn && pn !== '—') text += `💧 ${L.pn}: ${pn}\n`;
-  if (qty)     text += `📦 ${L.qty}: ${qty}\n`;
-  if (medium)  text += `🌊 ${L.medium}: ${medium}\n`;
-  if (comment) text += `💬 ${L.comment}: ${comment}\n`;
-  text += `━━━━━━━━━━━━━━━━━━━`;
+  // Защита от XSS — экранируем HTML-спецсимволы
+  const escapeHtml = (text) => text.replace(/[&<>"']/g, (char) => {
+    const map = {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'};
+    return map[char];
+  });
+
+  const safeName    = escapeHtml(name);
+  const safePhone   = escapeHtml(phone);
+  const safeCompany = escapeHtml(company);
+  const safeType    = escapeHtml(type);
+  const safeDn      = escapeHtml(dn);
+  const safePn      = escapeHtml(pn);
+  const safeQty     = escapeHtml(qty);
+  const safeMedium  = escapeHtml(medium);
+  const safeComment = escapeHtml(comment);
+
+  // Формируем сообщение в простом формате без спецсимволов
+  let text;
+  if (currentLang === 'ru') {
+    text = 'Новая заявка: Имя: ' + safeName + ', Номер: ' + safePhone;
+    if (safeCompany) text += ', Компания: ' + safeCompany;
+    if (safeType)    text += ', Тип арматуры: ' + safeType;
+    if (safeDn)      text += ', DN: ' + safeDn;
+    if (safePn)      text += ', PN: ' + safePn;
+    if (safeQty)     text += ', Кол-во: ' + safeQty;
+    if (safeMedium)  text += ', Среда: ' + safeMedium;
+    if (safeComment) text += ', Комментарий: ' + safeComment;
+  } else if (currentLang === 'en') {
+    text = 'New request: Name: ' + safeName + ', Phone: ' + safePhone;
+    if (safeCompany) text += ', Company: ' + safeCompany;
+    if (safeType)    text += ', Valve type: ' + safeType;
+    if (safeDn)      text += ', DN: ' + safeDn;
+    if (safePn)      text += ', PN: ' + safePn;
+    if (safeQty)     text += ', Qty: ' + safeQty;
+    if (safeMedium)  text += ', Medium: ' + safeMedium;
+    if (safeComment) text += ', Comment: ' + safeComment;
+  } else {
+    text = 'Жаңа өтінім: Аты: ' + safeName + ', Телефон: ' + safePhone;
+    if (safeCompany) text += ', Компания: ' + safeCompany;
+    if (safeType)    text += ', Арматура түрі: ' + safeType;
+    if (safeDn)      text += ', DN: ' + safeDn;
+    if (safePn)      text += ', PN: ' + safePn;
+    if (safeQty)     text += ', Саны: ' + safeQty;
+    if (safeMedium)  text += ', Ортасы: ' + safeMedium;
+    if (safeComment) text += ', Пікір: ' + safeComment;
+  }
 
   const waURL = 'https://wa.me/77078555511?text=' + encodeURIComponent(text);
   window.open(waURL, '_blank');

@@ -11,7 +11,7 @@
 import { test, expect, Page } from '@playwright/test';
 import * as path from 'path';
 
-const INDEX_URL = `file://${path.resolve(__dirname, '../../src/index.html')}`;
+const INDEX_URL = `file://${path.resolve(__dirname, '../../index.html')}`;
 
 async function goto(page: Page) {
   await page.goto(INDEX_URL, { waitUntil: 'domcontentloaded' });
