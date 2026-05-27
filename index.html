@@ -2886,6 +2886,10 @@ document.getElementById('showAllArticles')?.addEventListener('click', function(e
   const showText = { ru:'Все статьи ▾', kz:'Барлық мақалалар ▾', en:'All articles ▾' };
   const hideText = { ru:'Скрыть ▴', kz:'Жасыру ▴', en:'Hide ▴' };
   this.textContent = allShown ? (showText[lang] || showText.ru) : (hideText[lang] || hideText.ru);
+  // При скрытии — прокрутить к началу секции
+  if (!allShown) {
+    document.getElementById('blog')?.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
 });
 
 /* ── СТАТЬИ: Раскрытие/скрытие содержимого ── */
@@ -2978,6 +2982,10 @@ if (catShowMore) {
     const showText = { ru:'Показать все товары ▾', kz:'Барлық өнімді көрсету ▾', en:'Show all products ▾' };
     const hideText = { ru:'Скрыть ▴', kz:'Жасыру ▴', en:'Hide ▴' };
     this.textContent = isExpanded ? (showText[lang] || showText.ru) : (hideText[lang] || hideText.ru);
+    // При скрытии — прокрутить к началу секции
+    if (isExpanded) {
+      document.getElementById('catalog')?.scrollIntoView({ behavior:'smooth', block:'start' });
+    }
   });
 }
 
@@ -2994,6 +3002,10 @@ if (projShowAll) {
     const showText = { ru:'Все объекты ▾', kz:'Барлық объектілер ▾', en:'All projects ▾' };
     const hideText = { ru:'Скрыть ▴', kz:'Жасыру ▴', en:'Hide ▴' };
     this.textContent = isExpanded ? (showText[lang] || showText.ru) : (hideText[lang] || hideText.ru);
+    // При скрытии — прокрутить к началу секции
+    if (isExpanded) {
+      document.getElementById('projects')?.scrollIntoView({ behavior:'smooth', block:'start' });
+    }
   });
 }
 
