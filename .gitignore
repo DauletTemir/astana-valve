@@ -31,10 +31,16 @@ design-variants/
 design-variants.html
 design-real-certs.html
 create-summary.html
+mockups.html
 DESIGN-SUMMARY.md
 COMPARISON-real-certs.md
 IMPLEMENTATION-REPORT.md
 certs-section-screenshot.png
+
+# ── Локальные генераторы и скрипты ───────────────
+gen-pdf.js
+gen-screenshots.js
+scripts/
 
 # ── Карты (обработанные версии) ──────────────────
 # Хранится только img/kazakhstan-map-starred.jpg (48KB JPG)
@@ -103,6 +109,12 @@ Desktop.ini
 
 # ── Диагностические отчёты Node.js ───────────────
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# ── Виртуальное окружение Python ──────────────────
+.venv/
+venv/
+ENV/
+env/
 
 # ── Папка с ошибочным именем (создана случайно) ──
 {src,tests
