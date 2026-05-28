@@ -20,33 +20,13 @@ test-results/
 playwright-report/
 blob-report/
 
-# ── Сгенерированные файлы (скриншоты, PDF) ───────
-docs/preview-full.png
-docs/v2-arctic-blueprint-full.png
-docs/v2-preview-full.html
-docs/astana-valve.pdf
+# ── WebP изображения (генерируются из оригиналов) ─
+# Оригиналы: .jpg / .jpeg / .png — коммитим
+# WebP — генерируем локально через cwebp, в git не нужны
+img/**/*.webp
 
-# ── Дизайн и прототипы (дополнительные варианты) ──
-design-variants/
-design-variants.html
-design-real-certs.html
-create-summary.html
-mockups.html
-DESIGN-SUMMARY.md
-COMPARISON-real-certs.md
-IMPLEMENTATION-REPORT.md
-certs-section-screenshot.png
-
-# ── Локальные генераторы и скрипты ───────────────
-gen-pdf.js
-gen-screenshots.js
-scripts/
-
-# ── Карты (обработанные версии) ──────────────────
-# Хранится только img/kazakhstan-map-starred.jpg (48KB JPG)
-img/kazakhstan-map-starred.png
-img/kazakhstan-map.jpg
-img/kz-map*
+# ── ZIP-архив каталога (генерируется из PDF) ─────
+products-catalog.zip
 
 # ── Логи ─────────────────────────────────────────
 logs/
@@ -87,11 +67,12 @@ coverage/
 *.lcov
 .nyc_output/
 
-# ── Системные файлы macOS ─────────────────────────
+# ── Системные файлы macOS / Windows ──────────────
 .DS_Store
 **/.DS_Store
 Thumbs.db
 Desktop.ini
+*.lnk
 
 # ── Редакторы ─────────────────────────────────────
 .vscode/
@@ -110,11 +91,11 @@ Desktop.ini
 # ── Диагностические отчёты Node.js ───────────────
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
-# ── Виртуальное окружение Python ──────────────────
+# ── Python ────────────────────────────────────────
 .venv/
 venv/
 ENV/
 env/
-
-# ── Папка с ошибочным именем (создана случайно) ──
-{src,tests
+__pycache__/
+*.py[cod]
+*.pyo

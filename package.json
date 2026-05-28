@@ -14,8 +14,7 @@
   "devDependencies": {
     "@playwright/test": "^1.60.0",
     "@types/node": "^20.19.41",
-    "http-server": "^14.1.1",
-    "puppeteer": "^25.0.4"
+    "http-server": "^14.1.1"
   },
   "keywords": [
     "valve",
