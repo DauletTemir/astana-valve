@@ -20,10 +20,9 @@ test-results/
 playwright-report/
 blob-report/
 
-# ── WebP изображения (генерируются из оригиналов) ─
-# Оригиналы: .jpg / .jpeg / .png — коммитим
-# WebP — генерируем локально через cwebp, в git не нужны
-img/**/*.webp
+# ── WebP изображения ──────────────────────────────
+# WebP коммитим — нужны для GitHub Pages (без них <source type="image/webp"> даёт 404)
+# img/**/*.webp
 
 # ── ZIP-архив каталога (генерируется из PDF) ─────
 products-catalog.zip
